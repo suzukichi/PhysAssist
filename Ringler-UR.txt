@@ -1,0 +1,6 @@
+User Story #1:
+As a teacher, I want to make physics quizzes for my students and have it graded, so that I do not have to grade.
+User Story #2:
+As a student, I want to input variables into a physics equation and have it correctly solved, so that I can use the solution to check my homework problems.
+User Story #3:
+As a Google Chrome user, I want to be able to run the program in Chrome, so that I do not have to download Mozilla Firefox.

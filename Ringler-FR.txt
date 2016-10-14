@@ -1,0 +1,9 @@
+Functional Requirement #1:
+The system shall display a list of all physics equations offered.
+Functional Requirement #2:
+The system shall organize the list of equations by which branch of physics it falls under.
+Functional Requirement #3:
+The system shall display a description consisting of name, branch, and history of each equation.
+Functional Requirement #4:
+The system shall display values of known constants when prompted. Functional Requirement #5:
+The system shall solve physics equations after the user inputs the unknown variables.

@@ -1,0 +1,6 @@
+The system shall take a general user no longer than 5 minutes to learn how to create a quiz.
+
+The system shall take a software developer with 1 year of experience less than 2 days to correct any UI defect.
+
+The system shall have no unhandled exceptions from incorrect user input. 
+
