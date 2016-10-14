@@ -1,0 +1,8 @@
+Functional Requirements
+Daniel Sabsay
+
+1. The system shall solve a given physics equation for a specified variable upon user request.
+
+2. The system shall display all parameters, constants, and variations of an equation when the equation is selected by the user.
+
+3. The system shall calculate a grade for a quiz attempt between 0 minutes and 30 minutes of the attempt’s submission.
