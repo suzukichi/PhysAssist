@@ -1,0 +1,5 @@
+The PhysAssist program shall have highlighted terms that display definitions when selected.
+The PhysAssist program shall have a built in bank of equations.
+The PhysAssist program shall automatically pre-define constants in equations.
+The PhysAssist program shall display simulations within 1 to 5 seconds.
+The PhysAssist program shall grant the user the ability to input new term and definitions.
