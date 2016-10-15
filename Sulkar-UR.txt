@@ -1,0 +1,3 @@
+s a teacher, I want to digitally record grades, so that I can save paper.
+As a student, I want to see assignments online, so that I can save time.
+As a student, I want to see my class schedule, so that I can arrive on time.
