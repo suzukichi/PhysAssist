@@ -1,1 +1,5 @@
-test text.
+The system shall have various colour schemes for users who are colourblind.
+The system shall show physics equations in plaintext.
+The system shall show constants and values typically used in physics problems.
+The system shall organize physics topics the same way they are presented in the
+textbook.
