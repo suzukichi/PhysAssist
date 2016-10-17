@@ -1,0 +1,13 @@
+As a physics major, I want one place where I can see all the formulas and
+constants I need for a certain topic, so that I can save time and focus on
+studying and doing practice problems.
+
+As a physics professor, I want to be able to use pre-made diagrams when
+teaching my class, so that I can save time from drawing the same thing on the
+board, and can use that time answering questions about the material.
+
+As a visual learner, I want to be able to see examples and drawings of problems
+I will encounter in my physics class, so that I can learn on my own time when
+the teacher is not available to show me new problems similar to those in my
+notes.
+
