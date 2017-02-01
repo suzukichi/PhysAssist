@@ -1,8 +1,0 @@
-Non-Functional Requirements
-Daniel Sabsay
-
-1. The system shall run on Windows and Mac OS, so that it will be accessible to most students.
-
-2. The system shall have a mean time between failures greater than 10 weeks for the online quiz functionality.
-
-3. The system shall have an average learning time less than 5 minutes for students to understand how to find a desired equation and have the system solve it.

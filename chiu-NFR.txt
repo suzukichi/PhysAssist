@@ -1,8 +1,0 @@
-ystem shall take a user no more than 2 minutes to learn how to navigate to a
-physics equation.
-
-The system shall run on Android phones and tablets running kitkat and above.
-
-The system shall keep a history of revisions in case a user submits
-inappropriate edits, and be able to revert to a previous version within 1 hour.
-

@@ -1,4 +1,0 @@
-ystem shall offer navigational hints for new users.
-The system shall take a user less than two minutes to fill in an equation.
-The system shall close itself if it experiences a freeze that lasts longer than 30 seconds
-

@@ -1,8 +1,0 @@
-User Stories
-Daniel Sabsay
-
-1. As a physics student, I want to see visualizations of all the parameters of a chosen physics equation (from equations taught in a college physics course), so that I can see the relationship between the physical phenomenon and the equation that describes it.
-
-2. As a physics student, I want to choose an equations from equations taught in a college physics course, and see all parameters, constants, and variations of the equation, so that I can learn when to use different equations.
-
-3. As a teacher, I want to create physics problems for students that I can distribute to all students in a class, and that will be automatically graded, so that I can receive immediate feedback on students’ performance.
