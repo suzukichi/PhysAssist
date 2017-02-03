@@ -16,7 +16,7 @@ public class Quiz
    private String name;
    private Question[] questions; //should this be arrayList?
    private long startDate, endDate;
-   //Class quizzes are instantiated as invisible to students
+   //Class quizzes are instantiated as invisible to students 
    private boolean isOpen, isVisible;
    private int maxNumAttempts, maxAttemptTime;
    private long[] submissions;
