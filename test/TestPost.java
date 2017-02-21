@@ -1,12 +1,12 @@
 package test;
-
-import static org.junit.Assert.*;
-
-import org.junit.Test;
 /**
  * @author diana
  *
  */
+import static org.junit.Assert.*;
+import org.junit.Test;
+import logic.Post;
+
 public class TestPost {
 	@Test
 	public void testPostConstructor() {
