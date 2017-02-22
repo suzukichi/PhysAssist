@@ -19,8 +19,8 @@ public class User {
   private String password;
   private String email;
   private long registrationDate;
-  private List<Classroom> classroomsEnrolled;
-  private List<Classroom> classroomsOwned;
+  public List<Classroom> classroomsEnrolled;
+  public List<Classroom> classroomsOwned;
   
   public User(String username, String firstName, String lastName, String password, String email) {
     this.username = username;

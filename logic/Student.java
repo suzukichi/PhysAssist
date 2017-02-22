@@ -9,9 +9,9 @@ package logic;
  */
 
 public class Student extends Role {
-  
+
   public Student() {
-    
+    super("student");
   }
   
   /*

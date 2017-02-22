@@ -9,5 +9,11 @@ package logic;
  */
 
 public abstract class Role {
+  public String roleName;
+  
+  public Role(String roleName) {
+    this.roleName = roleName;
+  }
+  
   public abstract void displayPage(Page page);
 }
