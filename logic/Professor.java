@@ -11,7 +11,7 @@ package logic;
 public class Professor extends Role {
   
   public Professor() {
-    
+    super("professor");
   }
   
   /*

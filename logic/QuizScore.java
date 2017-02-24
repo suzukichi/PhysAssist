@@ -35,7 +35,7 @@ public class QuizScore
     */
    public float setScore(float percent)
    {
-
+     return 0;
    }
 
    /*
@@ -61,3 +61,4 @@ public class QuizScore
    {
       return 0;
    }
+}
