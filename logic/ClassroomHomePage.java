@@ -13,9 +13,9 @@ public class ClassroomHomePage extends Page {
 
   private long classID;
   
-  private Notification[] notifcations;
+  private PhysAssistNotification[] notifcations;
   
-  private void display() {
+  public void display() {
     
   }
 }
