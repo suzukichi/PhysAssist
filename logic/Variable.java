@@ -1,9 +1,25 @@
 package logic;
 
-public class Variable extends Term
+public class Variable implements Term
 {
+	private double value;
+	
+	public Variable(double value)
+	{
+		this.value = value;
+	}
+	
 	public void setValue(double value)
 	{
-		super.value = value;
+		this.value = value;
+	}
+	
+	public double getValue()
+	{
+		return value;
+	}
+	
+	public String toString() {
+		return Double.toString(value);
 	}
 }

@@ -2,11 +2,11 @@ package logic;
 
 public class BinOp
 {
-	private String value;
+	private Character value;
 	
-	public BinOp(String value)
+	public BinOp(Character value)
 	{
-		if (value == "*" || value == "/" || value == "+" || value == "-")
+		if (isBinOperator(value))
 		{
 			this.value = value;
 		}
@@ -23,26 +23,33 @@ public class BinOp
 		double result = 0;
 		switch (value)
 		{
-			case "+": 
+			case '+': 
 				result = left + right;
 				break;
-			case "-":
+			case '-':
 				result = left - right;
 				break;
-			case "*":
+			case '*':
 				result = left * right;
 				break;
-			case "/":
+			case '/':
 				result = left / right;
 				break;
 			default:
 				throw new Exception("Operation could not be performed");
 		}
-		return new Term(result);
+		return new Variable(result);
 	}
 	
 	public String getValue() {
-		return value;
+		return value.toString();
+	}
+	
+	public static boolean isBinOperator(Character value) { // can move to Operator class if we choose to implement more ops...
+		if (value == '*' || value == '/' || value == '+' || value == '-') {
+			return true;
+		}
+		return false;
 	}
 	
 }

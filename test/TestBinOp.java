@@ -3,6 +3,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import logic.BinOp;
 import logic.Term;
+import logic.Variable;
 
 public class TestBinOp {
 	private BinOp binOp;
@@ -13,9 +14,9 @@ public class TestBinOp {
 	
 	@Test public void testComputeAdd()
 	{
-		binOp = new BinOp("+");
-		Term t1 = new Term(5.0);
-		Term t2 = new Term(2.0);
+		binOp = new BinOp('+');
+		Term t1 = new Variable(5.0);
+		Term t2 = new Variable(2.0);
 		Term result = null;
 		try {
 			result = binOp.perform(t1, t2);
@@ -28,9 +29,9 @@ public class TestBinOp {
 	
 	@Test public void testComputeDivide()
 	{
-		binOp = new BinOp("/");
-		Term t1 = new Term(6.0);
-		Term t2 = new Term(2.0);
+		binOp = new BinOp('/');
+		Term t1 = new Variable(6.0);
+		Term t2 = new Variable(2.0);
 		Term result = null;
 		try {
 			result = binOp.perform(t1, t2);

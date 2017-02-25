@@ -5,21 +5,69 @@ import logic.AST;
 
 public class TestAST {
 	private AST ast;
-	
-	public TestAST()
+		
+	@Test public void TestASTBuildTreeConstant()
 	{
-		ast = new AST();
+		String constant = "c";
+		try {
+			ast = new AST(constant);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertEquals(constant, ast.toString());
+		
+	}
+	@Test
+	public void TestASTBuildTreeVariable() {
+		String variable = "5.0";
+		try {
+			ast = new AST(variable);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertEquals(variable, ast.toString());
 	}
 	
-	@Test public void testASTCreation()
-	{
-		Node a = new Node(new BinOp("/"));
-		Node b = new Node(new Term(6.0));
-		Node c = new Node(new Term(2.0));
-		ast.newNode(null, a);
-		ast.newNode(a, b);
-		ast.newNode(a, c);
-		Term result = ast.compute();
-		assertEquals(3.0, result.getValue());
+	@Test
+	public void TestASTBuildTreeBranchSimple() {
+		String tree = "+ 3 5";
+		String expected = "3.0 + 5.0";
+		try {
+			ast = new AST(tree);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertEquals(expected, ast.toString());
 	}
+
+	
+	@Test
+	public void TestASTBuildTreeBranchComplex() {
+		String tree = "* 3 + 5 / f 100";
+		String expected = "3.0 * 5.0 + f / 100.0";
+		try {
+			ast = new AST(tree);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertEquals(expected, ast.toString());
+	}
+	
+	@Test
+	public void TestASTBuildTreeBranchNightmare() {
+		String tree = "- * 3 + 4 / c 5 + * 6 + 7 / d 8 * 9 + 10 / e 11";
+		String expected = "3.0 * 4.0 + c / 5.0 - 6.0 * 7.0 + d / 8.0 + 9.0 * 10.0 + e / 11.0";
+		try {
+			ast = new AST(tree);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertEquals(expected, ast.toString());
+	}
+	
 }
