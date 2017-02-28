@@ -1,5 +1,6 @@
 package logic;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -30,37 +31,42 @@ public class Post {
 
     	String q_getPost = "SELECT * FROM `posts` " + 
     	                   " WHERE `postid` = ?";
-    	String[] p_getPost = {String.valueOf(postID)};    	
+    	String[] p_getPost = {DB.T_I, String.valueOf(postID)};    	
     	
-    	HashMap<String, String> row = (new DB()).query(q_getPost, p_getPost).get(0);
+    	ArrayList<HashMap<String, String>> rows = (new DB()).query(q_getPost, p_getPost);
+    	if (rows.size() == 0) {
+    	   // Throw exception or something is probably better to do.
+    	   return;
+    	}
+
+      HashMap<String, String> row = rows.get(0);
     	this.title = row.get("title");
     	this.text = row.get("text");
-    	this.classroomID = Integer.parseInt(row.get("classroomid"));
+    	//this.classroomID = Integer.parseInt(row.get("classroomid"));
     }
     
     /**
      * Saves the post to the db.
      */
     public long save() {
-       String setFields = "`title` = '?', `text` = ?, `classroomid` = ?";
+       String setFields = "`title` = ?, `text` = ?, `classroomid` = ?";
        String classroomIDStr = String.valueOf(this.classroomID); 
        String[] p_savePost = {
-          this.title,
-          this.text,
-          classroomIDStr,
-          this.title,
-          this.text,
-          classroomIDStr,
-          String.valueOf(this.postID) 
+          DB.T_S, this.title,
+          DB.T_S, this.text,
+          DB.T_I, classroomIDStr,
+          DB.T_S, this.title,
+          DB.T_S, this.text,
+          DB.T_I, classroomIDStr,
+          DB.T_I, String.valueOf(this.postID) 
        };
 
        String q_savePost = "INSERT INTO `posts` SET " + setFields +
                            " ON DUPLICATE KEY UPDATE " + setFields +
                            " WHERE `postid` = ?";
-       (new DB()).query(q_savePost, p_savePost);
-       
-       // This may not be set here...
        // TODO: return latest updated index from the db and set it here
+       this.postID = (new DB()).execute(q_savePost, p_savePost);
+       
        return this.postID;
     }
 }

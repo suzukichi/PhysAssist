@@ -28,7 +28,7 @@ public class TestPost {
 	   
 	   Post post = new Post(postID);
 	   
-	   assertEquals(op.postID, post.postID);
+	   assertEquals(postID, post.postID);
 	   
 	}
 
