@@ -8,7 +8,6 @@ package logic;
  * Created Feb 13, 2017
  */
 
-
 public class ClassroomHomePage extends Page {
 
   private long classID;
