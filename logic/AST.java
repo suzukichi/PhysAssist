@@ -20,25 +20,24 @@ public class AST
 	private Node buildTree() throws Exception
 	{
 		Node node = null;
-		System.out.println(CharFeed.ch);
-		if (BinOp.isBinOperator(CharFeed.ch)) {
-			BinOp op = new BinOp(CharFeed.ch);
-			CharFeed.nextChar();
-			Node left = buildTree();
-			CharFeed.nextChar();
-			Node right = buildTree();
-			node = new Branch(op, left, right);
+		//System.out.println(CharFeed.ch);
+		String value = CharFeed.nextWord();
+		if (BinaryOperator.isBinaryOperator(value)) {
+		  BinaryOperator op = new BinaryOperator(value);
+		  CharFeed.nextChar();
+		  Node left = buildTree();
+		  CharFeed.nextChar();
+		  Node right = buildTree();
+		  node = new Branch(op, left, right);
 		}
-		else if (Character.isDigit(CharFeed.ch)) {
-			node = new Leaf(CharFeed.nextVariable());
+		else if (Character.isDigit(value.charAt(0))) {
+		  node = new Leaf(new Variable(Double.parseDouble(value)));
 		}
-		else if (Character.isLetter(CharFeed.ch)) {
-			node = new Leaf(CharFeed.nextConstant());
+		else if (Character.isLetter(value.charAt(0))) {
+		  node = new Leaf(new Constant(value));
 		}
 		else {
-			if (StringCharacterIterator.DONE != CharFeed.ch) {
-				throw new Exception("AST invalid character");
-			}
+		  throw new Exception("AST invalid character");
 		}
 		return node;
 	}
@@ -52,32 +51,19 @@ public class AST
 			ch = iterator.current();
 		}
 		
+		public static String nextWord() {
+          String word = ch.toString();
+          while (' ' != (ch = iterator.next()) && StringCharacterIterator.DONE != ch) {
+              word += ch.toString();
+          }
+          return word;
+		}
+		
 		public static void nextChar() {
 			ch = iterator.next();
 			if (ch == ' ') {
 				ch = iterator.next();
 			}
-			while (ch == ')') {
-				ch = iterator.next();
-			}
-		}
-		
-		public static Variable nextVariable()
-		{
-			String digit = ch.toString();
-			while (Character.isDigit(ch = iterator.next()))
-			{
-				digit += ch.toString();
-			}
-			return new Variable(Double.parseDouble(digit));
-		}
-		
-		public static Constant nextConstant() {
-			String constant = ch.toString();
-			while (Character.isLetter(ch = iterator.next())) {
-				constant += ch.toString();
-			}
-			return new Constant(constant);
 		}
 	}
 	
@@ -90,9 +76,9 @@ public class AST
 	{
 		public Node left;
 		public Node right;
-		public BinOp op; // originally was Operation. Ultimately will want to do non-binary ops, change back
+		public BinaryOperator op; // originally was Operation. Ultimately will want to do non-binary ops, change back
 		
-		public Branch(BinOp op, Node left, Node right)
+		public Branch(BinaryOperator op, Node left, Node right)
 		{
 			this.op = op;
 			this.left = left;
@@ -100,7 +86,7 @@ public class AST
 		}
 		
 		public String toString() {
-			return left.toString() + " " + op.getValue() + " " + right.toString();
+			return left.toString() + " " + op.toString() + " " + right.toString();
 		}
 	}
 	

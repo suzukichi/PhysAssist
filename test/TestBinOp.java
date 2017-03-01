@@ -1,12 +1,12 @@
 package test;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import logic.BinOp;
+import logic.BinaryOperator;
 import logic.Term;
 import logic.Variable;
 
 public class TestBinOp {
-	private BinOp binOp;
+	private BinaryOperator binOp;
 	
 	public TestBinOp()
 	{
@@ -14,7 +14,7 @@ public class TestBinOp {
 	
 	@Test public void testComputeAdd()
 	{
-		binOp = new BinOp('+');
+		binOp = new BinaryOperator("+");
 		Term t1 = new Variable(5.0);
 		Term t2 = new Variable(2.0);
 		Term result = null;
@@ -29,7 +29,7 @@ public class TestBinOp {
 	
 	@Test public void testComputeDivide()
 	{
-		binOp = new BinOp('/');
+		binOp = new BinaryOperator("/");
 		Term t1 = new Variable(6.0);
 		Term t2 = new Variable(2.0);
 		Term result = null;
