@@ -30,11 +30,17 @@ public class AST
 		  Node right = buildTree();
 		  node = new Branch(op, left, right);
 		}
+		else if (UnaryOperator.isUnaryOperator(value)) {
+		  
+		}
 		else if (Character.isDigit(value.charAt(0))) {
 		  node = new Leaf(new Variable(Double.parseDouble(value)));
 		}
 		else if (Character.isLetter(value.charAt(0))) {
 		  node = new Leaf(new Constant(value));
+		}
+		else if ('-' == value.charAt(0)) {
+		  node = new Leaf(new Variable(0 - Double.parseDouble(value.substring(1, value.length() - 1))));
 		}
 		else {
 		  throw new Exception("AST invalid character");
