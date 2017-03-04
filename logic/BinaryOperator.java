@@ -25,16 +25,19 @@ public class BinaryOperator extends Operator
 				result = left * right;
 				break;
 			case "/":
+				if (right == 0) 
+				{
+					throw new Exception("Divide by zero.");
+				}
 				result = left / right;
+				break;
+			case "^":
+				result = Math.pow(left, right);
 				break;
 			default:
 				throw new Exception("Operation could not be performed");
 		}
 		return new Variable(result);
-	}
-	
-	public String toString() {
-		return value.toString();
 	}
 	
 }
