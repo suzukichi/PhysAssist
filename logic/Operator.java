@@ -11,7 +11,7 @@ public abstract class Operator {
 
 	public static boolean isUnaryOperator(String value) 
 	{
-		if ("sin".equals(value) || "cos".equals(value) || "tan".equals(value) || "log".equals(value) || "abs".equals(value) || "deg".equals(value)) {
+		if ("sin".equals(value) || "cos".equals(value) || "tan".equals(value) || "log".equals(value) || "ln".equals(value) || "abs".equals(value) || "deg".equals(value)) {
 			return true;
 		}
 		return false;
