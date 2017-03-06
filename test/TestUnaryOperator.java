@@ -2,7 +2,6 @@ package test;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import logic.UnaryOperator;
-import logic.BinaryOperator;
 import logic.Term;
 import logic.Variable;
 
@@ -25,6 +24,38 @@ public class TestUnaryOperator {
 		assertEquals(0.0, result.getValue(), 0.00001);
 	}
 	
+	@Test public void testComputeSinh()
+	{
+		unOp = new UnaryOperator("sinh");
+		Term t1 = new Variable(Math.PI);
+		Term result = null;
+		try 
+		{
+			result = unOp.perform(t1);
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		assertEquals(11.5487, result.getValue(), 0.01);
+	}
+	
+	@Test public void testComputeAsin()
+	{
+		unOp = new UnaryOperator("asin");
+		Term t1 = new Variable(0);
+		Term result = null;
+		try 
+		{
+			result = unOp.perform(t1);
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		assertEquals(0.0, result.getValue(), 0.01);
+	}
+	
 	@Test public void testComputeCos()
 	{
 		unOp = new UnaryOperator("cos");
@@ -41,6 +72,38 @@ public class TestUnaryOperator {
 		assertEquals(-1.0, result.getValue(), 0);
 	}
 	
+	@Test public void testComputeCosh()
+	{
+		unOp = new UnaryOperator("cosh");
+		Term t1 = new Variable(Math.PI);
+		Term result = null;
+		try 
+		{
+			result = unOp.perform(t1);
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		assertEquals(11.5919, result.getValue(), 0.01);
+	}
+	
+	@Test public void testComputeAcos()
+	{
+		unOp = new UnaryOperator("acos");
+		Term t1 = new Variable(0);
+		Term result = null;
+		try 
+		{
+			result = unOp.perform(t1);
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		assertEquals(1.5707963, result.getValue(), 0.01);
+	}
+	
 	@Test public void testComputeTan()
 	{
 		unOp = new UnaryOperator("tan");
@@ -55,6 +118,38 @@ public class TestUnaryOperator {
 			e.printStackTrace();
 		}
 		assertEquals(1.0, result.getValue(), 0.00001);
+	}
+	
+	@Test public void testComputeTanh()
+	{
+		unOp = new UnaryOperator("tanh");
+		Term t1 = new Variable(Math.PI);
+		Term result = null;
+		try 
+		{
+			result = unOp.perform(t1);
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		assertEquals(1, result.getValue(), 0.01);
+	}
+	
+	@Test public void testComputeAtan()
+	{
+		unOp = new UnaryOperator("atan");
+		Term t1 = new Variable(Math.PI);
+		Term result = null;
+		try 
+		{
+			result = unOp.perform(t1);
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		assertEquals(1.262, result.getValue(), 0.01);
 	}
 	
 	@Test public void testComputeLog()
@@ -125,10 +220,9 @@ public class TestUnaryOperator {
 	{
 		unOp = new UnaryOperator("?");
 		Term t1 = new Variable(5.0);
-		Term result = null;
 		try 
 		{
-			result = unOp.perform(t1);
+			unOp.perform(t1);
 			assertTrue(false);
 		} 
 		catch (Exception e) 

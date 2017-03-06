@@ -16,11 +16,29 @@ public class UnaryOperator extends Operator {
 			case "sin":
 				result = Math.sin(l);
 				break;
+			case "sinh":
+			    result = Math.sinh(l);
+			    break;
+			case "asin":
+			    result = Math.asin(l);
+			    break;
 			case "cos":
 				result = Math.cos(l);
 				break;
+			case "cosh":
+			    result = Math.cosh(l);
+			    break;
+			case "acos":
+				result = Math.acos(l);
+				break;
 			case "tan":
 				result = Math.tan(l);
+				break;
+			case "tanh":
+				result = Math.tanh(l);
+				break;
+			case "atan":
+				result = Math.atan(l);
 				break;
 			case "log":
 				result = Math.log10(l);
