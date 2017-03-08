@@ -8,10 +8,10 @@ package logic;
  * Created Feb 8, 2017
  */
 
-public class GeneralUser {
+public class GeneralUser extends Role {
   
   public GeneralUser() {
-    
+    super("generaluser");
   }
   
   /*

@@ -2,6 +2,12 @@ package logic;
 import java.util.ArrayList;
 import java.util.List;
 
+import logic.Classroom;
+import logic.ClassroomPage;
+import logic.GeneralUser;
+import logic.Professor;
+import logic.Student;
+
 /*
  * User.java
  * 
@@ -63,6 +69,19 @@ public class User {
    * Returns the user's permissions for the specified page.
    */
   public Role getPermission(Page page) {
-    
+    if (page instanceof ClassroomPage) {
+      ClassroomPage classroomPage = (ClassroomPage) page;
+      Classroom c = classroomPage.classroom;
+      
+      if (classroomsEnrolled.contains(c)) {
+        return new Student();
+      }
+      if (classroomsOwned.contains(c)) {
+        return new Professor();
+      }
+      return new GeneralUser();
+    } else {
+      return new GeneralUser();
+    }
   }
 }
