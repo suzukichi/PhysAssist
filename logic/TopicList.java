@@ -14,11 +14,10 @@ public class TopicList extends ListPage {
   
   @Override
   public void display(String str) {
-    
+	  
   }
 
   public void display() {
-    // TODO Auto-generated method stub
     
   }
 

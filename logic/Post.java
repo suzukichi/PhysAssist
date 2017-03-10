@@ -14,11 +14,16 @@ import java.util.HashMap;
 public class Post {
 	public long postID;
     public long classroomID;
+    public long authorID;
+    public long publishTS;
+    public long lastEditTS;
     public String title, text;
 
     public Post(String title, String text) {
     	this.title = title;
     	this.text = text;
+      this.publishTS = System.currentTimeMillis() / 1000L;
+    	this.lastEditTS = publishTS;
     }
     
     /**
