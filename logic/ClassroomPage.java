@@ -12,7 +12,8 @@ package logic;
 public abstract class ClassroomPage extends Page {
   public Classroom classroom;
   
-  public ClassroomPage(Classroom c) {
+  public ClassroomPage(String name, Classroom c) {
+    super(name);
     this.classroom = c;
   }
 }

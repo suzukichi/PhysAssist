@@ -11,6 +11,10 @@ package logic;
 public class LoginPage extends Page {
   private boolean isRegister;
   
+  public LoginPage(String name) {
+    super(name);
+  }
+  
   public void display() {
     
   }

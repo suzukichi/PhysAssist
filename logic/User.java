@@ -66,6 +66,22 @@ public class User {
   }
   
   /*
+   * Add a created classroom to this user's owned classrooms.
+   * This effectively makes the user a professor of the classroom.
+   */
+  public void teachClassroom(Classroom classroom) {
+    classroomsOwned.add(classroom);
+  }
+  
+  /*
+   * Remove the classroom from the user's list of owned classrooms.
+   * This must be called when removing a classroom from the system.
+   */
+  public void endClassroom(Classroom classroom) {
+    classroomsOwned.remove(classroom);
+  }
+  
+  /*
    * Returns the user's permissions for the specified page.
    */
   public Role getPermission(Page page) {

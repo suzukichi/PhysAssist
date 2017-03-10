@@ -12,6 +12,11 @@ public class CategoryPage extends Page {
 
   private long categoryID;
   
+  public CategoryPage(String name, long categoryID) {
+    super(name);
+    this.categoryID = categoryID;
+  }
+  
   public void display() {
     
   }

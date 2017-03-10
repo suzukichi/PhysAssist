@@ -9,7 +9,10 @@ package logic;
  */
 
 public abstract class ListPage extends Page {
-  public String searchTerm;
+  
+  public ListPage(String name) {
+    super(name);
+  }
   
   public abstract void display(String str);
 }

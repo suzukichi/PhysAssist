@@ -10,6 +10,10 @@ package logic;
 
 public class HomePage extends Page {
 
+  public HomePage(String name) {
+    super(name);
+  }
+  
   public void display() {
     
   }
