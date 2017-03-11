@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 public class Equation {
   private String name;
+  private int id;
+  private String view;
+  private String description;
+  private String history;
+  private ArrayList<Term> terms;
   
   public Equation(String name) {
     this.name = name;
   }
-	private int id;
-	private String name;
-	private String view;
-	private String description;
-	private String history;
-	private ArrayList<Term> terms;
+
 	
 	public Equation(String name)
 	{
