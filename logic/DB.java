@@ -60,11 +60,11 @@ public class DB {
 
          String selectedData;
          int ndx;
+         int colCount = md.getColumnCount();
          while (rs.next()) {
             HashMap<String, String> row = new HashMap<String, String>();
 
-            for (ndx = 0; ndx < rs.getFetchSize(); ndx++) {
-               // This all needs to be in an inner loop somehow. TODO: see how results work.
+            for (ndx = 0; ndx <= colCount; ndx++) {
                switch (md.getColumnType(ndx)) {
                   case Types.INTEGER:
                   case Types.BIGINT:
