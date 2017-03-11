@@ -13,6 +13,11 @@ public class Constant implements Term {
 		//db lookup for constant name
 		return 0;
 	}
+	
+	public String getName()
+	{
+		return name;
+	}
 
 	public String toString() {
 		return name;
