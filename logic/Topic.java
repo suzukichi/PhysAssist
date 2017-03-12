@@ -61,6 +61,7 @@ public class Topic {
 	
 	public void save() {
 	   DB db = new DB();
+      ArrayList<HashMap<String, String>> rows; 
 	   String q_saveTopic = "INSERT IGNORE INTO `topics`" +
 	                        "SET `parentid` = ?, " +
                                "`topicid` = ?, " +
@@ -85,14 +86,15 @@ public class Topic {
 	                            "WHERE `creation_time` = ?";
 	      String[] p_getTopicID = {DB.T_I, String.valueOf(this.creationTime)};
 	      
-	      this.topicID = Long.getLong(db.query(q_getTopicID, p_getTopicID).get(0).get("topicid"));
+	      rows = db.query(q_getTopicID, p_getTopicID); 
+	      this.topicID = Long.valueOf(rows.get(0).get("topicid"));
 	   }
 
 	   String q_saveTopicRevision = "INSERT INTO `topic_revisions` " +
-                                   "SET `topicid` = ? " + 
-                                       "`title` = ? " + 
-                                       "`text` = ? " +
-                                       "`authorid` = ? ";
+                                   "SET `topicid` = ?, " + 
+                                       "`title` = ?, " + 
+                                       "`text` = ?, " +
+                                       "`authorid` = ?";
 	   String[] p_saveTopicRevision = {
 	      DB.T_I, String.valueOf(this.topicID),
 	      DB.T_S, this.title,
@@ -107,9 +109,9 @@ public class Topic {
                                "FROM `topic_revisions` " + 
                                "WHERE `topicid` = ? " + 
                                "ORDER BY `revisionid` DESC "; 
-      String[] p_getRevisionID = {DB.T_I, String.valueOf(this.revisionID)};
-      
-      this.revisionID = Long.getLong(db.query(q_getRevisionID, p_getRevisionID).get(0).get("revisionid"));
+      String[] p_getRevisionID = {DB.T_I, String.valueOf(this.topicID)};
+      rows = db.query(q_getRevisionID, p_getRevisionID); 
+      this.revisionID = Long.valueOf(rows.get(0).get("revisionid"));
 	   
 	   // TODO: save updated equations list
 	}
