@@ -10,20 +10,20 @@ import java.awt.event.*;
 
 @SuppressWarnings("serial")
 public class Calculator extends JFrame implements ActionListener {
-    
+	public boolean Radians = true;  
+	public String expression = ""; 
+	boolean resultShown=false;
     JPanel[] rows = new JPanel[7];
     String[] buttonNames = {   "(",   ")",   "pow", "sqt",   "C",
     		                 "sin", "cos", "tan",   "/", "var",
-    		                   "7",   "8",   "9",   "x",  "B1",
-    		                   "4",   "5",   "6",   "-",  "B2",
-    		                   "3",   "2",   "1",   "+",  "B3",
+    		                   "7",   "8",   "9",   "*",  "PI",
+    		                   "4",   "5",   "6",   "-",  "deg",
+    		                   "3",   "2",   "1",   "+",  "B2",
     		                   "0",   ".",   "-",   ",",  "="};
     JButton[] buttons = new JButton[buttonNames.length];
     Dimension buttonDim = new Dimension(60,50);
-    //Dimension screenDim = new Dimension(50,50);
     JTextArea display = new JTextArea(10,30);
     Font font = new Font("Times new Roman", Font.BOLD, 14);
-    String expression = ""; 
     
     public Calculator() {
         super("Calculator");
@@ -56,8 +56,6 @@ public class Calculator extends JFrame implements ActionListener {
         
         display.setFont(font);
         display.setEditable(false);
-        //display.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-        //display.setPreferredSize(screenDim);
         for(int i = 0; i < buttons.length; i++){
             buttons[i].setPreferredSize(buttonDim);
         }
@@ -100,17 +98,21 @@ public class Calculator extends JFrame implements ActionListener {
     	}	
     }
     
-    public void getResult() {
+    public double getResult() {
+    	double result = 0;
 		ScriptEngine engine = new ScriptEngineManager().getEngineByExtension("js");
 		 try {
-			 double result = Double.parseDouble((engine.eval(expression).toString()));
+			 result = Double.parseDouble((engine.eval(expression).toString()));
 			 display.setText(Double.toString(result));
 			 expression = "";
+			 
 	     }
 		 catch (ScriptException e) {
 			 display.setText("error");
 			 expression = "";
 	     }
+		 resultShown=true;
+		 return result;
     }
     
     public final void setDesign() {
@@ -123,6 +125,10 @@ public class Calculator extends JFrame implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent ae) {
+    	if(resultShown==true){
+    		this.clear();
+    		resultShown=false;
+    	}
     	if(ae.getSource()==buttons[2]){
     		display.append("pow(");
     		expression = expression+"Math.pow(";
@@ -136,15 +142,44 @@ public class Calculator extends JFrame implements ActionListener {
     	}
     	else if(ae.getSource()==buttons[5]){
     		display.append("sin(");
-    		expression = expression+"Math.sin(";
+    		if(Radians==true){
+    			expression = expression+"Math.sin(";
+    		}
+    		else{
+    			expression = expression+"Math.sin((1/(180/Math.PI))*";
+    		}
     	}
     	else if(ae.getSource()==buttons[6]){
     		display.append("cos(");
-    		expression = expression+"Math.cos(";
+    		if(Radians==true){
+    			expression = expression+"Math.cos(";
+    		}
+    		else{
+    			expression = expression+"Math.cos((1/(180/Math.PI))*";
+    		}
     	}
     	else if(ae.getSource()==buttons[7]){
     		display.append("tan(");
-    		expression = expression+"Math.tan(";
+    		if(Radians=true){
+    			expression = expression+"Math.tan(";
+    		}
+    		else{
+    			expression = expression+"Math.tan((1/(180/Math.PI))*";
+    		}
+    	}
+    	else if(ae.getSource()==buttons[14]){
+    		display.append("PI");
+    		expression = expression+"Math.PI";
+    	}
+    	else if(ae.getSource()==buttons[19]){
+    		if(Radians==true){
+    			buttons[19].setBackground(new Color(0,200,0));
+    			Radians=false;
+    		}
+    		else{
+    			buttons[19].setBackground(new Color(200, 50, 40));
+    			Radians=true;
+    		}
     	}
     	else if(ae.getSource() == buttons[29]){
             if(!expression.isEmpty()){
@@ -162,8 +197,8 @@ public class Calculator extends JFrame implements ActionListener {
     	}
     }
     
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         @SuppressWarnings("unused")
 		Calculator c = new Calculator();
-    }
+    }*/
 }
