@@ -16,7 +16,7 @@ public class Topic {
 	public Topic(long topicID) {
 	   DB db = new DB();
 	   
-      String q_getTopic = "SELECT tr.`topicid`, tr.`title`, tr.`text` tr.`authorid`, tr.`revisionid`," + 
+      String q_getTopic = "SELECT tr.`topicid`, tr.`title`, tr.`text`, tr.`authorid`, tr.`revisionid`," + 
                                 " t.`parentid`, t.`creation_time`" +  
                           " FROM `topic_revisions` tr" + 
                           " JOIN `topics` t USING (`topicid`)" +
@@ -115,4 +115,15 @@ public class Topic {
 	   
 	   // TODO: save updated equations list
 	}
+
+	public void delete() {
+	   DB db = new DB();
+	   String q_deleteTopic = "DELETE FROM `topics` WHERE `topicid` = ?";
+	   String[] params = {DB.T_I, String.valueOf(this.topicID)};
+	   String q_deleteTopicRevisions = "DELETE FROM `topic_revisions` WHERE `topicid` = ?";
+	   
+	   db.execute(q_deleteTopic, params);
+	   db.execute(q_deleteTopicRevisions, params);
+	}
+	
 }

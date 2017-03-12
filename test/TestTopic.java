@@ -57,12 +57,13 @@ public class TestTopic {
 
 		t.save();
 		assertTrue(t.topicID > 0);
+		t.delete();
 	}
 
-	//@Test
+	@Test
 	public void testReviseTopic() {
 		String title = "Real topics";
-		String description = "This is a real topic that will go into the db, really.";
+		String description = "This is a real topic that will go into the db, really. And be edited.";
 		Topic t = new Topic(title, description);
 
 		t.save();
@@ -72,6 +73,20 @@ public class TestTopic {
 		
 		t.save();
 		assertTrue(revision1 < t.revisionID);
+		t.delete();
 	}
+
+	@Test
+	public void testCreateFromDBTopic() {
+		String title = "First title";
+		String description = "ayylmao";
+		Topic t = new Topic(title, description);
+
+		t.save();
+		
+		Topic t2 = new Topic(t.topicID);
+		assertEquals(t.title, t2.title);
+		t.delete();
+   }
 	
 }
