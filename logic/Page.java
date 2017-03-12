@@ -1,4 +1,7 @@
 package logic;
+
+import java.awt.event.MouseAdapter;
+
 /*
  * Page.java
  * 
@@ -7,13 +10,9 @@ package logic;
  * @author Kyle Ringler
  * Created Feb 13, 2017
  */
-public abstract class Page {
+public abstract class Page extends MouseAdapter {
 
-  private String name;
-  
-  public Page(String name) {
-    this.name = name;
-  }
-  
-  public abstract void display();
+	  private String name;
+	  
+	  public abstract void display();
 }

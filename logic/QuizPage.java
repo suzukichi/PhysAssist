@@ -15,10 +15,6 @@ public class QuizPage extends Page {
   
   private Quiz quiz;
   
-  public QuizPage(String name, Quiz quiz) {
-    super(name);
-    this.quiz = quiz;
-  }
   
   public void display() {
     

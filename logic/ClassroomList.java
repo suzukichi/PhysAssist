@@ -11,10 +11,6 @@ package logic;
 public class ClassroomList extends ListPage {
   
   public Classroom[] classrooms;
-  
-  public ClassroomList(String name) {
-    super(name);
-  }
 
   public void display(String str) {
     

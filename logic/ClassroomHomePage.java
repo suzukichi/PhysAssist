@@ -14,9 +14,7 @@ public class ClassroomHomePage extends ClassroomPage {
   
   private PhysAssistNotification[] notifcations;
   
-  public ClassroomHomePage(String name, Classroom c) {
-    super(name, c);
-  }
+ 
   
   public void display() {
     

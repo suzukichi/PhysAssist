@@ -10,9 +10,7 @@ package logic;
 
 public class SettingsPage extends Page {
   
-  public SettingsPage(String name) {
-    super(name);
-  }
+  
   
   public void display() {
     
