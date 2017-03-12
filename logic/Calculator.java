@@ -10,9 +10,9 @@ import java.awt.event.*;
 
 @SuppressWarnings("serial")
 public class Calculator extends JFrame implements ActionListener {
-	public boolean Radians = true;  
-	public String expression = ""; 
-	boolean resultShown=false;
+    public boolean Radians = true;  
+    public String expression = ""; 
+    boolean resultShown=false;
     JPanel[] rows = new JPanel[7];
     String[] buttonNames = {   "(",   ")",   "pow", "sqt",   "C",
     		                 "sin", "cos", "tan",   "/", "var",
@@ -160,7 +160,7 @@ public class Calculator extends JFrame implements ActionListener {
     	}
     	else if(ae.getSource()==buttons[7]){
     		display.append("tan(");
-    		if(Radians=true){
+    		if(Radians==true){
     			expression = expression+"Math.tan(";
     		}
     		else{
