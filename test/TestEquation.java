@@ -2,6 +2,8 @@ package test;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.junit.Test;
 import logic.Equation;
@@ -9,6 +11,7 @@ import logic.Term;
 import logic.Variable;
 
 public class TestEquation {
+	private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
 	private Equation equation;
 
 	@Test public void TestEquationSolve()
@@ -23,6 +26,7 @@ public class TestEquation {
 		try {
 			assertEquals(Math.PI / 2, (equation.solve(solveFor, terms)).getValue(), 0.01);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 	}

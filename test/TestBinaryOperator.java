@@ -1,11 +1,16 @@
 package test;
 import org.junit.Test;
 import static org.junit.Assert.*;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import logic.BinaryOperator;
 import logic.Term;
 import logic.Variable;
 
 public class TestBinaryOperator {
+	private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
 	private BinaryOperator binOp;
 
 	@Test public void testComputeAdd()
@@ -20,6 +25,7 @@ public class TestBinaryOperator {
 		} 
 		catch (Exception e) 
 		{
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(7.0, result.getValue(), 0);
@@ -37,6 +43,7 @@ public class TestBinaryOperator {
 		} 
 		catch (Exception e) 
 		{
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(-3.0, result.getValue(), 0);
@@ -54,6 +61,7 @@ public class TestBinaryOperator {
 		} 
 		catch (Exception e) 
 		{
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(10.0, result.getValue(), 0);
@@ -71,6 +79,7 @@ public class TestBinaryOperator {
 		} 
 		catch (Exception e) 
 		{
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(3.0, result.getValue(), 0);
@@ -88,6 +97,7 @@ public class TestBinaryOperator {
 		} 
 		catch (Exception e) 
 		{
+			LOGGER.log(Level.FINE, e.toString(), e);
 			assertTrue(true);
 		}
 	}
@@ -104,6 +114,7 @@ public class TestBinaryOperator {
 		} 
 		catch (Exception e) 
 		{
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(2.0, result.getValue(), 0);
@@ -121,6 +132,7 @@ public class TestBinaryOperator {
 		} 
 		catch (Exception e) 
 		{
+			LOGGER.log(Level.FINE, e.toString(), e);
 			assertTrue(true);
 		}
 	}

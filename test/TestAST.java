@@ -1,11 +1,16 @@
 package test;
 import org.junit.Test;
 import static org.junit.Assert.*;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import logic.AST;
 import logic.Term;
 
 public class TestAST {
 	private AST ast;
+	private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
 
 	@Test public void TestASTBuildTreeConstant()
 	{
@@ -13,6 +18,7 @@ public class TestAST {
 		try {
 			ast = new AST(constant);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(constant, ast.toString());
@@ -25,6 +31,7 @@ public class TestAST {
 		try {
 			ast = new AST(variable);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(variable, ast.toString());
@@ -38,6 +45,7 @@ public class TestAST {
 		try {
 			ast = new AST(tree);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(expected, ast.toString());
@@ -51,6 +59,7 @@ public class TestAST {
 		try {
 			ast = new AST(tree);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(expected, ast.toString());
@@ -64,6 +73,7 @@ public class TestAST {
 		try {
 			ast = new AST(tree);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(expected, ast.toString());
@@ -77,6 +87,7 @@ public class TestAST {
 		try {
 			ast = new AST(tree);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(expected, ast.toString());
@@ -90,6 +101,7 @@ public class TestAST {
 		try {
 			ast = new AST(tree);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(expected, ast.toString());
@@ -103,6 +115,7 @@ public class TestAST {
 		try {
 			ast = new AST(tree);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(expected, ast.toString());
@@ -116,6 +129,7 @@ public class TestAST {
 		try {
 			ast = new AST(tree);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(expected, ast.toString());
@@ -129,6 +143,7 @@ public class TestAST {
 		try {
 			ast = new AST(tree);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(expected, ast.toString());
@@ -142,6 +157,7 @@ public class TestAST {
 		try {
 			ast = new AST(tree);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(expected, ast.toString());
@@ -154,6 +170,7 @@ public class TestAST {
 		try {
 			ast = new AST(tree);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(expected, ast.toString());
@@ -166,6 +183,7 @@ public class TestAST {
 			ast = new AST(tree);
 			assertFalse(true);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			assertTrue(true);
 		}
 	}
@@ -178,11 +196,13 @@ public class TestAST {
 		try {
 			ast = new AST(tree);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		try {
 			assertEquals(expected, ast.compute());
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			assertTrue(false);
 		}
 	}
@@ -196,11 +216,13 @@ public class TestAST {
 		try {
 			ast = new AST(tree);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		try {
 			assertEquals(expected, ast.compute().getValue(), 0);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			assertTrue(false);
 		}
 	}
@@ -213,11 +235,13 @@ public class TestAST {
 		try {
 			ast = new AST(tree);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		try {
 			assertEquals(expected, ast.compute().getValue(), 0);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			assertTrue(false);
 		}
 	}
@@ -230,11 +254,13 @@ public class TestAST {
 		try {
 			ast = new AST(tree);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		try {
 			assertEquals(expected, ast.compute().getValue(), 0.001);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			assertTrue(false);
 		}
 	}
@@ -247,11 +273,13 @@ public class TestAST {
 		try {
 			ast = new AST(tree);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		try {
 			assertEquals(expected, ast.compute().getValue(), 0.001);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			assertTrue(false);
 		}
 	}
@@ -264,11 +292,13 @@ public class TestAST {
 		try {
 			ast = new AST(tree);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		try {
 			assertEquals(expected, ast.compute().getValue(), 0.001);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			assertTrue(false);
 		}
 	}
@@ -281,11 +311,13 @@ public class TestAST {
 		try {
 			ast = new AST(tree);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		try {
 			assertEquals(expected, ast.compute().getValue(), 0.001);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			assertTrue(false);
 		}
 	}
@@ -298,11 +330,13 @@ public class TestAST {
 		try {
 			ast = new AST(tree);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		try {
 			assertEquals(expected, ast.compute().getValue(), 0.001);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			assertTrue(false);
 		}
 	}
@@ -314,12 +348,14 @@ public class TestAST {
 		try {
 			ast = new AST(tree);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		try {
 			ast.compute();
 			assertTrue(false);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			assertTrue(true);
 		}
 	}
@@ -332,11 +368,13 @@ public class TestAST {
 		try {
 			ast = new AST(tree);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		try {
 			assertEquals(expected, ast.compute().getValue(), 0.001);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			assertTrue(false);
 		}
 	}
@@ -349,11 +387,13 @@ public class TestAST {
 		try {
 			ast = new AST(tree);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		try {
 			assertEquals(expected, ast.compute().getValue(), 0.001);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			assertTrue(false);
 		}
 	}
@@ -366,11 +406,13 @@ public class TestAST {
 		try {
 			ast = new AST(tree);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		try {
 			assertEquals(expected, ast.compute().getValue(), 0.001);
 		} catch (Exception e) {
+			LOGGER.log(Level.FINE, e.toString(), e);
 			assertTrue(false);
 		}
 	}
