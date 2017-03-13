@@ -1,6 +1,7 @@
 package logic;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Equation {
 	private String name;
@@ -51,7 +52,7 @@ public class Equation {
 		return history;
 	}
 
-	public Term solve(Term target, ArrayList<Term> terms) throws Exception
+	public Term solve(Term target, List<Term> terms) throws Exception
 	{
 		String ast = getAST(target);
 		for (int i = 0; i < terms.size(); i++)

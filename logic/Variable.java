@@ -21,11 +21,13 @@ public class Variable implements Term
 		this.value = value;
 	}
 
+	@Override
 	public double getValue()
 	{
 		return value;
 	}
 	
+	@Override
 	public String getName()
 	{
 		return name;

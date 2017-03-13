@@ -1,6 +1,6 @@
 package logic;
 
-public class Constant implements Term {
+public class Constant implements Term { //write DB lookup with scientific notation conversion and e and pi stuff
 	private String symbol;
 	private double value;
 
@@ -9,29 +9,18 @@ public class Constant implements Term {
 		this.symbol = symbol;
 	}
 
+	@Override
 	public double getValue()
 	{
 		//db lookup for constant name
 		String valueString = "";
-		String[] p_getConstantValue = {
+		String[] pGetConstantValue = {
 		          DB.T_S, valueString,
 		       };
 
-		String q_getConstantValue = "SELECT `value`, FROM `constants` WHERE `symbol` = " + this.symbol;
-		(new DB()).query(q_getConstantValue, p_getConstantValue);
-		return normalizeValue(valueString);
-	}
-	
-	private double normalizeValue(String valueString) 
-	{
-		String[] halves = valueString.split("E");
-		if (halves.length == 2) {
-			this.value = (checkNegative(halves[0])) * Math.pow(10, checkNegative(halves[1]));
-		}
-		else {
-			this.value = checkNegative(halves[0]);
-		}
-		return value;
+		String qGetConstantValue = "SELECT `value`, FROM `constants` WHERE `symbol` = " + this.symbol;
+		new DB().query(qGetConstantValue, pGetConstantValue);
+		return checkNegative(valueString);
 	}
 	
 	private double checkNegative(String string) {
@@ -44,10 +33,12 @@ public class Constant implements Term {
 		}
 	}
 
+	@Override
 	public String getName() {
 		return symbol;
 	}
 
+	@Override
 	public String toString() {
 		return symbol;
 	}
