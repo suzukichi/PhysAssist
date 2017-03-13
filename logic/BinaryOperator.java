@@ -12,7 +12,7 @@ public class BinaryOperator extends Operator
 	{
 		double left = l.getValue();
 		double right = r.getValue();
-		double result = 0;
+		double result;
 		switch (value)
 		{
 			case "+": 
@@ -26,9 +26,7 @@ public class BinaryOperator extends Operator
 				break;
 			case "/":
 				if (right == 0) 
-				{
 					throw new Exception("Divide by zero.");
-				}
 				result = left / right;
 				break;
 			case "^":

@@ -10,7 +10,7 @@ public class UnaryOperator extends Operator {
 	public Term perform(Term left) throws Exception 
 	{
 		double l = left.getValue();
-		double result = 0;
+		double result;
 		switch (value) 
 		{
 			case "sin":
