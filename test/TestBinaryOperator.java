@@ -81,10 +81,9 @@ public class TestBinaryOperator {
 		binOp = new BinaryOperator("/");
 		Term t1 = new Variable(6.0);
 		Term t2 = new Variable(0.0);
-		Term result = null;
 		try 
 		{
-			result = binOp.perform(t1, t2);
+			binOp.perform(t1, t2);
 			assertTrue(false);
 		} 
 		catch (Exception e) 
@@ -115,10 +114,9 @@ public class TestBinaryOperator {
 		binOp = new BinaryOperator("?");
 		Term t1 = new Variable(5.0);
 		Term t2 = new Variable(2.0);
-		Term result = null;
 		try 
 		{
-			result = binOp.perform(t1, t2);
+			binOp.perform(t1, t2);
 			assertTrue(false);
 		} 
 		catch (Exception e) 

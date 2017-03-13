@@ -23,7 +23,6 @@ public class TestEquation {
 		try {
 			assertEquals(Math.PI / 2, (equation.solve(solveFor, terms)).getValue(), 0.01);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

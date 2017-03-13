@@ -24,37 +24,6 @@ public class TestUnaryOperator {
 		assertEquals(0.0, result.getValue(), 0.00001);
 	}
 	
-	@Test public void testComputeSinh()
-	{
-		unOp = new UnaryOperator("sinh");
-		Term t1 = new Variable(Math.PI);
-		Term result = null;
-		try 
-		{
-			result = unOp.perform(t1);
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-		}
-		assertEquals(11.5487, result.getValue(), 0.01);
-	}
-	
-	@Test public void testComputeAsin()
-	{
-		unOp = new UnaryOperator("asin");
-		Term t1 = new Variable(0);
-		Term result = null;
-		try 
-		{
-			result = unOp.perform(t1);
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-		}
-		assertEquals(0.0, result.getValue(), 0.01);
-	}
 	
 	@Test public void testComputeCos()
 	{
@@ -72,37 +41,6 @@ public class TestUnaryOperator {
 		assertEquals(-1.0, result.getValue(), 0);
 	}
 	
-	@Test public void testComputeCosh()
-	{
-		unOp = new UnaryOperator("cosh");
-		Term t1 = new Variable(Math.PI);
-		Term result = null;
-		try 
-		{
-			result = unOp.perform(t1);
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-		}
-		assertEquals(11.5919, result.getValue(), 0.01);
-	}
-	
-	@Test public void testComputeAcos()
-	{
-		unOp = new UnaryOperator("acos");
-		Term t1 = new Variable(0);
-		Term result = null;
-		try 
-		{
-			result = unOp.perform(t1);
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-		}
-		assertEquals(1.5707963, result.getValue(), 0.01);
-	}
 	
 	@Test public void testComputeTan()
 	{
@@ -119,38 +57,7 @@ public class TestUnaryOperator {
 		}
 		assertEquals(1.0, result.getValue(), 0.00001);
 	}
-	
-	@Test public void testComputeTanh()
-	{
-		unOp = new UnaryOperator("tanh");
-		Term t1 = new Variable(Math.PI);
-		Term result = null;
-		try 
-		{
-			result = unOp.perform(t1);
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-		}
-		assertEquals(1, result.getValue(), 0.01);
-	}
-	
-	@Test public void testComputeAtan()
-	{
-		unOp = new UnaryOperator("atan");
-		Term t1 = new Variable(Math.PI);
-		Term result = null;
-		try 
-		{
-			result = unOp.perform(t1);
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-		}
-		assertEquals(1.262, result.getValue(), 0.01);
-	}
+
 	
 	@Test public void testComputeLog()
 	{
