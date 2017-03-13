@@ -16,7 +16,8 @@ public class DB {
 	// TODO: move to config file
 	static final String DB_NAME = "physassist";
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://unix3.csc.calpoly.edu:4444/" + DB_NAME;
+	static final String DB_URL = "jdbc:mysql://thor.joshterrell.com:4444/" + DB_NAME;
+	//static final String DB_URL = "jdbc:mysql://unix3.csc.calpoly.edu:4444/" + DB_NAME;
 
 	static final String USER = "physassist_dev";
 	static final String PASS = "G2ugktexSk9WSWan";
@@ -97,7 +98,6 @@ public class DB {
 
       int ndx = 1;
       for (int i = 0; i < params.length; i += 2) {
-         System.out.println("@ index " + i + ":  " + params[i] + ",  " + params[i + 1] + "\n");
          switch (params[i]) {
             case T_I:
                if (params[i + 1] == null) {
@@ -126,7 +126,6 @@ public class DB {
          ndx++;
       }
 
-      System.out.println(preparedStmt.toString() + "\n");
       return preparedStmt;
 	}
 

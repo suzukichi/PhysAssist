@@ -54,35 +54,7 @@ public class About extends JPanel {
 		title.setIcon(titleIcon);
 		panel_1.add(title);
 		String temp = "This is where the information goes about us. Must be able to scroll down this whole panel." +
-				"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-				"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-				"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-				"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-				"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-				"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-				"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-				"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-				"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-				"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-				"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-				"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-				"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-				"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-					"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-					"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-					"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-					"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-					"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-					"This is where the information goes about us. Must be able to scroll down this whole panel."  + 
-					"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-					"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-					"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-					"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-					"This is where the information goes about us. Must be able to scroll down this whole panel."  +
-					"This is where the information goes about us. Must be able to scroll down this whole panel."  +
 				"This is where the information goes about us. Must be able to scroll down this whole panel.";
-		
-		
 		
 		JTextArea textArea = new JTextArea(temp);
 		textArea.setLineWrap(true);

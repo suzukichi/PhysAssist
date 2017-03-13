@@ -252,18 +252,19 @@ public class Home extends JPanel {
 			
 		});
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(0, 0, 523, 56);
-		panel_3.setBackground(Color.RED);
-		panel.add(panel_3);
+		JPanel headerPanel = new JPanel();
+		headerPanel.setBounds(0, 0, 523, 56);
+		headerPanel.setBackground(StyleGuide.headerMain);
+		panel.add(headerPanel);
 		
-		JLabel label_1 = new JLabel("PhysAssist");
-		label_1.setVerticalAlignment(SwingConstants.BOTTOM);
-		panel_3.add(label_1);
-		label_1.setForeground(Color.BLACK);
-		label_1.setFont(new Font("DialogInput", Font.BOLD, 22));
-		label_1.setBorder(new EmptyBorder(0, 0, 0, 0));
-		label_1.setBackground(Color.BLACK);
+		JLabel groupName = new JLabel("PhysAssist");
+		groupName.setVerticalAlignment(SwingConstants.BOTTOM);
+		groupName.setHorizontalAlignment(SwingConstants.CENTER);
+		headerPanel.add(groupName);
+		groupName.setForeground(Color.BLACK);
+		groupName.setFont(new Font("DialogInput", Font.BOLD, 22));
+		groupName.setBorder(new EmptyBorder(0, 0, 0, 0));
+		groupName.setBackground(Color.BLACK);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(null);

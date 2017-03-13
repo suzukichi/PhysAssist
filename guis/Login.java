@@ -111,7 +111,7 @@ public class Login extends JPanel {
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(Color.RED);
+		panel_2.setBackground(StyleGuide.headerMain);
 		panel.add(panel_2);
 		
 		JLabel header = new JLabel("Login");
