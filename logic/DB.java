@@ -13,11 +13,9 @@ public class DB {
 	public static final String T_D = "decimal";
 	public static final String T_S = "string";
 	
-	// TODO: move to config file
 	static final String DB_NAME = "physassist";
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://thor.joshterrell.com:4444/" + DB_NAME;
-	//static final String DB_URL = "jdbc:mysql://unix3.csc.calpoly.edu:4444/" + DB_NAME;
+	static final String DB_URL = "jdbc:mysql://unix3.csc.calpoly.edu:4444/" + DB_NAME;
 
 	static final String USER = "physassist_dev";
 	static final String PASS = "G2ugktexSk9WSWan";
