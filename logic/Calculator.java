@@ -196,9 +196,4 @@ public class Calculator extends JFrame implements ActionListener {
     		}
     	}
     }
-    
-    /*public static void main(String[] args) {
-        @SuppressWarnings("unused")
-		Calculator c = new Calculator();
-    }*/
 }
