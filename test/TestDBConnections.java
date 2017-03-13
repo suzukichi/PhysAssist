@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +15,7 @@ import org.junit.Test;
 import logic.DB;
 
 public class TestDBConnections {
+private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
    private String testText;
    /**
     * Tests in this file use the mysql_test db, which is not really part of the
@@ -40,6 +43,7 @@ public class TestDBConnections {
          String statementString = stmnt.toString();
          assertEquals(query + "'" + text + "'", statementString.substring(statementString.indexOf(": ") + 2));
       } catch (SQLException e) {
+    	 LOGGER.log(Level.FINE, e.toString(), e);
          e.printStackTrace();
       }
    }
@@ -58,6 +62,7 @@ public class TestDBConnections {
          String statementString = stmnt.toString();
          assertEquals(query, statementString.substring(statementString.indexOf(": ") + 2));
       } catch (SQLException e) {
+    	 LOGGER.log(Level.FINE, e.toString(), e);
          e.printStackTrace();
       }
    }

@@ -1,11 +1,16 @@
 package test;
 import org.junit.Test;
 import static org.junit.Assert.*;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import logic.UnaryOperator;
 import logic.Term;
 import logic.Variable;
 
 public class TestUnaryOperator {
+	private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
 	private UnaryOperator unOp;
 
 	@Test public void testComputeSin()
@@ -19,42 +24,12 @@ public class TestUnaryOperator {
 		} 
 		catch (Exception e) 
 		{
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(0.0, result.getValue(), 0.00001);
 	}
 	
-	@Test public void testComputeSinh()
-	{
-		unOp = new UnaryOperator("sinh");
-		Term t1 = new Variable(Math.PI);
-		Term result = null;
-		try 
-		{
-			result = unOp.perform(t1);
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-		}
-		assertEquals(11.5487, result.getValue(), 0.01);
-	}
-	
-	@Test public void testComputeAsin()
-	{
-		unOp = new UnaryOperator("asin");
-		Term t1 = new Variable(0);
-		Term result = null;
-		try 
-		{
-			result = unOp.perform(t1);
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-		}
-		assertEquals(0.0, result.getValue(), 0.01);
-	}
 	
 	@Test public void testComputeCos()
 	{
@@ -67,42 +42,12 @@ public class TestUnaryOperator {
 		} 
 		catch (Exception e) 
 		{
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(-1.0, result.getValue(), 0);
 	}
 	
-	@Test public void testComputeCosh()
-	{
-		unOp = new UnaryOperator("cosh");
-		Term t1 = new Variable(Math.PI);
-		Term result = null;
-		try 
-		{
-			result = unOp.perform(t1);
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-		}
-		assertEquals(11.5919, result.getValue(), 0.01);
-	}
-	
-	@Test public void testComputeAcos()
-	{
-		unOp = new UnaryOperator("acos");
-		Term t1 = new Variable(0);
-		Term result = null;
-		try 
-		{
-			result = unOp.perform(t1);
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-		}
-		assertEquals(1.5707963, result.getValue(), 0.01);
-	}
 	
 	@Test public void testComputeTan()
 	{
@@ -115,42 +60,12 @@ public class TestUnaryOperator {
 		} 
 		catch (Exception e) 
 		{
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(1.0, result.getValue(), 0.00001);
 	}
-	
-	@Test public void testComputeTanh()
-	{
-		unOp = new UnaryOperator("tanh");
-		Term t1 = new Variable(Math.PI);
-		Term result = null;
-		try 
-		{
-			result = unOp.perform(t1);
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-		}
-		assertEquals(1, result.getValue(), 0.01);
-	}
-	
-	@Test public void testComputeAtan()
-	{
-		unOp = new UnaryOperator("atan");
-		Term t1 = new Variable(Math.PI);
-		Term result = null;
-		try 
-		{
-			result = unOp.perform(t1);
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-		}
-		assertEquals(1.262, result.getValue(), 0.01);
-	}
+
 	
 	@Test public void testComputeLog()
 	{
@@ -163,6 +78,7 @@ public class TestUnaryOperator {
 		} 
 		catch (Exception e) 
 		{
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(2.0, result.getValue(), 0);
@@ -179,6 +95,7 @@ public class TestUnaryOperator {
 		} 
 		catch (Exception e) 
 		{
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(0.0, result.getValue(), 0);
@@ -195,6 +112,7 @@ public class TestUnaryOperator {
 		} 
 		catch (Exception e) 
 		{
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(1.0, result.getValue(), 0);
@@ -211,6 +129,7 @@ public class TestUnaryOperator {
 		} 
 		catch (Exception e) 
 		{
+			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
 		assertEquals(Math.PI, result.getValue(), 0.00001);
@@ -227,6 +146,7 @@ public class TestUnaryOperator {
 		} 
 		catch (Exception e) 
 		{
+			LOGGER.log(Level.FINE, e.toString(), e);
 			assertTrue(true);
 		}
 	}
