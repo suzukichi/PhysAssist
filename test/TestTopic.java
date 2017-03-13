@@ -13,7 +13,7 @@ public class TestTopic {
 	public void testTopicConstructor() {
 		String title = "My new topic";
 		String description = "Is super cool";
-		Topic t = new Topic(title, description);
+		Topic t = new Topic(0L, title, description);
 		
 		assertEquals(title, t.title);
 		assertEquals(description, t.text);
@@ -22,7 +22,7 @@ public class TestTopic {
 	@Test(expected=IllegalArgumentException.class)
 	public void testTopicConstructorBadTitle() {
 		String description = "Is super cool";
-		new Topic("", description);
+		new Topic(0L, "", description);
 		// This test should fail, since the constructor throws an exception.
 		assert(true);
 	}
@@ -51,7 +51,7 @@ public class TestTopic {
 	public void testSaveTopic() {
 		String title = "Real topics";
 		String description = "This is a real topic that will go into the db, really.";
-		Topic t = new Topic(title, description);
+		Topic t = new Topic(0L, title, description);
 		
 		assertTrue(t.topicID == 0);
 
@@ -64,7 +64,7 @@ public class TestTopic {
 	public void testReviseTopic() {
 		String title = "Real topics";
 		String description = "This is a real topic that will go into the db, really. And be edited.";
-		Topic t = new Topic(title, description);
+		Topic t = new Topic(0L, title, description);
 
 		t.save();
 		Long revision1 = t.revisionID;
@@ -80,7 +80,7 @@ public class TestTopic {
 	public void testCreateFromDBTopic() {
 		String title = "First title";
 		String description = "ayylmao";
-		Topic t = new Topic(title, description);
+		Topic t = new Topic(0L, title, description);
 
 		t.save();
 		

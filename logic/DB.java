@@ -50,7 +50,7 @@ public class DB {
 	 * @return Hashmap of column name, (string)value
 	 */
 	public ArrayList<HashMap<String, String>> query(String query, String[] params) {
-	   ArrayList<HashMap<String, String>> results = new ArrayList<HashMap<String, String>>();
+	   ArrayList<HashMap<String, String>> results = new ArrayList<>();
 
 	   try {
          this.connect();
@@ -60,7 +60,7 @@ public class DB {
          String selectedData;
          int colCount = md.getColumnCount();
          while (rs.next()) {
-            HashMap<String, String> row = new HashMap<String, String>();
+            HashMap<String, String> row = new HashMap<>();
 
             for (int ndx = 1; ndx <= colCount; ndx++) {
                switch (md.getColumnType(ndx)) {
@@ -132,9 +132,7 @@ public class DB {
          try {
             Class.forName(JDBC_DRIVER);
             this.connection = DriverManager.getConnection(DB_URL, USER, PASS);
-         } catch (SQLException e) {
-            e.printStackTrace();
-         } catch (ClassNotFoundException e) {
+         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
          }
       }

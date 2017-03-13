@@ -5,7 +5,8 @@ import java.util.HashMap;
 
 public class Topic {
 	public long topicID;
-	public String title, text;
+	public String title;
+	public String text;
 	public long authorID, revisionID;
 	public long parentTopicID;
 	private long creationTime;
@@ -29,17 +30,17 @@ public class Topic {
       this.topicID = topicID;
       this.title = row.get("title");
       this.text = row.get("text");
-      this.authorID = Long.valueOf((row.get("authorid")));
-      this.revisionID = Long.valueOf((row.get("revisionid")));
-      this.parentTopicID = Long.valueOf((row.get("parentid")));
-      this.creationTime = Long.valueOf((row.get("creation_time")));
+      this.authorID = Long.valueOf(row.get("authorid"));
+      this.revisionID = Long.valueOf(row.get("revisionid"));
+      this.parentTopicID = Long.valueOf(row.get("parentid"));
+      this.creationTime = Long.valueOf(row.get("creation_time"));
      
       // TODO: create Equations.
-		this.equations = new ArrayList<Equation>();
-		this.quizzes = new ArrayList<Quiz>();
+		this.equations = new ArrayList<>();
+		this.quizzes = new ArrayList<>();
 	}
 	
-	public Topic(String title, String text) throws IllegalArgumentException {
+	public Topic(Long userid, String title, String text) {
 		if (title.length() < 1) {
 			throw new IllegalArgumentException("Topic titles must be more than one character long.");
 		}
@@ -49,10 +50,9 @@ public class Topic {
 		this.text = text;
 		this.creationTime = System.currentTimeMillis() / 1000L;
 		
-		// TODO, figure out what to use here, maybe pass a userid as a param?
-		this.authorID = 0L;
-		this.equations = new ArrayList<Equation>();
-		this.quizzes = new ArrayList<Quiz>();
+		this.authorID = userid;
+		this.equations = new ArrayList<>();
+		this.quizzes = new ArrayList<>();
 	}
 
 	public void addEquation(Equation equation) {
