@@ -87,7 +87,7 @@ public class Topics extends Page{
 	
 	private List getTopics() {
 	   List ts = new List();
-	   DB db = new DB();
+	   DB db = DB.getInstance();
 
 	   String qGetTopicsForParent = "SELECT t.`topicid`, tr.`title` FROM `topics` t" +
 	                                " JOIN `topic_revisions` tr USING (`topicid`)" + 

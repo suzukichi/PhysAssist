@@ -15,7 +15,7 @@ public class Topic {
 	public ArrayList<Quiz> quizzes;
 	
 	public Topic(long topicID) {
-	   DB db = new DB();
+	   DB db = DB.getInstance();
 	   
       String q_getTopic = "SELECT tr.`topicid`, tr.`title`, tr.`text`, tr.`authorid`, tr.`revisionid`," + 
                                 " t.`parentid`, t.`creation_time`" +  
@@ -71,7 +71,7 @@ public class Topic {
 	}
 	
 	public void save() {
-	   DB db = new DB();
+	   DB db = DB.getInstance();
       ArrayList<HashMap<String, String>> rows; 
 	   String q_saveTopic = "INSERT IGNORE INTO `topics`" +
 	                        "SET `parentid` = ?, " +
@@ -128,7 +128,7 @@ public class Topic {
 	}
 
 	public void delete() {
-	   DB db = new DB();
+	   DB db = DB.getInstance();
 	   String q_deleteTopic = "DELETE FROM `topics` WHERE `topicid` = ?";
 	   String[] params = {DB.T_I, String.valueOf(this.topicID)};
 	   String q_deleteTopicRevisions = "DELETE FROM `topic_revisions` WHERE `topicid` = ?";

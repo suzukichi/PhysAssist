@@ -46,7 +46,7 @@ public class LoginPage extends Page {
  
    public int verify(String username, String password) {
 	   long userID = 0;
-	   /**DB db = new DB();
+	   /**DB db = DB.getInstance();
       String q_getTopic = "SELECT 'title', 'topicid" +
                           " FROM `topic_revisions` tr" +
                           " JOIN `topics` t " +

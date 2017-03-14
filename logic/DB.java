@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DB {
+    private static DB instance = null;
+    
 	private Connection connection;
 	
 	public static final String T_I = "int";
@@ -20,6 +22,31 @@ public class DB {
 	static final String USER = "physassist_dev";
 	static final String PASS = "G2ugktexSk9WSWan";
 
+	/*
+	 * Singleton Design Pattern: Constructor is private. Use getInstance() method when you need this object.
+	 */
+	private DB() {
+	  instance = this;
+	}
+	
+	/*
+	 * Instance creation method for Singleton design pattern.
+	 */
+	private static DB createInstance() {
+	  return new DB();
+	}
+	
+	/*
+	 * Method to retrieve the Singleton instance of this class.
+	 */
+	public static DB getInstance() {
+	  if (instance == null) {
+	    return createInstance();
+	  }
+	  
+	  return instance;
+	}
+	
 	/**
 	 * Executes update statement. 
 	 * 

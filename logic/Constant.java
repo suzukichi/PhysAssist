@@ -19,7 +19,7 @@ public class Constant implements Term { //write DB lookup with scientific notati
 		       };
 
 		String qGetConstantValue = "SELECT `value`, FROM `constants` WHERE `symbol` = " + this.symbol;
-		new DB().query(qGetConstantValue, pGetConstantValue);
+		DB.getInstance().query(qGetConstantValue, pGetConstantValue);
 		return checkNegative(valueString);
 	}
 	

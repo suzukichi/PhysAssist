@@ -27,7 +27,7 @@ public class TestUser {
     assertThat(user.classroomsEnrolled, IsCollectionContaining.hasItem(c));
   }
   
-  /**@Test
+  @Test
   public void TestUserGetPermissionStudent() {
     User user = new User("student", "bob", "smith", "password", "bob@email.com");
     Classroom c = new Classroom("physics class", "physics class description", 1, 0, 10);
@@ -75,7 +75,7 @@ public class TestUser {
     user.enrollClassroom(physicsClass);
     
     assertThat(user.getPermission(bioClassPage), new IsInstanceOf(GeneralUser.class));
-  }*/
+  }
   
   
 

@@ -26,7 +26,7 @@ public class Equation {
 		       };
 
 		String q_getEquation = "SELECT `id`, `view`, `description`, `history`, FROM `equation` WHERE `name` = " + this.name;
-        (new DB()).query(q_getEquation, p_getEquation);
+        (DB.getInstance()).query(q_getEquation, p_getEquation);
 	}*/
 
 	public void getEquation()
@@ -79,7 +79,7 @@ public class Equation {
 		       };
 
 		String q_getAST = "SELECT `ast` FROM `ast` WHERE `eqid` = " + this.id + ", `term` = " + term;
-        (new DB()).query(q_getAST, p_getAST);
+        (DB.getInstance()).query(q_getAST, p_getAST);
         return ast;
 	}*/
 

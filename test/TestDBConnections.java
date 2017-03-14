@@ -30,7 +30,7 @@ private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
 
    @Test 
    public void testPrepareStatementGeneral() {
-      DB db = new DB();
+      DB db = DB.getInstance();
       try {
          db.connect();
 
@@ -50,7 +50,7 @@ private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
 
    @Test 
    public void testPrepareStatementParametersMissing() {
-      DB db = new DB();
+      DB db = DB.getInstance();
       try {
          db.connect();
          
@@ -69,7 +69,7 @@ private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
    
    @Test
    public void testInsertGeneric() {
-      DB db = new DB();
+      DB db = DB.getInstance();
       String[] params = {DB.T_S, this.testText + " made by testInsertGeneric"};
       int rowsUpdated = db.execute("INSERT INTO `mysql_test` SET `text` = ?", params);
       assertEquals(1, rowsUpdated);
@@ -77,7 +77,7 @@ private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
 
    @Test
    public void testSelectNoRows() {
-      DB db = new DB();
+      DB db = DB.getInstance();
       String q_getTestRow = "SELECT `id`, `text` FROM `mysql_test` WHERE `id` < 0";
       ArrayList<HashMap<String, String>>rows = db.query(q_getTestRow, null);
 
@@ -86,7 +86,7 @@ private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
 
    @Test
    public void testSelectOneRow() {
-      DB db = new DB();
+      DB db = DB.getInstance();
       String[] params = {DB.T_S, this.testText};
       db.execute("INSERT INTO `mysql_test` SET `text` = ?", params);
       String q_getTestRow = "SELECT `id`, `text` FROM `mysql_test` LIMIT 1";
@@ -99,7 +99,7 @@ private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
    
    @Test
    public void testUpdateOne() {
-      DB db = new DB();
+      DB db = DB.getInstance();
       String[] p_insert = {DB.T_S, this.testText};
       db.execute("INSERT INTO `mysql_test` SET `text` = ?", p_insert);
 
@@ -118,7 +118,7 @@ private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
    
    @Test
    public void testSelectMultipleRows() {
-      DB db = new DB();
+      DB db = DB.getInstance();
       String q_getTestRow = "SELECT `id`, `text` FROM `mysql_test` WHERE `id` > 0 LIMIT 2";
       String[] p_getTestRow = {};
       ArrayList<HashMap<String, String>>rows = db.query(q_getTestRow, p_getTestRow);

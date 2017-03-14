@@ -16,7 +16,7 @@ public class Category {
   public String title;
   
   public Category(long categoryID) {
-    DB db = new DB();
+    DB db = DB.getInstance();
     
     String q_getTopic = "SELECT tr.`topicid`, tr.`title`" +  
                        " FROM `topic_revisions` tr" + 

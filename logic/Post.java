@@ -19,10 +19,17 @@ public class Post {
     public long lastEditTS;
     public String title, text;
 
+    public Post(String title, String text, long courseID) {
+      this.title = title;
+      this.text = text;
+      this.publishTS = System.currentTimeMillis() / 1000L;
+      this.classroomID = courseID;
+    }
+    
     public Post(String title, String text) {
     	this.title = title;
     	this.text = text;
-      this.publishTS = System.currentTimeMillis() / 1000L;
+        this.publishTS = System.currentTimeMillis() / 1000L;
     	this.lastEditTS = publishTS;
     }
     
@@ -38,7 +45,7 @@ public class Post {
     	                   " WHERE `postid` = ?";
     	String[] p_getPost = {DB.T_I, String.valueOf(postID)};    	
     	
-    	ArrayList<HashMap<String, String>> rows = (new DB()).query(q_getPost, p_getPost);
+    	ArrayList<HashMap<String, String>> rows = (DB.getInstance()).query(q_getPost, p_getPost);
     	if (rows.size() == 0) {
     	   // Throw exception or something is probably better to do.
     	   return;
@@ -70,7 +77,7 @@ public class Post {
                            " ON DUPLICATE KEY UPDATE " + setFields +
                            " WHERE `postid` = ?";
        // TODO: return latest updated index from the db and set it here
-       this.postID = (new DB()).execute(q_savePost, p_savePost);
+       this.postID = (DB.getInstance()).execute(q_savePost, p_savePost);
        
        return this.postID;
     }
