@@ -1,8 +1,10 @@
 package guis;
 
 import java.awt.Image;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
@@ -12,6 +14,9 @@ import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.SoftBevelBorder;
 
+import logic.DB;
+import logic.Topic;
+
 public class Topics extends Page{
    // what
 	private JTextField txtPepe;
@@ -19,9 +24,21 @@ public class Topics extends Page{
 	private JButton item1Button, item2Button, item3Button;
 	private JLabel upButton, downButton;
 
+	List topics;
+	String categoryTitle;
+	Long parentID;
+	
 	public Topics() {
+	   if (this.parentID > 0) {
+	      Topic parent = new Topic(this.parentID);
+	      this.categoryTitle = parent.title;
+	   } else {
+	      this.categoryTitle = "Topics";
+	   }
+
 	   // TODO: replace this with the category name
-	   this.locationName = "Topics";
+	   topics = this.getTopics();
+	   this.locationName = this.categoryTitle;
 	   this.createHeader();
 		
 		upButton = new JLabel("");
@@ -63,13 +80,32 @@ public class Topics extends Page{
 		
 		buttons = new HashMap<String, Long>();
 	}
+	
+	private List getTopics() {
+	   List ts = new List();
+	   DB db = new DB();
+
+	   String qGetTopicsForParent = "SELECT t.`topicid`, tr.`title` FROM `topics` t" +
+	                                " JOIN `topic_revisions` tr USING (`topicid`)" + 
+	                                " WHERE `parentid` = ?" + 
+	                                " GROUP BY t.`topicid`" + 
+	                                " ORDER BY tr.`revisionid` DESC";
+	   String[] pGetTopicsForParent = {DB.T_I, String.valueOf(this.parentID)};
+
+	   ArrayList<HashMap<String, String>> rows = db.query(qGetTopicsForParent, pGetTopicsForParent);
+	   if (rows.isEmpty()) {
+	      // Say there are no topics under this category 
+	   }
+	   
+	   return ts;
+	}
+	
 
 	public void updateButtons(String[] titles, int index){
 		item1Button.setText(titles[0]);
 		item2Button.setText(titles[1]);
 		item3Button.setText(titles[2]);
 	}
-	
 	/**public void addTopicController(logic.CategoryList controller) {
 		item1Button.addMouseListener(controller);
 		item2Button.addMouseListener(controller);

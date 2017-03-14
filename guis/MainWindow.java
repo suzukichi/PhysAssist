@@ -28,7 +28,7 @@ public class MainWindow extends JPanel {
 		add(new Quizzes(), "quizzes");
 		add(new Settings(), "settings");
 		
-		add(new Topic(), "category");
+		add(new ViewTopic(), "category");
 		add(new Equations(), "equations");
 		add(new Equation(), "equation");
 		add(new Notification(), "notification");

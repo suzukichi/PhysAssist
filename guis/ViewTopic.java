@@ -1,7 +1,7 @@
 package guis;
 
-public class Topic extends Page {
-	public Topic() {
+public class ViewTopic extends Page {
+	public ViewTopic() {
 	   // TODO: Replace this with the topic name.
 	   this.locationName = "Topics";
 	   this.createHeader();
