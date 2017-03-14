@@ -151,8 +151,9 @@ public class Lists {
         " LIMIT 1";
     */
 
-    String qGetCourse = "SELECT t.`classroomid`, tr.`title` FROM `classrooms` t" +
-        " WHERE `ownerid` = ?";
+    String qGetCourse = "SELECT `classroomid`, `title`, `description`, `ownerid`, `start_date`" + 
+                        " FROM `classrooms` " +
+                        " WHERE `classroomid` = ?";
     
     String[] pGetCourse = {DB.T_I, String.valueOf(courseID)};
 
@@ -167,7 +168,7 @@ public class Lists {
     HashMap<String, String> courseEntry = rows.get(0);
     
     return new Course(Long.parseLong(courseEntry.get("classroomid")),
-        Long.parseLong(courseEntry.get("ownerid")), courseEntry.get("title"),
+        Long.valueOf(courseEntry.get("ownerid")), courseEntry.get("title"),
         courseEntry.get("description"), Long.parseLong(courseEntry.get("start_date")));
   }
   
