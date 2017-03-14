@@ -5,7 +5,9 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.border.EmptyBorder;
 
 public class About extends Page {
 
@@ -18,12 +20,15 @@ public class About extends Page {
 		//Not working, possibly not needed?
 		//this.createBackButton();
 		
+		JPanel panel = new JPanel();
+		this.contentPanel.add(panel);
+		
 		JLabel systemName = new JLabel("");
 		ImageIcon systemNameIcon = new ImageIcon(Home.class.getResource("/images/titleIcon.png"));
 		Image systemNameImage = systemNameIcon.getImage().getScaledInstance(450, 110, Image.SCALE_DEFAULT);
 		systemNameIcon = new ImageIcon(systemNameImage);
 		systemName.setIcon(systemNameIcon);
-		contentPanel.add(systemName);
+		panel.add(systemName);
 
 		String systemDescription = "PhysAssist is a comprehensive physics learning tool." + 
        " The purpose of this program is to help the user understand intricate lessons by" + 
@@ -35,9 +40,11 @@ public class About extends Page {
 		systemDescriptionTextArea.setLineWrap(true);
 		systemDescriptionTextArea.setWrapStyleWord(true);
 		systemDescriptionTextArea.setSize(new Dimension(500, 400));
-		systemDescriptionTextArea.setPreferredSize(new Dimension(500, 400));
+		systemDescriptionTextArea.setPreferredSize(new Dimension(400, 300));
 		systemDescriptionTextArea.setColumns(10);
 		systemDescriptionTextArea.setRows(10);
-		contentPanel.add(systemDescriptionTextArea);
+		systemDescriptionTextArea.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+		panel.add(systemDescriptionTextArea);
 	}
 }

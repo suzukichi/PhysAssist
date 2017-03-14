@@ -1,14 +1,8 @@
 package guis;
 
-import javax.swing.JPanel;
-
-public class CreateCourse extends JPanel {
-
-	/**
-	 * Create the panel.
-	 */
+public class CreateCourse extends Page {
 	public CreateCourse() {
-
+	   this.locationName = "Create Class";
+	   this.createHeader();
 	}
-
 }

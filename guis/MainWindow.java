@@ -21,9 +21,10 @@ public class MainWindow extends JPanel {
 		add(new About(), "about");
 		
 		topicList = new Topics();
-		add(topicList, "topics1");
+		add(topicList, "topics");
 		add(new Courses(), "groups");
 		add(new Login(), "login");
+		add(new CreateAccount(), "create_account");
 		add(new Quizzes(), "quizzes");
 		add(new Settings(), "settings");
 		

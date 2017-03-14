@@ -71,6 +71,13 @@ public class Login extends Page {
 		createButton = new JButton("Sign Up");
 		createButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+            JButton button = (JButton) e.getSource();
+            JPanel temp = (JPanel) button.getParent();
+            JPanel temp2 = (JPanel) temp.getParent();
+            JPanel temp3 = (JPanel) temp2.getParent();
+            MainWindow main = (MainWindow) temp3.getParent();
+            CardLayout cards = main.getCardLayout();
+            cards.show(main, "create_account");
 			}
 		});
 		createButton.setBounds(237, 216, 89, 23);

@@ -90,12 +90,29 @@ public class Page extends JPanel {
 		menu.setIcon(menuIcon);
 		headerPanel.add(menu, BorderLayout.EAST);
 		
-		JMenuItem menuTopicButton = new JMenuItem("Home");
+		JMenuItem menuHomeButton = new JMenuItem("Home");
+		menuHomeButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent event) {
+				super.mousePressed(event);
+				showDropdownCard(event, "home");
+			}
+		});
+		menuHomeButton.setBorder(null);
+		menuHomeButton.setPreferredSize(new Dimension(45, 22));
+		menuHomeButton.setHorizontalTextPosition(SwingConstants.LEFT);
+		menuHomeButton.setHorizontalAlignment(SwingConstants.LEFT);
+		menuHomeButton.setVerticalTextPosition(SwingConstants.TOP);
+		menuHomeButton.setVerticalAlignment(SwingConstants.TOP);
+		menuHomeButton.setFont(new Font("DialogInput", Font.PLAIN, 12));
+		popupMenu.add(menuHomeButton, BorderLayout.EAST);
+		
+		JMenuItem menuTopicButton = new JMenuItem("Topics");
 		menuTopicButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent event) {
 				super.mousePressed(event);
-				showDropdownCard(event, "main");
+				showDropdownCard(event, "topics");
 			}
 		});
 		menuTopicButton.setBorder(null);
@@ -106,7 +123,6 @@ public class Page extends JPanel {
 		menuTopicButton.setVerticalAlignment(SwingConstants.TOP);
 		menuTopicButton.setFont(new Font("DialogInput", Font.PLAIN, 12));
 		popupMenu.add(menuTopicButton, BorderLayout.EAST);
-		
 		JMenuItem menuGroupButton = new JMenuItem("Groups");
 		menuGroupButton.addMouseListener(new MouseAdapter() {
 			@Override
