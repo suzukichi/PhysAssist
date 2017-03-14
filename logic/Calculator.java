@@ -7,36 +7,31 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.logging.*;
 
 @SuppressWarnings("serial")
 public class Calculator extends JFrame implements ActionListener {
-    public boolean Radians = true;  
-    public String expression = ""; 
-    boolean resultShown=false;
-    JPanel[] rows = new JPanel[7];
-    String[] buttonNames = {   "(",   ")",   "pow", "sqt",   "C",
+    private boolean rad = true;  
+    private String expression = ""; 
+    private boolean resultShown=false;
+    private JPanel[] rows = new JPanel[7];
+    private String[] buttonNames = {   "(",   ")",   "pow", "sqt",   "C",
     		                 "sin", "cos", "tan",   "/", "var",
     		                   "7",   "8",   "9",   "*",  "PI",
     		                   "4",   "5",   "6",   "-",  "deg",
     		                   "3",   "2",   "1",   "+",  "B2",
     		                   "0",   ".",   "-",   ",",  "="};
-    JButton[] buttons = new JButton[buttonNames.length];
-    Dimension buttonDim = new Dimension(60,50);
-    JTextArea display = new JTextArea(10,30);
-    Font font = new Font("Times new Roman", Font.BOLD, 14);
+    private JButton[] buttons = new JButton[buttonNames.length];
+    private Dimension buttonDim = new Dimension(60,50);
+    private JTextArea display = new JTextArea(10,30);
+    private Font f = new Font("Times new Roman", Font.BOLD, 14);
     
     public Calculator() {
-        super("Calculator");
-        setDesign();
-        setSize(400, 700);
-        setResizable(false);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        GridLayout grid = new GridLayout(10,10);
-        setLayout(grid);   
-        
-        FlowLayout f1 = new FlowLayout(FlowLayout.CENTER);
+    	super("Calculator");
+    	initCalcFrame();
+    	FlowLayout f1 = new FlowLayout(FlowLayout.CENTER);
         FlowLayout f2 = new FlowLayout(FlowLayout.CENTER,1,1);
-        
+    	
         for(int i = 0; i < rows.length; i++){
             rows[i] = new JPanel();
             rows[i].setBackground(new Color(200, 0, 0));
@@ -49,12 +44,12 @@ public class Calculator extends JFrame implements ActionListener {
         for(int i = 0; i < buttons.length; i++) {
             buttons[i] = new JButton();
             buttons[i].setText(buttonNames[i]);
-            buttons[i].setFont(font);
+            buttons[i].setFont(f);
             buttons[i].addActionListener(this);
             buttons[i].setBackground(new Color(200, 50, 40));
         }
         
-        display.setFont(font);
+        display.setFont(f);
         display.setEditable(false);
         for(int i = 0; i < buttons.length; i++){
             buttons[i].setPreferredSize(buttonDim);
@@ -89,20 +84,32 @@ public class Calculator extends JFrame implements ActionListener {
         setVisible(true);
     }
     
+    public void initCalcFrame(){
+        setDesign();
+        setSize(400, 700);
+        setResizable(false);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        GridLayout grid = new GridLayout(10,10);
+        setLayout(grid);   
+    }
+    
     public void clear() {
+    	Logger log = Logger.getLogger("clear");
     	try {
     		display.setText("");
     		expression = "";
     	} 
-    	catch(NullPointerException e) {  
+    	catch(NullPointerException e) { 
+    		log.log(Level.FINE, "setText is not present", e);
     	}	
     }
     
     public double getResult() {
+    	Logger log = Logger.getLogger("results");
     	double result = 0;
 		ScriptEngine engine = new ScriptEngineManager().getEngineByExtension("js");
 		 try {
-			 result = Double.parseDouble((engine.eval(expression).toString()));
+			 result = Double.parseDouble(engine.eval(expression).toString());
 			 display.setText(Double.toString(result));
 			 expression = "";
 			 
@@ -110,6 +117,7 @@ public class Calculator extends JFrame implements ActionListener {
 		 catch (ScriptException e) {
 			 display.setText("error");
 			 expression = "";
+			 log.log(Level.FINE, "Illegal operations", e);
 	     }
 		 resultShown=true;
 		 return result;
@@ -119,13 +127,14 @@ public class Calculator extends JFrame implements ActionListener {
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
         } 
-        catch(Exception e) {   
+        catch(Exception e) {
+        	throw new IllegalArgumentException("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel does not exist");
         }
     }
     
     @Override
     public void actionPerformed(ActionEvent ae) {
-    	if(resultShown==true){
+    	if(resultShown){
     		this.clear();
     		resultShown=false;
     	}
@@ -142,7 +151,7 @@ public class Calculator extends JFrame implements ActionListener {
     	}
     	else if(ae.getSource()==buttons[5]){
     		display.append("sin(");
-    		if(Radians==true){
+    		if(rad){
     			expression = expression+"Math.sin(";
     		}
     		else{
@@ -151,7 +160,7 @@ public class Calculator extends JFrame implements ActionListener {
     	}
     	else if(ae.getSource()==buttons[6]){
     		display.append("cos(");
-    		if(Radians==true){
+    		if(rad){
     			expression = expression+"Math.cos(";
     		}
     		else{
@@ -160,7 +169,7 @@ public class Calculator extends JFrame implements ActionListener {
     	}
     	else if(ae.getSource()==buttons[7]){
     		display.append("tan(");
-    		if(Radians==true){
+    		if(rad){
     			expression = expression+"Math.tan(";
     		}
     		else{
@@ -172,13 +181,13 @@ public class Calculator extends JFrame implements ActionListener {
     		expression = expression+"Math.PI";
     	}
     	else if(ae.getSource()==buttons[19]){
-    		if(Radians==true){
+    		if(rad){
     			buttons[19].setBackground(new Color(0,200,0));
-    			Radians=false;
+    			rad=false;
     		}
     		else{
     			buttons[19].setBackground(new Color(200, 50, 40));
-    			Radians=true;
+    			rad=true;
     		}
     	}
     	else if(ae.getSource() == buttons[29]){
@@ -195,5 +204,11 @@ public class Calculator extends JFrame implements ActionListener {
     			}
     		}
     	}
+    }
+    public String getExpression(){
+    	return expression;
+    }
+    public void setExpression(String e){
+    	expression = e;
     }
 }

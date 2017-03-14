@@ -9,14 +9,14 @@ public class TestCalculatorClear {
 	public void testClearNoInput(){
 		Calculator C = new Calculator();
 		C.clear();
-		assertEquals("",C.expression);
+		assertEquals("",C.getExpression());
 	}
 	
 	@Test
 	public void testClearWithInput(){
 		Calculator C = new Calculator();
-		C.expression = "Math.pow(1,0)";
+		C.setExpression("Math.pow(1,0)");
 		C.clear();
-		assertEquals("",C.expression);
+		assertEquals("",C.getExpression());
 	}
 }
