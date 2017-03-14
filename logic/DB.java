@@ -84,6 +84,8 @@ public class DB {
 
             for (int ndx = 1; ndx <= colCount; ndx++) {
                switch (md.getColumnType(ndx)) {
+                  case Types.TINYINT:
+                  case Types.BIT:
                   case Types.INTEGER:
                   case Types.BIGINT:
                      selectedData = String.valueOf(rs.getLong(ndx));
@@ -93,7 +95,7 @@ public class DB {
                      selectedData = rs.getString(ndx);
                   break;
                   default:
-                     throw new IllegalArgumentException("Invalid column type '" + md.getColumnType(ndx) +  "' being selected");
+                     throw new IllegalArgumentException("Invalid column type '" + md.getColumnTypeName(ndx) +  "' being selected");
                }
 
                row.put(md.getColumnName(ndx), selectedData);

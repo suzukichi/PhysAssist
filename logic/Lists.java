@@ -151,7 +151,7 @@ public class Lists {
         " LIMIT 1";
     */
 
-    String qGetCourse = "SELECT `classroomid`, `title`, `description`, `ownerid`, `start_date`" + 
+    String qGetCourse = "SELECT `classroomid`, `title`, `description`, `ownerid`, `start_date`, `status`" + 
                         " FROM `classrooms` " +
                         " WHERE `classroomid` = ?";
     
