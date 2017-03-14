@@ -30,18 +30,11 @@ public class DB {
 	}
 	
 	/*
-	 * Instance creation method for Singleton design pattern.
-	 */
-	private static DB createInstance() {
-	  return new DB();
-	}
-	
-	/*
 	 * Method to retrieve the Singleton instance of this class.
 	 */
 	public static DB getInstance() {
 	  if (instance == null) {
-	    return createInstance();
+	    return new DB();
 	  }
 	  
 	  return instance;
