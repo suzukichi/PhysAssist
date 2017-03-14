@@ -29,6 +29,10 @@ public class Topics extends Page{
 	Long parentID;
 	
 	public Topics() {
+	   if (this.parentID == null) {
+	      this.parentID = 0L;
+	   }
+	   
 	   if (this.parentID > 0) {
 	      Topic parent = new Topic(this.parentID);
 	      this.categoryTitle = parent.title;

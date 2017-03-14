@@ -7,7 +7,7 @@ import java.awt.EventQueue;
 public class Application {
 	
 	private guis.MainFrame frame;
-	private TopicList topicListController;
+	//private TopicList topicListController;
 	private LoginPage loginController;
 	
 	public Application(){
