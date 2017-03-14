@@ -14,7 +14,6 @@ import logic.Page;
 import logic.Professor;
 import logic.Student;
 import logic.Topic;
-import logic.TopicPage;
 import logic.User;
 
 public class TestUser {

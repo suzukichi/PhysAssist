@@ -40,7 +40,18 @@ public class Topic {
 		this.quizzes = new ArrayList<>();
 	}
 	
-	public Topic(Long userid, String title, String text) {
+	public Topic(long topicID, long parentTopicID, String title, String text, long authorID,
+	    long revisionID, long creationTime) {
+	  this.topicID = topicID;
+	  this.parentTopicID = parentTopicID;
+	  this.title = title;
+	  this.text = text;
+	  this.authorID = authorID;
+	  this.revisionID = revisionID;
+	  this.creationTime = creationTime;
+	}
+
+  public Topic(Long userid, String title, String text) {
 		if (title.length() < 1) {
 			throw new IllegalArgumentException("Topic titles must be more than one character long.");
 		}
@@ -124,6 +135,10 @@ public class Topic {
 	   
 	   db.execute(q_deleteTopic, params);
 	   db.execute(q_deleteTopicRevisions, params);
+	}
+	
+	public String toString() {
+	    return "Topic: " + Long.toString(this.topicID) + ", " + this.title + ", " + this.text;
 	}
 	
 }
