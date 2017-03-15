@@ -1,7 +1,9 @@
 package logic;
 
-public abstract class Operator {
+import java.util.HashMap;
+import java.util.Map;
 
+public abstract class Operator {
 	protected String value;
 
 	@Override
@@ -23,15 +25,8 @@ public abstract class Operator {
 			case "deg":
 				return true;
 			default:
-				return false;
-				
+				return false;				
 		}
-		/*if ("sin".equals(value) || "cos".equals(value) || "tan".equals(value) || 
-		     "log".equals(value) || "ln".equals(value) || "abs".equals(value) || "deg".equals(value)) 
-		{
-			return true;
-		}
-		return false;*/
 	}
 
 	public static boolean isBinaryOperator(String value) 

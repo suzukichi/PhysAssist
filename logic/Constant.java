@@ -1,8 +1,8 @@
 package logic;
 
-public class Constant implements Term { //write DB lookup with scientific notation conversion and e and pi stuff
+public class Constant implements Term 
+{
 	private String symbol;
-	private double value;
 
 	public Constant(String symbol)
 	{
@@ -23,23 +23,27 @@ public class Constant implements Term { //write DB lookup with scientific notati
 		return checkNegative(valueString);
 	}
 	
-	private double checkNegative(String string) {
+	private double checkNegative(String string) 
+	{
 		if ('-' == string.charAt(0))
 		{
-			return (0 - Double.parseDouble(string.substring(1, string.length())));
+			return 0 - Double.parseDouble(string.substring(1, string.length()));
 		}
-		else {
+		else 
+		{
 			return Double.parseDouble(string);
 		}
 	}
 
 	@Override
-	public String getName() {
+	public String getName() 
+	{
 		return symbol;
 	}
 
 	@Override
-	public String toString() {
+	public String toString() 
+	{
 		return symbol;
 	}
 }

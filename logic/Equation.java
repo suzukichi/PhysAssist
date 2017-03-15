@@ -1,6 +1,5 @@
 package logic;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Equation {
@@ -64,7 +63,7 @@ public class Equation {
 			}
 			else
 			{
-				throw new Exception("Invalid ast string.");
+				throw new IllegalArgumentException("Invalid ast string.");
 			}
 		}
 		AST equation = new AST(ast);

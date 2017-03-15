@@ -8,7 +8,7 @@ public class BinaryOperator extends Operator
 			this.value = value;
 	}
 	
-	public Term perform(Term l, Term r) throws Exception
+	public Term perform(Term l, Term r) throws ArithmeticException
 	{
 		double left = l.getValue();
 		double right = r.getValue();
@@ -25,15 +25,15 @@ public class BinaryOperator extends Operator
 				result = left * right;
 				break;
 			case "/":
-				if (right == 0) 
-					throw new Exception("Divide by zero.");
+				if ((int)(Math.ceil(right)) == 0) 
+					throw new ArithmeticException("Divide by zero.");
 				result = left / right;
 				break;
 			case "^":
 				result = Math.pow(left, right);
 				break;
 			default:
-				throw new Exception("Operation could not be performed");
+				throw new IllegalArgumentException("Operation could not be performed");
 		}
 		return new Variable(result);
 	}

@@ -4,11 +4,6 @@ import java.text.StringCharacterIterator;
 
 public class AST {
 	private Node root = null;
-
-	private AST()
-	{
-		
-	}
 	
 	public AST(String tree) throws Exception 
 	{
@@ -50,7 +45,7 @@ public class AST {
 		} 
 		else if (value.charAt(0) != StringCharacterIterator.DONE) 
 		{
-			throw new Exception("AST invalid character");
+			throw new IllegalArgumentException("AST invalid character");
 		}
 		return node;
 	}
@@ -60,6 +55,11 @@ public class AST {
 		private static Character ch;
 		private static StringCharacterIterator iterator;
 
+		private CharFeed()
+		{
+			
+		}
+		
 		public static void init(String tree) 
 		{
 			iterator = new StringCharacterIterator(tree.trim());
