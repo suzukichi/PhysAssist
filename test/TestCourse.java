@@ -20,19 +20,32 @@ public class TestCourse {
 
   @Test
   public void TestCourseConstructionDB() {
-    // Create test course
-    long courseID = 100;
-    Course toSave = new Course(courseID, 50, "test course", "Description of test course.", 1);
+    Course course = new Course(50, "test course", "Description of test course.", 1);
+    course.save();
+    
+    Course fromDB = new Course(course.courseID);
+    assertEquals(course.courseName, fromDB.courseName);
+    
+    course.delete();
+  }
+
+  @Test
+  public void TestCourseWithPosts() {
+    Course course = new Course(50, "test course", "Description of test course.", 1);
+    course.save();
+
     Post p = new Post("test post", "This is a test post for a test course", 100);
-    toSave.posts.add(p);
+    course.posts.add(p);
     
     // save to DB
-    toSave.save();
+    course.save();
     
-    Course toLoad = new Course(courseID);
-    assertEquals(toSave, toLoad);
+    Course fromDB = new Course(course.courseID);
+    // This should check the post text, not compare objects.
+    //assertEquals(course, fromDB);
     
-    toSave.delete();
+    course.delete();
+    
   }
 
 }

@@ -61,24 +61,38 @@ public class Post {
      * Saves the post to the db.
      */
     public long save() {
-       String setFields = "`title` = ?, `text` = ?, `classroomid` = ?";
+       String setFields = "`title` = ?, `text` = ?, `classroomid` = ?, `postid` = ?";
        String classroomIDStr = String.valueOf(this.classroomID); 
-       String[] p_savePost = {
+       String[] pSavePost = {
           DB.T_S, this.title,
           DB.T_S, this.text,
           DB.T_I, classroomIDStr,
+          DB.T_I, String.valueOf(this.postID), 
+
           DB.T_S, this.title,
           DB.T_S, this.text,
           DB.T_I, classroomIDStr,
           DB.T_I, String.valueOf(this.postID) 
        };
 
-       String q_savePost = "INSERT INTO `posts` SET " + setFields +
-                           " ON DUPLICATE KEY UPDATE " + setFields +
-                           " WHERE `postid` = ?";
-       // TODO: return latest updated index from the db and set it here
-       this.postID = (DB.getInstance()).execute(q_savePost, p_savePost);
-       
+       String qSavePost = "INSERT INTO `posts` SET " + setFields +
+                          " ON DUPLICATE KEY UPDATE " + setFields;
+       DB.getInstance().execute(qSavePost, pSavePost);
+
+       if (this.postID <= 0) {
+          String qGetPostid = "SELECT `postid`" +
+                              " FROM `posts`" + 
+                              " WHERE `title` = ? AND `classroomid` = ?" + 
+                              " ORDER BY `postid` DESC " +
+                              " LIMIT 1";
+          String[] pGetPostid = {
+             DB.T_S, this.title,
+             DB.T_I, classroomIDStr
+          };
+
+          this.postID = Long.valueOf(DB.getInstance().query(qGetPostid, pGetPostid).get(0).get("postid"));
+       }
+
        return this.postID;
     }
     
@@ -87,10 +101,10 @@ public class Post {
      */
     public void delete() {
       DB db = DB.getInstance();
-      String q_deletePost = "DELETE FROM `posts` WHERE `postid` = ?";
+      String qDeletePost = "DELETE FROM `posts` WHERE `postid` = ?";
       String[] params = {DB.T_I, String.valueOf(this.postID)};
       
-      db.execute(q_deletePost, params);
+      db.execute(qDeletePost, params);
    }
     
     public String toString() {

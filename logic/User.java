@@ -19,10 +19,10 @@ import logic.Student;
  */
 
 public class User {
-  private String username;
+  public String username;
   private String firstName;
   private String lastName;
-  private long userID;
+  public long userID;
   private String password;
   private String email;
   private long registrationDate;
@@ -35,6 +35,7 @@ public class User {
     this.lastName = lastName;
     this.password = password;
     this.email = email;
+    this.userID = 0;
     
     this.coursesEnrolled = new ArrayList<Course>();
     this.coursesOwned = new ArrayList<Course>();
@@ -42,8 +43,8 @@ public class User {
   
   public User(long userID) {
     String qGetUser = "SELECT `username`, `password`, `first_name`, `last_name`, `email`, `registration_date`" +
-        " FROM `users` " +
-        " WHERE `userid` = ?";
+                      " FROM `users` " +
+                      " WHERE `userid` = ?";
     String[] pGetUser = {DB.T_I, String.valueOf(userID)};      
 
     ArrayList<HashMap<String, String>> rows = (DB.getInstance()).query(qGetUser, pGetUser);
@@ -51,7 +52,7 @@ public class User {
     if (rows.size() != 1) {
       // throw an exception
       // Means that there is no user in the DB for the userID
-      System.err.println("rows.size != 1");
+      System.err.println("user rows.size != 1");
     }
     
     HashMap<String, String> user = rows.get(0);
@@ -125,9 +126,53 @@ public class User {
     return list;
   }
   
-  //TODO
   public void save() {
-    
+     DB db = DB.getInstance();
+     String qSaveUser = "INSERT INTO `users` " +
+                        " SET `userid` = ?, `username` = ?, `password` = ?," + 
+                        "     `first_name` = ?, `last_name` = ?, `email` = ?," + 
+                        "     `registration_date` = ?" + 
+                        " ON DUPLICATE KEY UPDATE" +
+                        "    `username` = ?, `password` = ?," + 
+                        "    `first_name` = ?, `last_name` = ?, `email` = ?"; 
+     String[] pSaveUser = {
+        DB.T_I, String.valueOf(this.userID),
+        DB.T_S, this.username,
+        DB.T_S, this.password,
+        DB.T_S, this.firstName,
+        DB.T_S, this.lastName,
+        DB.T_S, this.email,
+        DB.T_I, String.valueOf(this.registrationDate),
+
+        DB.T_S, this.username,
+        DB.T_S, this.password,
+        DB.T_S, this.firstName,
+        DB.T_S, this.lastName,
+        DB.T_S, this.email
+     };
+
+     db.execute(qSaveUser, pSaveUser);
+     
+     if (this.userID <= 0) {
+        String qGetUserID = "SELECT `userid` FROM `users`" +
+                            " WHERE `username` = ? AND `registration_date` = ?" + 
+                            " LIMIT 1";
+        String[] pGetUserID = {
+           DB.T_S, this.username,
+           DB.T_I, String.valueOf(this.registrationDate)
+        };
+        
+        this.userID = Long.valueOf(db.query(qGetUserID, pGetUserID).get(0).get("userid"));
+     }
+  }
+  
+  public void delete() {
+     String qDeleteUser = "DELETE FROM `users` WHERE `userid` = ?";
+     String[] pDeleteUser = {
+        DB.T_I, String.valueOf(this.userID) 
+     };
+     
+     DB.getInstance().execute(qDeleteUser, pDeleteUser);
   }
   
   /*
@@ -144,24 +189,10 @@ public class User {
   /*
    * Enroll the user in a classroom.
    */
-  public void enrollClassroom(long classroom) {
-    
-  }
-  
-  /*
-   * Enroll the user in a classroom.
-   */
   public void enrollCourse(Course course) {
-    coursesEnrolled.add(course);
-    
-    //TODO: need to add this enrollment to the students table
-  }
-  
-  /*
-   * Drop the user from a classroom.
-   */
-  public void dropClassroom(long classroom) {
-    
+    if (course.enrollStudent(this)) {
+       coursesEnrolled.add(course);
+    }
   }
   
   // duplicate of dropClassroom() ?

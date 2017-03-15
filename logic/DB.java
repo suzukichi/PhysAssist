@@ -26,6 +26,8 @@ public class DB {
 
 	static final String USER = "physassist_dev";
 	static final String PASS = "G2ugktexSk9WSWan";
+	
+	static final boolean DEBUG_MODE = true;
 
 	/*
 	 * Singleton Design Pattern: Constructor is private. Use getInstance() method when you need this object.
@@ -149,6 +151,10 @@ public class DB {
                throw new ArrayIndexOutOfBoundsException("Missing or invalid parameter type");
          }
          ndx++;
+      }
+      
+      if (this.DEBUG_MODE) {
+         System.out.println(preparedStmt.toString());
       }
 
       return preparedStmt;

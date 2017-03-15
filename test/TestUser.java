@@ -20,6 +20,15 @@ public class TestUser {
 
   @Test
   public void TestUserConstructionDB() {
+     long now = System.currentTimeMillis() / 1000L;
+     User u = new User("TestDBUser-" + now, "firstname", "lastName", "pass", "asdf@as.df");
+     u.save();
+
+     User uDB = new User(u.userID);
+     
+     assertEquals(u.username, uDB.username);
+     
+     u.delete();
   }
   
   /*

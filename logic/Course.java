@@ -6,20 +6,22 @@ import java.util.List;
 import java.util.Objects;
 
 public class Course {
-  public long courseID, professorID;
-  public String courseName, description;
+  public long courseID;
+  public long professorID;
+  public String courseName;
+  public String description;
   public Student[] students;
   public long startDate;
   public List<Post> posts;
   
-  public Course(long courseID, long professorID, String courseName, String description,
-      long startDate) {
-    this.courseID = courseID;
+  public Course(long professorID, String courseName, String description, long startDate) {
+    this.courseID = 0;
     this.professorID = professorID;
     this.courseName = courseName;
     this.description = description;
     this.startDate = startDate;
     this.posts = new ArrayList<Post>();
+
     //this.posts = posts;
     
     //loadPosts();
@@ -38,7 +40,8 @@ public class Course {
 
     String qGetCourse = "SELECT `classroomid`, `title`, `description`, `ownerid`, `start_date`, `status`" + 
                         " FROM `classrooms` " +
-                        " WHERE `classroomid` = ?";
+                        " WHERE `classroomid` = ?" + 
+                        " LIMIT 1";
     
     String[] pGetCourse = {DB.T_I, String.valueOf(courseID)};
 
@@ -92,29 +95,42 @@ public class Course {
     DB db = DB.getInstance();
     
     String setFields = "`classroomid` = ?, `title` = ?, `description` = ?, `ownerid` = ?," +
-        " 'start_date` = ?";
+        " `start_date` = ?";
     String[] p_saveCourse = {
+       DB.T_I, String.valueOf(this.courseID),
+       DB.T_S, this.courseName,
+       DB.T_S, this.description,
+       DB.T_I, String.valueOf(this.professorID),
+       DB.T_I, String.valueOf(this.startDate),
+
        DB.T_I, String.valueOf(this.courseID),
        DB.T_S, this.courseName,
        DB.T_S, this.description,
        DB.T_I, String.valueOf(this.professorID),
        DB.T_I, String.valueOf(this.startDate)
     };
-     
-    /*
-     String q_savePost = "INSERT INTO `posts` SET " + setFields +
-           " ON DUPLICATE KEY UPDATE " + setFields +
-           " WHERE `postid` = ?";
-           */
-    String q_saveCourse = "INSERT IGNORE INTO `classrooms`" +
-        "SET " + setFields + 
-        "ON DUPLICATE KEY UPDATE " + setFields +
-        "WHERE `classroomid` = ? ";
+
+    String q_saveCourse = "INSERT INTO `classrooms`" +
+                          " SET " + setFields + 
+                          " ON DUPLICATE KEY UPDATE " + setFields;
      
      int insertedRows = db.execute(q_saveCourse, p_saveCourse);
      
      System.out.println("Inserted rows: " + insertedRows);
-     // need to save Posts
+    
+     if (this.courseID <= 0) {
+       String qGetPostid = "SELECT `classroomid`" +
+                           " FROM `classrooms`" + 
+                           " WHERE `ownerid` = ? AND `start_date` = ?" + 
+                           " LIMIT 1";
+       String[] pGetPostid = {
+          DB.T_I, String.valueOf(this.professorID),
+          DB.T_I, String.valueOf(this.startDate)
+       };
+
+       this.courseID = Long.valueOf(DB.getInstance().query(qGetPostid, pGetPostid).get(0).get("classroomid"));
+     }
+
      savePosts();
   }
   
@@ -131,17 +147,18 @@ public class Course {
    * Delete this course from the DB.
    */
   public void delete() {
-    DB db = DB.getInstance();
-    String q_deleteTopic = "DELETE FROM `classrooms` WHERE `classroomid` = ?";
-    String[] params = {DB.T_I, String.valueOf(this.courseID)};
-    
-    db.execute(q_deleteTopic, params);
-    
-    // Must delete all Posts from DB as well.
-    for (Post p : posts) {
-      p.delete();
-      posts.remove(p);
-    }
+     DB db = DB.getInstance();
+     String qDeleteTopic = "DELETE FROM `classrooms` WHERE `classroomid` = ?";
+     String[] params = {DB.T_I, String.valueOf(this.courseID)};
+     
+     db.execute(qDeleteTopic, params);
+     
+     // Must delete all Posts from DB as well.
+     for (Post p : this.posts) {
+        p.delete();
+     }
+
+     this.posts.clear();
  }
   
   public boolean equals(Object obj) {
@@ -162,6 +179,21 @@ public class Course {
         Objects.equals(this.professorID, other.professorID) &&
         Objects.equals(this.startDate, other.startDate) &&
         Objects.equals(this.posts, other.posts);
+  }
+  
+  public boolean enrollStudent(User s) {
+     DB db = DB.getInstance();
+    
+     String qEnrollStudent = "INSERT IGNORE INTO `students` SET `userid` = ?, `classroomid` = ?";
+     String[] pEnrollStudent = {
+        DB.T_I, String.valueOf(this.courseID),
+        DB.T_I, String.valueOf(s.userID)
+     };
+     
+     db.execute(qEnrollStudent, pEnrollStudent);
+     
+     // In the future, check that public registration is enabled here.
+     return true;
   }
   
   @Override

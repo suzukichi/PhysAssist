@@ -8,6 +8,6 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ TestPost.class, TestTopic.class })
-public class TestTextObjects {
+public class AllTestsChiu {
 
 }
