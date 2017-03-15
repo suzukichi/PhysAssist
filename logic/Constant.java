@@ -1,5 +1,8 @@
 package logic;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Constant implements Term 
 {
 	private String symbol;
@@ -15,11 +18,17 @@ public class Constant implements Term
 		//db lookup for constant name
 		String valueString = "";
 		String[] pGetConstantValue = {
-		          DB.T_S, valueString,
+		          DB.T_S, symbol,
 		       };
 
-		String qGetConstantValue = "SELECT `value`, FROM `constants` WHERE `symbol` = " + this.symbol;
-		DB.getInstance().query(qGetConstantValue, pGetConstantValue);
+		String qGetConstantValue = "SELECT `value`, FROM `constants` WHERE `symbol` = ?";
+		ArrayList<HashMap<String, String>> rows = DB.getInstance().query(qGetConstantValue, pGetConstantValue);
+		
+		for (HashMap<String, String> row : rows) 
+		{
+			valueString = row.get("value");
+		}
+		
 		return checkNegative(valueString);
 	}
 	

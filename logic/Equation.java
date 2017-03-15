@@ -1,5 +1,7 @@
 package logic;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Equation {
@@ -15,25 +17,22 @@ public class Equation {
 		getEquation();
 	}
 
-	/*public void getEquation()
+	private void getEquation()
 	{
 		String[] p_getEquation = {
-		          DB.T_I, String.valueOf(this.id),
-		          DB.T_S, this.view,
-		          DB.T_S, this.description,
-		          DB.T_S, this.history 
+		          DB.T_S, name
 		       };
 
-		String q_getEquation = "SELECT `id`, `view`, `description`, `history`, FROM `equation` WHERE `name` = " + this.name;
-        (DB.getInstance()).query(q_getEquation, p_getEquation);
-	}*/
-
-	public void getEquation()
-	{
-		this.id = 1;
-		this.view = "View";
-		this.description = "Description";
-		this.history = "History";
+		String q_getEquation = "SELECT `id`, `view`, `description`, `history`, FROM `equations` WHERE `name` = ?";
+		ArrayList<HashMap<String, String>> rows = (DB.getInstance()).query(q_getEquation, p_getEquation);
+		
+		for (HashMap<String, String> row : rows) 
+		{
+			this.id = Integer.parseInt(row.get("id"));
+			this.view = row.get("view");
+			this.description = row.get("description");
+			this.history = row.get("history");
+		}
 	}
 
 	public String getView()
@@ -70,20 +69,25 @@ public class Equation {
 		return equation.compute();
 	}
 
-	/*private String getAST(Term term) throws Exception
-	{
-		String ast = "";
-		String[] p_getAST = {
-		          DB.T_S, ast 
-		       };
-
-		String q_getAST = "SELECT `ast` FROM `ast` WHERE `eqid` = " + this.id + ", `term` = " + term;
-        (DB.getInstance()).query(q_getAST, p_getAST);
-        return ast;
-	}*/
-
 	private String getAST(Term term) throws Exception
 	{
-		return "deg * Term1 ^ Term2 Term3";
+		String ast = "";
+		String[] pGetAST = {
+				  DB.T_I, String.valueOf(id),
+		          DB.T_S, term.getName()
+		       };
+
+		String qGetAST = "SELECT `ast` FROM `ast` WHERE `eqid` = ?, `term` = ?";
+		ArrayList<HashMap<String, String>> rows = (DB.getInstance()).query(qGetAST, pGetAST);
+		
+		for (HashMap<String, String> row : rows) 
+		{
+			ast = row.get("view");
+		}
+		if ("".equals(ast))
+		{
+			throw new IllegalArgumentException("Invalid ast string.");
+		}
+        return ast;
 	}
 }
