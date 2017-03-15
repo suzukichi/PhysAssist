@@ -9,6 +9,14 @@ import logic.BinaryOperator;
 import logic.Term;
 import logic.Variable;
 
+/*
+ * TestBinaryOperator.java
+ * 
+ * Test class that tests the BinaryOperator class.
+ * 
+ * @author Kyle Ringler
+ */
+
 public class TestBinaryOperator {
 	private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
 	private BinaryOperator binOp;

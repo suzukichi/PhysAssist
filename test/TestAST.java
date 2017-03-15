@@ -8,6 +8,14 @@ import java.util.logging.Logger;
 import logic.AST;
 import logic.Term;
 
+/*
+ * TestAST.java
+ * 
+ * Test class that tests the AST class.
+ * 
+ * @author Arianna Olson
+ */
+
 public class TestAST {
 	private AST ast;
 	private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());

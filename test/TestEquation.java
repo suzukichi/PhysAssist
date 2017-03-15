@@ -10,6 +10,13 @@ import logic.Equation;
 import logic.Term;
 import logic.Variable;
 
+/*
+ * TestEquation.java
+ * 
+ * Test class that tests the Equation class.
+ * 
+ * @author Arianna Olson
+ */
 public class TestEquation {
 	private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
 	private Equation equation;
@@ -29,5 +36,32 @@ public class TestEquation {
 			LOGGER.log(Level.FINE, e.toString(), e);
 			e.printStackTrace();
 		}
+	}
+	
+	@Test public void TestEquationGetView()
+	{
+		String equationName = "Newton's Second Law of Motion";
+		String expectedView = "F = ma";
+		
+		Equation eq = new Equation(equationName);
+		assertEquals(expectedView, eq.getView());
+	}
+	
+	@Test public void TestEquationGetDescription()
+	{
+		String equationName = "Newton's Second Law of Motion";
+		String expectedDescription = "The force (F) acting on an object is equal to the mass (m) of an object times its acceleration (a).";
+		
+		Equation eq = new Equation(equationName);
+		assertEquals(expectedDescription, eq.getDescription());
+	}
+	
+	@Test public void TestEquationGetHistory()
+	{
+		String equationName = "Newton's Second Law of Motion";
+		String expectedHistory = "Isaac Newton's laws of motion were first set down in his Principia Mathematica Philosophiae Naturalis in 1687.";
+		
+		Equation eq = new Equation(equationName);
+		assertEquals(expectedHistory, eq.getHistory());
 	}
 }

@@ -9,6 +9,14 @@ import logic.UnaryOperator;
 import logic.Term;
 import logic.Variable;
 
+/*
+ * TestUnaryOperator.java
+ * 
+ * Test class that tests the UnaryOperator class.
+ * 
+ * @author Kyle Ringler
+ */
+
 public class TestUnaryOperator {
 	private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
 	private UnaryOperator unOp;
