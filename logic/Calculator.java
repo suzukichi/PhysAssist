@@ -61,30 +61,33 @@ public class Calculator extends JFrame implements ActionListener {
     }
     
     public void initButtons(){
-    	for(int i = 0; i < 5; i++)
-            rows[1].add(buttons[i]);
+        for(int i = 0; i < 30; i++){
+        	if((i>=0)&&(i<5)){
+        		rows[1].add(buttons[i]);
+        	}
+        	else if((i>=5)&&(i<10)){
+        		rows[2].add(buttons[i]);
+        	}
+        	else if((i>=10)&&(i<15)){
+        		rows[3].add(buttons[i]);
+        	}
+        	else if((i>=15)&&(i<20)){
+        		rows[4].add(buttons[i]);
+        	}
+        	else if((i>=20)&&(i<25)){
+        		rows[5].add(buttons[i]);
+        	}
+        	else if((i>=25)&&(i<30)){
+        		rows[6].add(buttons[i]);
+        	}
+        }
         add(rows[1]);
-        
-        for(int i = 5; i < 10; i++)
-            rows[2].add(buttons[i]);
         add(rows[2]);
-        
-        for(int i = 10; i < 15; i++)
-            rows[3].add(buttons[i]);
         add(rows[3]);
-        
-        for(int i = 15; i < 20; i++)
-            rows[4].add(buttons[i]);
         add(rows[4]);
-        
-        for(int i = 20; i < 25; i++)
-            rows[5].add(buttons[i]);
         add(rows[5]);
-        
-        for(int i = 25; i < 30; i++)
-            rows[6].add(buttons[i]);
         add(rows[6]);
-    }
+    }    
     
     
     public void initCalcFrame(){
