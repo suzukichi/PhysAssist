@@ -137,6 +137,10 @@ public class User {
     return this.coursesEnrolled;
   }
   
+  public List<Course> getOwnedCourses() {
+    return this.coursesEnrolled;
+  }
+  
   /*
    * Enroll the user in a classroom.
    */
@@ -204,10 +208,24 @@ public class User {
       return new GeneralUser();
     }
   }
+  */
+  
+  /*
+   * Returns the role, as a string, of the user for the given Course.
+   */
+  public String getPermission(Course course) {
+      if (coursesEnrolled.contains(course)) {
+        return "student";
+      }
+      if (coursesOwned.contains(course)) {
+        return "professor";
+      }
+      return "general_user";
+  }
   
   public String toString() {
     return "User: {userID: " + userID + ", userName: " + username + "\n   Enrolled: "
         + coursesEnrolled + "\n Owned: " + coursesOwned + "\n}";
   }
-  */
+
 }
