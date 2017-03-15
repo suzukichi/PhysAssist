@@ -17,7 +17,7 @@ public class Lists {
   /*
    * Fetches all Category objects from DB (all Topic objects with parentid == 0)
    */
-  public List<Category> getCategoryList() {
+  public static List<Category> getCategoryList() {
     List<Category> list = new ArrayList<Category>();
     DB db = DB.getInstance();
     long parentID = 0;
@@ -34,7 +34,8 @@ public class Lists {
     System.out.println(rows);
     
     for (HashMap<String, String> row : rows) {
-      list.add(new Category(Long.parseLong(row.get("topicid")), row.get("title")));
+      //list.add(new Category(Long.parseLong(row.get("topicid")), row.get("title")));
+      list.add(new Category(Long.parseLong(row.get("topicid"))));
     }
     
     System.out.println(list);
@@ -46,7 +47,7 @@ public class Lists {
    * Fetches all Topic objects from the DB with the given parentID.
    * Effectively, this is the list of topics that belong to the Category c, where c.topicID == parentID.
    */
-  public List<Topic> getTopicList(long parentID) {
+  public static List<Topic> getTopicList(long parentID) {
     List<Topic> list = new ArrayList<Topic>();
     DB db = DB.getInstance();
     
@@ -74,7 +75,7 @@ public class Lists {
   }
   
   //TODO
-  public List<Equation> getEquationList(long topicID) {
+  public static List<Equation> getEquationList(long topicID) {
     List<Equation> list = new ArrayList<Equation>();
     DB db = DB.getInstance();
     
@@ -102,79 +103,12 @@ public class Lists {
     return null;
   }
   
-  //TODO
-  public List<Course> getCourseList(long userID) {
-    List<Course> list = new ArrayList<Course>();
-    DB db = DB.getInstance();
-    
-    // get list of courseID's
-    /*
-    String qGetTopicsForParent = "SELECT t.`courseid` FROM `students` t" +
-        " WHERE `userid` = ?";
-        */
-
-    String qGetTopicsForParent = "SELECT * FROM `students` t" +
-        " WHERE `userid` = ?";
-    
-    String[] pGetTopicsForParent = {DB.T_I, String.valueOf(userID)};
-
-    ArrayList<HashMap<String, String>> rows = db.query(qGetTopicsForParent, pGetTopicsForParent);
-    
-    ArrayList<Long> courseIDList = new ArrayList<Long>();
-    
-    for (HashMap<String, String> row : rows) {
-      courseIDList.add(Long.parseLong(row.get("classroomid")));
-    }
-    
-    // now get course objects
-    for (long courseID : courseIDList) {
-      list.add(getCourse(courseID));
-    }
-    
-    System.out.println(list);
-    
-    return list;
-  }
-  
-  /*
-   * Creates a Course object for the Course with the given courseID.
-   */
-  private Course getCourse(long courseID) {
-    DB db = DB.getInstance();
-
-    System.out.println("courseID: " + courseID);
-    // Limiting the entry to 1
-
-    /*
-    String qGetCourse = "SELECT tr.`title` FROM `classrooms` t" +
-        " WHERE `classroomid` = ?" +
-        " LIMIT 1";
-    */
-
-    String qGetCourse = "SELECT `classroomid`, `title`, `description`, `ownerid`, `start_date`, `status`" + 
-                        " FROM `classrooms` " +
-                        " WHERE `classroomid` = ?";
-    
-    String[] pGetCourse = {DB.T_I, String.valueOf(courseID)};
-
-    ArrayList<HashMap<String, String>> rows = db.query(qGetCourse, pGetCourse);
-    
-    if (rows.size() != 1) {
-      // throw an exception
-      // Means that there is no course in the DB for the courseID
-      System.err.println("rows.size != 1");
-    }
-    
-    HashMap<String, String> courseEntry = rows.get(0);
-    
-    return new Course(Long.parseLong(courseEntry.get("classroomid")),
-        Long.valueOf(courseEntry.get("ownerid")), courseEntry.get("title"),
-        courseEntry.get("description"), Long.parseLong(courseEntry.get("start_date")));
-  }
-  
   public static void main(String[] args) {
-    Lists l = new Lists();
-    l.getCourseList(1);
+    System.out.println("get category list");
+    Lists.getCategoryList();
+    
+    System.out.println("\nget topic list");
+    Lists.getTopicList(1);
     
     //makePost();
     
@@ -192,11 +126,5 @@ public class Lists {
     
     System.out.println(rows);
     */
-  }
-    
-  private static void makePost() {
-    Post p = new Post("Welcome to Physics 1!",
-        "This is the course page for Physics 1! Here you will find important announcements and notes.", 1);
-    p.save();
   }
 }

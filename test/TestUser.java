@@ -19,6 +19,11 @@ import logic.User;
 public class TestUser {
 
   @Test
+  public void TestUserConstructionDB() {
+  }
+  
+  /*
+  @Test
   public void TestUserEnrollClassroom() {
     Classroom c = new Classroom("class", "class decsription", 1);
     User user = new User("username", "bob", "smith", "password", "bob@email.com");
@@ -76,6 +81,7 @@ public class TestUser {
     
     assertThat(user.getPermission(bioClassPage), new IsInstanceOf(GeneralUser.class));
   }
+  */
   
   
 

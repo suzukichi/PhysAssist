@@ -81,5 +81,20 @@ public class Post {
        
        return this.postID;
     }
+    
+    /*
+     * Delete this post from the DB.
+     */
+    public void delete() {
+      DB db = DB.getInstance();
+      String q_deletePost = "DELETE FROM `posts` WHERE `postid` = ?";
+      String[] params = {DB.T_I, String.valueOf(this.postID)};
+      
+      db.execute(q_deletePost, params);
+   }
+    
+    public String toString() {
+      return "   Post: " + title + ", " + text;
+    }
 }
 
