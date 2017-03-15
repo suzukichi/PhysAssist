@@ -34,7 +34,6 @@ public class TestBinaryOperator {
 		catch (Exception e) 
 		{
 			LOGGER.log(Level.FINE, e.toString(), e);
-			e.printStackTrace();
 		}
 		assertEquals(7.0, result.getValue(), 0);
 	}
@@ -52,7 +51,6 @@ public class TestBinaryOperator {
 		catch (Exception e) 
 		{
 			LOGGER.log(Level.FINE, e.toString(), e);
-			e.printStackTrace();
 		}
 		assertEquals(-3.0, result.getValue(), 0);
 	}
@@ -70,7 +68,6 @@ public class TestBinaryOperator {
 		catch (Exception e) 
 		{
 			LOGGER.log(Level.FINE, e.toString(), e);
-			e.printStackTrace();
 		}
 		assertEquals(10.0, result.getValue(), 0);
 	}
@@ -88,7 +85,6 @@ public class TestBinaryOperator {
 		catch (Exception e) 
 		{
 			LOGGER.log(Level.FINE, e.toString(), e);
-			e.printStackTrace();
 		}
 		assertEquals(3.0, result.getValue(), 0);
 	}
@@ -123,7 +119,6 @@ public class TestBinaryOperator {
 		catch (Exception e) 
 		{
 			LOGGER.log(Level.FINE, e.toString(), e);
-			e.printStackTrace();
 		}
 		assertEquals(2.0, result.getValue(), 0);
 	}

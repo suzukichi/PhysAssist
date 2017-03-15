@@ -5,8 +5,13 @@ package logic;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import test.TestAST;
 
 public class DB {
+	private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
     private static DB instance = null;
     
 	private Connection connection;
@@ -56,7 +61,7 @@ public class DB {
 
          this.getConnection().close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.FINE, e.toString(), e);
 		}
 		
 		return rowsUpdated;
@@ -104,7 +109,7 @@ public class DB {
             results.add(row);
          }
       } catch (SQLException e) {
-         e.printStackTrace();
+    	  LOGGER.log(Level.FINE, e.toString(), e);
       }
 	   
 	   return results;
@@ -155,7 +160,7 @@ public class DB {
             Class.forName(JDBC_DRIVER);
             this.connection = DriverManager.getConnection(DB_URL, USER, PASS);
          } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+        	 LOGGER.log(Level.FINE, e.toString(), e);
          }
       }
 	}
@@ -164,7 +169,7 @@ public class DB {
 	   try {
          this.connect();
       } catch (SQLException e) {
-         e.printStackTrace();
+    	  LOGGER.log(Level.FINE, e.toString(), e);
       }
 	   return this.connection;
 	}

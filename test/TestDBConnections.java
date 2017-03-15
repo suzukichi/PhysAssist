@@ -44,7 +44,6 @@ private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
          assertEquals(query + "'" + text + "'", statementString.substring(statementString.indexOf(": ") + 2));
       } catch (SQLException e) {
     	 LOGGER.log(Level.FINE, e.toString(), e);
-         e.printStackTrace();
       }
    }
 
@@ -63,7 +62,6 @@ private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
          assertEquals(query, statementString.substring(statementString.indexOf(": ") + 2));
       } catch (SQLException e) {
     	 LOGGER.log(Level.FINE, e.toString(), e);
-         e.printStackTrace();
       }
    }
    

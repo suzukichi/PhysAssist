@@ -1,11 +1,15 @@
 package logic;
 
 import java.awt.EventQueue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import test.TestAST;
 
 
 
 public class Application {
-	
+	private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
 	private guis.MainFrame frame;
 	//private TopicList topicListController;
 	private LoginPage loginController;
@@ -21,7 +25,7 @@ public class Application {
 					Application exec = new Application();
 					exec.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					LOGGER.log(Level.FINE, e.toString(), e);
 				}
 			}
 		});

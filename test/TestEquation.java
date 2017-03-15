@@ -34,7 +34,6 @@ public class TestEquation {
 			assertEquals(Math.PI / 2, (equation.solve(solveFor, terms)).getValue(), 0.01);
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, e.toString(), e);
-			e.printStackTrace();
 		}
 	}
 	

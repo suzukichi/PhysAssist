@@ -33,7 +33,6 @@ public class TestUnaryOperator {
 		catch (Exception e) 
 		{
 			LOGGER.log(Level.FINE, e.toString(), e);
-			e.printStackTrace();
 		}
 		assertEquals(0.0, result.getValue(), 0.00001);
 	}
@@ -51,7 +50,6 @@ public class TestUnaryOperator {
 		catch (Exception e) 
 		{
 			LOGGER.log(Level.FINE, e.toString(), e);
-			e.printStackTrace();
 		}
 		assertEquals(-1.0, result.getValue(), 0);
 	}
@@ -69,7 +67,6 @@ public class TestUnaryOperator {
 		catch (Exception e) 
 		{
 			LOGGER.log(Level.FINE, e.toString(), e);
-			e.printStackTrace();
 		}
 		assertEquals(1.0, result.getValue(), 0.00001);
 	}
@@ -87,7 +84,6 @@ public class TestUnaryOperator {
 		catch (Exception e) 
 		{
 			LOGGER.log(Level.FINE, e.toString(), e);
-			e.printStackTrace();
 		}
 		assertEquals(2.0, result.getValue(), 0);
 	}
@@ -104,7 +100,6 @@ public class TestUnaryOperator {
 		catch (Exception e) 
 		{
 			LOGGER.log(Level.FINE, e.toString(), e);
-			e.printStackTrace();
 		}
 		assertEquals(0.0, result.getValue(), 0);
 	}
@@ -121,7 +116,6 @@ public class TestUnaryOperator {
 		catch (Exception e) 
 		{
 			LOGGER.log(Level.FINE, e.toString(), e);
-			e.printStackTrace();
 		}
 		assertEquals(1.0, result.getValue(), 0);
 	}
@@ -138,7 +132,6 @@ public class TestUnaryOperator {
 		catch (Exception e) 
 		{
 			LOGGER.log(Level.FINE, e.toString(), e);
-			e.printStackTrace();
 		}
 		assertEquals(Math.PI, result.getValue(), 0.00001);
 	}
