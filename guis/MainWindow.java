@@ -40,9 +40,4 @@ public class MainWindow extends JPanel {
 	public CardLayout getCardLayout() {
 		return cardlayout;
 	}
-	
-	public void addView(JPanel view, String name){
-		
-	}
-
 }
