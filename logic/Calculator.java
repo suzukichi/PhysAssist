@@ -56,8 +56,12 @@ public class Calculator extends JFrame implements ActionListener {
         }
         rows[0].add(display);
         add(rows[0]);
-        
-        for(int i = 0; i < 5; i++)
+        initButtons();
+        setVisible(true);
+    }
+    
+    public void initButtons(){
+    	for(int i = 0; i < 5; i++)
             rows[1].add(buttons[i]);
         add(rows[1]);
         
@@ -80,9 +84,8 @@ public class Calculator extends JFrame implements ActionListener {
         for(int i = 25; i < 30; i++)
             rows[6].add(buttons[i]);
         add(rows[6]);
-        
-        setVisible(true);
     }
+    
     
     public void initCalcFrame(){
         setDesign();
@@ -124,11 +127,12 @@ public class Calculator extends JFrame implements ActionListener {
     }
     
     public final void setDesign() {
+    	Logger log = Logger.getLogger("design");
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
         } 
         catch(Exception e) {
-        	throw new IllegalArgumentException("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel does not exist");
+        	log.log(Level.FINE, "look and feel not available", e);
         }
     }
     
