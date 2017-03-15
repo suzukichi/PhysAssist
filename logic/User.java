@@ -1,5 +1,9 @@
 package logic;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,7 +37,7 @@ public class User {
     this.username = username;
     this.firstName = firstName;
     this.lastName = lastName;
-    this.password = password;
+    this.password = encrypt(password);
     this.email = email;
     this.userID = 0;
     
@@ -259,4 +263,52 @@ public class User {
         + coursesEnrolled + "\n Owned: " + coursesOwned + "\n}";
   }
 
+  /**
+   * Temporary fix to hash passwords.
+   * Need to further enforce security.
+   * @param plainText
+   * @return
+   */
+  public String encrypt(String plainText) { 
+	  String hashedText = "";
+	  try {
+		  MessageDigest digest = MessageDigest.getInstance("SHA-256");
+		  byte[] hash = digest.digest(plainText.getBytes(StandardCharsets.UTF_8));
+		  hashedText = new String(Base64.getDecoder().decode(hash));
+	  }
+	  catch(NoSuchAlgorithmException e){
+		  e.printStackTrace();
+	  }
+	  return hashedText;
+  }
+  
+  /**
+   * 
+   * @param username
+   * @param password
+   * @return userID on success, < 0  on fail
+   */
+  public long verify(String username, String password) {
+	    List<Course> list = new ArrayList<Course>();
+	    DB db = DB.getInstance();
+
+	    String qGetLoginInfo = "SELECT password, userID" +
+	    							" FROM `users`" +
+	    							" WHERE `username` = ?";
+	    
+	    String[] pGetLoginInfo = {DB.T_I, String.valueOf(username)};
+
+	    ArrayList<HashMap<String, String>> rows = db.query(qGetLoginInfo, pGetLoginInfo);
+	    
+	    if(rows.size() != 1) {
+	    	return -2; //no username found or multiple in database(checked on creation)
+	    }
+	    
+	    HashMap<String, String> row = rows.get(0);
+	    if(row.get("password").equals(encrypt(password))) {
+	    	return Long.parseLong(row.get("userID"));
+	    }
+	    
+	    return -1;
+  }
 }
