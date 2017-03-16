@@ -24,7 +24,7 @@ public class MainFrame extends JFrame {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(500, 100, 448, 525);
+		frame.setBounds(500, 100, 448, 537);
 		frame.setResizable(false);
 		panel = new MainWindow();
 		frame.getContentPane().add(panel);
