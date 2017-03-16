@@ -183,7 +183,7 @@ public class Calculator extends JFrame implements ActionListener {
             }
     	}
     	else{
-    		anyOtherButton(ae);
+    		anyOtherButton(((JButton)ae.getSource()).getText());
     	}
     }
     
@@ -197,15 +197,17 @@ public class Calculator extends JFrame implements ActionListener {
 			rad=true;
 		}
     }
-    
-    public void anyOtherButton(ActionEvent ae){
-    	for(int i = 0; i<buttons.length;i++){
-			if(ae.getSource()==buttons[i]){
+    // Loop tested in test/TestLoopCalculatorOther.java
+    public int anyOtherButton(String ae){
+    	int i;
+    	for(i = 0; i<buttonNames.length;i++){
+			if(buttonNames[i].equals(ae)){
 				display.append(buttonNames[i]);
 				expression = expression+buttonNames[i];
-				return;
+				return i;
 			}
 		}
+    	return i;
     }
     
     public String getExpression(){
@@ -215,8 +217,7 @@ public class Calculator extends JFrame implements ActionListener {
     public void setExpression(String e){
     	expression = e;
     }
-    
-    public static void main(String args[]){
-    	Calculator c = new Calculator();
+    public void setButtonNames(String[] names){
+    	buttonNames = names;
     }
 }
