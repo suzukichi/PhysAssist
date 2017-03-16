@@ -20,7 +20,6 @@ import guis.MainWindow;
 public class LoginPage extends Page {
   private boolean isRegister;
   private guis.Login page;
-  public HomePage homeController;
   public guis.MainWindow view;
   
   //pass controller topics or query them
@@ -44,31 +43,22 @@ public class LoginPage extends Page {
 		//nothing here
 	}
  
+	/**
+	 * 
+	 * @param username
+	 * @param password
+	 * @return
+	 */
    public int verify(String username, String password) {
-	   long userID = 0;
-	   /**DB db = DB.getInstance();
-      String q_getTopic = "SELECT 'title', 'topicid" +
-                          " FROM `topic_revisions` tr" +
-                          " JOIN `topics` t " +
-                          "WHERE t.`parentid` = ? " +
-                          " ORDER BY `title` DESC";
-      String[] p_getTopic = {DB.T_I, String.valueOf(0)};
-      ArrayList<HashMap<String, String>> rows = db.query(q_getTopic, p_getTopic);
-
-      if(rows.isEmpty()){
-        //TODO throw exception
-        return;
-      }
-      for(int i = 0; i < rows.size(); i++) {
-         System.out.println(rows.get(i).get("title"));
-         System.out.println(Long.valueOf(rows.get(i).get("topicid")));
-      }*/
-	   //query for username, compare passwords
-	   //view will show home or error based on 0 or 1
-	   //controller passes userID to homePage
-	   //homeController = new HomePage(view, userID);
-	   return 0;
+	   long userID = User.verify(username, password);
 	   
+	   if(userID < 0) {
+		   return -1;
+	   }
+	   else {
+		   this.user = new User(userID);
+		   return 1;
+	   }
    }
 	
 	public void initView(MainWindow view){

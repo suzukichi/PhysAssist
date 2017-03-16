@@ -269,7 +269,7 @@ public class User {
    * @param plainText
    * @return
    */
-  public String encrypt(String plainText) { 
+  public static String encrypt(String plainText) { 
 	  String hashedText = "";
 	  try {
 		  MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -288,7 +288,7 @@ public class User {
    * @param password
    * @return userID on success, < 0  on fail
    */
-  public long verify(String username, String password) {
+  public static long verify(String username, String password) {
 	    List<Course> list = new ArrayList<Course>();
 	    DB db = DB.getInstance();
 

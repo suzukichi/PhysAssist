@@ -13,6 +13,7 @@ public class Application {
 	private guis.MainFrame frame;
 	//private TopicList topicListController;
 	private LoginPage loginController;
+	public HomePage homeController;
 	
 	public Application(){
 		init();
@@ -39,6 +40,7 @@ public class Application {
 		guis.MainWindow view = frame.panel;
 		
 		//create login controller, passes user ID to home
+		homeController = new HomePage(view);
 		loginController = new LoginPage(view);
 		//creates home page controller
 			//creates topic controller 
