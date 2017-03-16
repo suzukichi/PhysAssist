@@ -12,7 +12,6 @@ public class Topic {
 	private long creationTime;
 	
 	public ArrayList<Equation> equations;
-	public ArrayList<Quiz> quizzes;
 	
 	public Topic(long topicID) {
 	   DB db = DB.getInstance();
@@ -37,7 +36,6 @@ public class Topic {
      
       // TODO: create Equations.
 		this.equations = new ArrayList<>();
-		this.quizzes = new ArrayList<>();
 	}
 	
 	public Topic(long topicID, long parentTopicID, String title, String text, long authorID,
@@ -63,7 +61,6 @@ public class Topic {
 		
 		this.authorID = userid;
 		this.equations = new ArrayList<>();
-		this.quizzes = new ArrayList<>();
 	}
 
 	public void addEquation(Equation equation) {

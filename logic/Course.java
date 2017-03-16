@@ -168,7 +168,7 @@ public class Course {
      String qEnrollStudent = "INSERT IGNORE INTO `students` SET `userid` = ?, `classroomid` = ?";
      String[] pEnrollStudent = {
         DB.T_I, String.valueOf(this.courseID),
-        DB.T_I, String.valueOf(s.userID)
+        DB.T_I, String.valueOf(s.getUserID())
      };
      
      db.execute(qEnrollStudent, pEnrollStudent);
@@ -183,7 +183,7 @@ public class Course {
      String qEnrollStudent = "DELETE FROM `students` WHERE `userid` = ? AND `classroomid` = ?";
      String[] pEnrollStudent = {
         DB.T_I, String.valueOf(this.courseID),
-        DB.T_I, String.valueOf(s.userID)
+        DB.T_I, String.valueOf(s.getUserID())
      };
      
      db.execute(qEnrollStudent, pEnrollStudent);

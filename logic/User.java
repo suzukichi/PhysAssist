@@ -19,12 +19,12 @@ import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
  */
 
 public class User {
-  public String username;
-  public String firstName;
-  public String lastName;
-  public long userID;
-  public String password;
-  public String email;
+  private String username;
+  private String firstName;
+  private String lastName;
+  private long userID;
+  private String password;
+  private String email;
   private long registrationDate;
   private List<Course> coursesEnrolled;
   private List<Course> coursesOwned;
@@ -371,5 +371,65 @@ public class User {
 	    	return true; //no email found or multiple in database(checked on creation)
 	    }
 	    return false;
+  }
+  
+  public long getUserID()
+  {
+	  return this.userID;
+  }
+  
+  public void setUserID(long userID)
+  {
+	  this.userID = userID;
+  }
+  
+  public String getUsername() 
+  {
+	  return this.username;
+  }
+  
+  public void setUsername(String username)
+  {
+	  this.username = username;
+  }
+  
+  public String getPassword() 
+  {
+	  return this.password;
+  }
+  
+  public void setPassword(String password) 
+  {
+	  this.password = password;
+  }
+  
+  public String getEmail()
+  {
+	  return this.email;
+  }
+  
+  public void setEmail(String email)
+  {
+	  this.email = email;
+  }
+  
+  public String getFirstName()
+  {
+	  return this.firstName;
+  }
+  
+  public void setFirstName(String firstName)
+  {
+	  this.firstName = firstName;
+  }
+  
+  public String getLastName()
+  {
+	  return this.lastName;
+  }
+  
+  public void setLastName(String lastName)
+  {
+	  this.lastName = lastName;
   }
 }

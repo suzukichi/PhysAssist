@@ -21,7 +21,7 @@ public class SettingsPage extends Page {
 	}
   
 	public void updateSettings() {
-		page.updateText(user.username, user.email);
+		page.updateText(user.getUsername(), user.getEmail());
 	}
   
 	public void initView(guis.MainWindow view){
@@ -32,21 +32,21 @@ public class SettingsPage extends Page {
 		if(User.emailExists(email))
 			return -1;//GUI checks if not changed
 		else {
-			user.email = email;
+			user.setEmail(email);
 			save();
 		}
 		return 0;
 	}
 
 	public void editName(String fName, String lName) {
-		user.firstName = fName;
-		user.lastName = lName;
+		user.setFirstName(fName);
+		user.setLastName(lName);
 		save();
 	}
 
 	public int editPassword(String password) {
-		if(User.verify(user.username, password) >= 0) {
-			user.password = User.encrypt(password);
+		if(User.verify(user.getUsername(), password) >= 0) {
+			user.setPassword(User.encrypt(password));
 			save();
 			return 0;
 		}
@@ -59,7 +59,7 @@ public class SettingsPage extends Page {
 			return -1; //GUI checks if not changed
 		}
 		else {
-			user.username = username;
+			user.setUsername(username);
 			save();
 			return 0;
 		}

@@ -20,13 +20,12 @@ public class Equation {
 
 	private void getEquation()
 	{
-	  String[] p_getEquation = {
-	      DB.T_S, name
-	   };
-	  
-	  //TODO add topicid to query
-		String q_getEquation = "SELECT `id`, `view`, `description`, `history`, FROM `equations` WHERE `name` = ?";
-		ArrayList<HashMap<String, String>> rows = (DB.getInstance()).query(q_getEquation, p_getEquation);
+		String[] pgetEquation = {
+		          DB.T_S, name
+		       };
+
+		String qgetEquation = "SELECT `id`, `view`, `description`, `history`, FROM `equations` WHERE `name` = ?";
+		ArrayList<HashMap<String, String>> rows = (DB.getInstance()).query(qgetEquation, pgetEquation);
 		
 		for (HashMap<String, String> row : rows) 
 		{
@@ -72,7 +71,7 @@ public class Equation {
 		return equation.compute();
 	}
 
-	private String getAST(Term term) throws IllegalArgumentException
+	private String getAST(Term term)
 	{
 		String ast = "";
 		String[] pGetAST = {
