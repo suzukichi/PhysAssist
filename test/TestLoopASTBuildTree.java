@@ -15,25 +15,25 @@ public class TestLoopASTBuildTree {
 	}*/
 	
 	@Test
-	public void LoopTest2() throws Exception{
+	public void LoopTest2() throws IllegalArgumentException{
 		AST a = new AST(" ");
 		String root = a.toString();
 		assertEquals("",root);
 	}
 	@Test
-	public void LoopTest3() throws Exception{
+	public void LoopTest3() throws IllegalArgumentException{
 		AST a = new AST("Hello");
 		String root = a.toString();
 		assertEquals("Hello",root);
 	}
 	@Test
-	public void LoopTest4() throws Exception{
+	public void LoopTest4() throws IllegalArgumentException{
 		AST a = new AST("Hello World");
 		String root = a.toString();
 		assertEquals("Hello",root);
 	}
 	@Test
-	public void LoopTest5() throws Exception{
+	public void LoopTest5() throws IllegalArgumentException{
 		AST a = new AST("");
 		String root = a.toString();
 		assertEquals("",root);
