@@ -11,7 +11,8 @@ import java.util.logging.*;
 
 @SuppressWarnings("serial")
 public class Calculator extends JFrame implements ActionListener {
-    private boolean rad = true;  
+    
+	private boolean rad = true;  
     private String expression = ""; 
     private boolean resultShown=false;
     private JPanel[] rows = new JPanel[7];
@@ -28,21 +29,11 @@ public class Calculator extends JFrame implements ActionListener {
     private FlowLayout f1 = new FlowLayout(FlowLayout.CENTER);
     private FlowLayout f2 = new FlowLayout(FlowLayout.CENTER,1,1);
 	
-    
     public Calculator() {
     	super("Calculator");
     	initCalcFrame();
-        for(int i = 0; i < rows.length; i++){
-            rows[i] = new JPanel();
-            rows[i].setBackground(new Color(200, 0, 0));
-        }
-        
-        rows[0].setLayout(f1);
-        
         display.setFont(f);
         display.setEditable(false);
-        rows[0].add(display);
-        add(rows[0]);
         initButtons(buttonNames.length);
         setVisible(true);
     }
@@ -50,10 +41,17 @@ public class Calculator extends JFrame implements ActionListener {
     public int initButtons(int bSize){
     	int i;
     	int r=0;
+    	rows[0] = new JPanel();
+        rows[0].setBackground(new Color(200, 0, 0));
+        rows[0].setLayout(f1);
+        rows[0].add(display);
+        add(rows[0]);
     	// Loop tested in test/TestLoopCalculator.java
         for(i=0; i < bSize; i++){
         	if(i%5==0){
         		r++;
+        		rows[r] = new JPanel();
+                rows[r].setBackground(new Color(200, 0, 0));
         	}
         	initButtonsHelper(r,i);
         }
@@ -76,7 +74,6 @@ public class Calculator extends JFrame implements ActionListener {
         buttons[i].setBackground(new Color(200, 50, 40));
     	rows[r].add(buttons[i]);
     }
-    
     
     public void initCalcFrame(){
         setDesign();
@@ -128,6 +125,31 @@ public class Calculator extends JFrame implements ActionListener {
         }
     }
     
+    public int iTrig(ActionEvent ae){
+    	int out = 0;
+    	if(ae.getSource()==buttons[5]){
+    		out = 5;
+    	}
+    	if(ae.getSource()==buttons[6]){
+    		out = 6;
+    	}
+        if(ae.getSource()==buttons[7]){
+    		out = 7;
+    	}
+    	return out;
+    }
+    
+    public void getTrig(ActionEvent ae){
+    	int i = iTrig(ae);
+   		display.append(buttonNames[i]+"(");
+   		if(rad){
+   			expression = expression+"Math."+buttonNames[i]+"(";
+   		}
+   		else{
+    		expression = expression+"Math."+buttonNames[i]+"("+"(1/(180/Math.PI))*";
+    	}
+    }
+    
     @Override
     public void actionPerformed(ActionEvent ae) {
     	if(resultShown){
@@ -139,52 +161,21 @@ public class Calculator extends JFrame implements ActionListener {
     		expression = expression+"Math.pow(";
     	}
     	else if(ae.getSource()==buttons[3]){
-    		display.append("sqr(");
+    		display.append("sqrt(");
     		expression = expression+"Math.sqrt(";
     	}
     	else if(ae.getSource()==buttons[4]){
     		this.clear();
     	}
-    	else if(ae.getSource()==buttons[5]){
-    		display.append("sin(");
-    		if(rad){
-    			expression = expression+"Math.sin(";
-    		}
-    		else{
-    			expression = expression+"Math.sin((1/(180/Math.PI))*";
-    		}
-    	}
-    	else if(ae.getSource()==buttons[6]){
-    		display.append("cos(");
-    		if(rad){
-    			expression = expression+"Math.cos(";
-    		}
-    		else{
-    			expression = expression+"Math.cos((1/(180/Math.PI))*";
-    		}
-    	}
-    	else if(ae.getSource()==buttons[7]){
-    		display.append("tan(");
-    		if(rad){
-    			expression = expression+"Math.tan(";
-    		}
-    		else{
-    			expression = expression+"Math.tan((1/(180/Math.PI))*";
-    		}
+    	else if(iTrig(ae)!=0){
+    		getTrig(ae);
     	}
     	else if(ae.getSource()==buttons[14]){
     		display.append("PI");
     		expression = expression+"Math.PI";
     	}
     	else if(ae.getSource()==buttons[19]){
-    		if(rad){
-    			buttons[19].setBackground(new Color(0,200,0));
-    			rad=false;
-    		}
-    		else{
-    			buttons[19].setBackground(new Color(200, 50, 40));
-    			rad=true;
-    		}
+    		radSwitch();
     	}
     	else if(ae.getSource() == buttons[29]){
             if(!expression.isEmpty()){
@@ -192,19 +183,40 @@ public class Calculator extends JFrame implements ActionListener {
             }
     	}
     	else{
-    		for(int i = 0; i<buttons.length;i++){
-    			if(ae.getSource()==buttons[i]){
-    				display.append(buttonNames[i]);
-    				expression = expression+buttonNames[i];
-    				return;
-    			}
-    		}
+    		anyOtherButton(ae);
     	}
     }
+    
+    public void radSwitch(){
+    	if(rad){
+			buttons[19].setBackground(new Color(0,200,0));
+			rad=false;
+		}
+		else{
+			buttons[19].setBackground(new Color(200, 50, 40));
+			rad=true;
+		}
+    }
+    
+    public void anyOtherButton(ActionEvent ae){
+    	for(int i = 0; i<buttons.length;i++){
+			if(ae.getSource()==buttons[i]){
+				display.append(buttonNames[i]);
+				expression = expression+buttonNames[i];
+				return;
+			}
+		}
+    }
+    
     public String getExpression(){
     	return expression;
     }
+    
     public void setExpression(String e){
     	expression = e;
+    }
+    
+    public static void main(String args[]){
+    	Calculator c = new Calculator();
     }
 }
