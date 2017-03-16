@@ -22,7 +22,7 @@ public class Login extends Page {
 	private JPasswordField passwordField;
 	private JButton loginButton;
 	private JButton createButton;
-	private logic.LoginPage controller;
+	private transient logic.LoginPage controller;
 	private JPanel textPanel;
 	private JTextPane txtpnErrorInvalidUsername;
 	

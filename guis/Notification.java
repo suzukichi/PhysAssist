@@ -27,7 +27,7 @@ public class Notification extends Page {
 	
 	public long postID;
 	
-	public logic.Post post;
+	public transient logic.Post post;
 	
 	/**
 	 * Create the panel.

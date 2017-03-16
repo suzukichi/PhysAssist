@@ -32,9 +32,9 @@ public class Courses extends Page {
 
 	public JPanel bodyPanel;
 	public JPanel formatPanel;
-	List<logic.Course> equations;
-	String categoryTitle;
-	Long userID;
+	private transient List<logic.Course> equations;
+	private String categoryTitle;
+	private Long userID;
 	private JPanel innerp1;
 	private JPanel innerp2;
 	private JPanel innerp3;

@@ -23,7 +23,7 @@ public class Application {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Application exec = new Application();
+					new Application();
 				} catch (Exception e) {
 					LOGGER.log(Level.FINE, e.toString(), e);
 				}

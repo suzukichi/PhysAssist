@@ -29,7 +29,7 @@ public JPanel formatPanel;
 public JTextPane userNameErrorText;
 public JTextPane emailErrorText;
 
-public logic.LoginPage controller;
+public transient logic.LoginPage controller;
 
 	public CreateAccount() {
 		

@@ -6,8 +6,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
+
+import test.TestAST;
 
 /*
  * User.java
@@ -19,6 +23,8 @@ import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
  */
 
 public class User {
+  private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
+	
   private String username;
   private String firstName;
   private String lastName;
@@ -275,7 +281,7 @@ public class User {
 		  hashedText = new HexBinaryAdapter().marshal(hash);
 	  }
 	  catch(NoSuchAlgorithmException e){
-		  e.printStackTrace();
+		  LOGGER.log(Level.FINE, e.toString(), e);
 	  }
 	  return hashedText;
   }

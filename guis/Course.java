@@ -32,9 +32,9 @@ public class Course extends Page {
 
 	public JPanel bodyPanel;
 	public JPanel formatPanel;
-	List<logic.Post> posts;
-	String categoryTitle;
-	Long courseID;
+	private transient List<logic.Post> posts;
+	private String categoryTitle;
+	private Long courseID;
 	private JPanel innerp1;
 	private JPanel innerp2;
 	private JPanel innerp3;
