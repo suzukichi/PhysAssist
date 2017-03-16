@@ -1,5 +1,6 @@
 package guis;
 
+import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -28,6 +29,10 @@ private JPasswordField passwordField1;
 private JPasswordField passwordField2;
 public JPanel bodyPanel;
 public JPanel formatPanel;
+public JTextPane userNameErrorText;
+public JTextPane emailErrorText;
+
+public logic.LoginPage controller;
 
 	public CreateAccount() {
 		
@@ -48,12 +53,6 @@ public JPanel formatPanel;
 	}
 	
 	private void createAccountPanel() {
-		JPanel accountWrap = new JPanel();
-		accountWrap.setBorder(new EmptyBorder(10, 0, 10, 0));
-		accountWrap.setBackground(UIManager.getColor("Button.background"));
-		formatPanel.add(accountWrap);
-		accountWrap.setLayout(new BoxLayout(accountWrap, BoxLayout.Y_AXIS));
-		
 		JPanel p1 = new JPanel();
 		FlowLayout flowLayout_2 = (FlowLayout) p1.getLayout();
 		flowLayout_2.setAlignment(FlowLayout.RIGHT);
@@ -69,22 +68,21 @@ public JPanel formatPanel;
 		p1.add(usernameField);
 		usernameField.setBounds(10, 30, 130, 20);
 		usernameField.setColumns(20);
-		accountWrap.add(p1);
-		accountWrap.add(p1);
+		formatPanel.add(p1);
 		
 		JPanel p2 = new JPanel();
 		
-		JTextPane userNameErrorText = new JTextPane();
+		userNameErrorText = new JTextPane();
 		userNameErrorText.setVisible(false);
 		userNameErrorText.setForeground(StyleGuide.errorText);
 		userNameErrorText.setBackground(UIManager.getColor("Button.background"));
 		userNameErrorText.setText("Name in use!");
 		userNameErrorText.setFocusable(false);
 		p2.add(userNameErrorText);
-		accountWrap.add(p2);
+		formatPanel.add(p2);
 		
 		JPanel p3 = new JPanel();
-		accountWrap.add(p3);
+		formatPanel.add(p3);
 		FlowLayout flowLayout = (FlowLayout) p3.getLayout();
 		flowLayout.setAlignment(FlowLayout.RIGHT);
 		JTextPane passwordText = new JTextPane();
@@ -100,10 +98,27 @@ public JPanel formatPanel;
 		passwordField.setBounds(10, 88, 130, 20);
 		p3.add(passwordField);
 		
+		JPanel reEnterPanel = new JPanel();
+		formatPanel.add(reEnterPanel);
+		flowLayout = (FlowLayout) reEnterPanel.getLayout();
+		flowLayout.setAlignment(FlowLayout.RIGHT);
+		JTextPane password2Text = new JTextPane();
+		password2Text.setFocusable(false);
+		password2Text.setText("Re-enter:  ");
+		password2Text.setBorder(null);
+		password2Text.setBackground(SystemColor.menu);
+		password2Text.setBounds(91, 92, 122, 20);
+		reEnterPanel.add(password2Text);
+		
+		passwordField1 = new JPasswordField();
+		passwordField1.setColumns(20);
+		passwordField1.setBounds(10, 88, 130, 20);
+		reEnterPanel.add(passwordField1);
+		
 		JPanel p4 = new JPanel();
 		flowLayout = (FlowLayout) p4.getLayout();
 		flowLayout.setAlignment(FlowLayout.RIGHT);
-		accountWrap.add(p4);
+		formatPanel.add(p4);
 		
 		JTextPane emailText = new JTextPane();
 		emailText.setFocusable(false);
@@ -118,6 +133,16 @@ public JPanel formatPanel;
 		emailField.setBounds(10, 30, 130, 20);
 		emailField.setColumns(20);
 		
+		JPanel emailErrorPanel = new JPanel();
+		formatPanel.add(emailErrorPanel);
+		emailErrorText = new JTextPane();
+		emailErrorText.setVisible(false);
+		emailErrorText.setForeground(StyleGuide.errorText);
+		emailErrorText.setBackground(UIManager.getColor("Button.background"));
+		emailErrorText.setText("Email in use!");
+		emailErrorText.setFocusable(false);
+		emailErrorPanel.add(emailErrorText);
+		
 		JPanel p5 = new JPanel();
 		flowLayout = (FlowLayout) p5.getLayout();
 		flowLayout.setAlignment(FlowLayout.RIGHT);
@@ -128,7 +153,7 @@ public JPanel formatPanel;
 		firstNameText.setText("First Name: ");
 		firstNameText.setBounds(91, 30, 122, 20);
 		p5.add(firstNameText);
-		accountWrap.add(p5);
+		formatPanel.add(p5);
 		
 		firstNameField = new JTextField();
 		firstNameField.setBounds(10, 30, 130, 20);
@@ -145,7 +170,7 @@ public JPanel formatPanel;
 		lastNameText.setText("Last Name: ");
 		lastNameText.setBounds(91, 30, 122, 20);
 		p6.add(lastNameText);
-		accountWrap.add(p6);
+		formatPanel.add(p6);
 		
 		lastNameField = new JTextField();
 		lastNameField.setBounds(10, 30, 130, 20);
@@ -155,10 +180,49 @@ public JPanel formatPanel;
 		JPanel p7 = new JPanel();
 		FlowLayout flowLayout_1 = (FlowLayout) p7.getLayout();
 		flowLayout_1.setAlignment(FlowLayout.RIGHT);
-		accountWrap.add(p7);
+		formatPanel.add(p7);
 		
 		JButton btnCreate = new JButton("Create Account");
+		btnCreate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				validate();
+				
+			}
+		});
 		p7.add(btnCreate);
 		btnCreate.setBounds(83, 61, 130, 23);
+	}
+	
+	private MainWindow getMainFromButton(JButton button) {
+		JPanel temp = (JPanel) button.getParent();
+   		JPanel temp2 = (JPanel) temp.getParent();
+   		JPanel temp3 = (JPanel) temp2.getParent();
+   		JPanel temp4 = (JPanel) temp3.getParent();
+   		JPanel temp5 = (JPanel) temp4.getParent();
+   		return (MainWindow) temp5.getParent();
+	}
+	
+	public void addController(logic.LoginPage controller) {
+		this.controller = controller;
+	}
+	
+	public void validate(ActionEvent arg0) {
+		int result = controller.validate(usernameField.getText(), firstNameField.getText(), lastNameField.getText(),
+											new String(passwordField.getPassword()), emailField.getText());
+		if(result == -1) {
+			userNameErrorText.setVisible(true);
+			emailErrorText.setVisible(false);
+		}
+		else if(result == -2) {
+			userNameErrorText.setVisible(false);
+			emailErrorText.setVisible(true);
+		}
+		else {
+			userNameErrorText.setVisible(false);
+			emailErrorText.setVisible(false);
+			MainWindow main = getMainFromButton((JButton)arg0.getSource());
+			CardLayout cards = main.getCardLayout();
+	   		cards.show(main, "home");
+		}
 	}
 }

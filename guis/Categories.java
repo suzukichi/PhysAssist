@@ -30,7 +30,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Categories extends JPanel {
-	private JTextField txtPepe;
 	private HashMap<String, Long> buttons;
 	private JButton item1Button, item2Button, item3Button;
 	private JLabel upButton, downButton;

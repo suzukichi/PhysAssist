@@ -90,8 +90,8 @@ public class CreatePost extends Page {
 		flowLayout.setAlignment(FlowLayout.RIGHT);
 		postWrap.add(p3);
 		
-		JButton btnCreate = new JButton("Create Post");
-		p3.add(btnCreate);
-		btnCreate.setBounds(83, 61, 130, 23);
+		JButton btnEdit = new JButton("Edit Post");
+		p3.add(btnEdit);
+		btnEdit.setBounds(83, 61, 130, 23);
 	}
 }

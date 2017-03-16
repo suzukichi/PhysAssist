@@ -29,12 +29,15 @@ public class MainWindow extends JPanel {
 		add(new Settings(), "settings");
 		
 		add(new ViewTopic(), "category");
-		add(new Equations(), "equations");
-		add(new Equation(), "equation");
+		Equations temp = new Equations();
+		add(temp, "equations");
+		Equation temp1 = new Equation();
+		add(temp1, "equation");
 		add(new Notification(), "notification");
 		add(new Quiz(), "quiz");
 		add(new Reference(), "reference");
 		add(new Course(), "group");
+		cardlayout.show(this, "equation");
 	}
 	
 	public CardLayout getCardLayout() {

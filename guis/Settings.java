@@ -32,6 +32,11 @@ public class Settings extends Page {
 	public JPanel bodyPanel;
 	public JPanel formatPanel;
 	private JTextPane userNameErrorText;
+	private JTextPane passwordErrorText;
+	public String username;
+	public String email;
+	
+	public logic.SettingsPage controller;
 
 	/**
 	 * Create the panel.
@@ -181,7 +186,7 @@ public class Settings extends Page {
 		btnChangePassword.setBounds(83, 187, 130, 23);
 		
 		JPanel p5 = new JPanel();
-		JTextPane passwordErrorText = new JTextPane();
+		passwordErrorText = new JTextPane();
 		passwordErrorText = new JTextPane();
 		passwordErrorText.setForeground(StyleGuide.errorText);
 		passwordErrorText.setBackground(UIManager.getColor("Button.background"));
@@ -276,5 +281,57 @@ public class Settings extends Page {
 		JButton btnChangeEmail = new JButton("Change Email");
 		p2.add(btnChangeEmail);
 		btnChangeEmail.setBounds(83, 61, 130, 23);
+	}
+	
+	public void updateText(String username, String email) {
+		this.usernameField.setText(username);
+		this.emailField.setText(email);
+		this.username = username;
+		this.email = email;
+	}
+	
+	public void addController(logic.SettingsPage controller) {
+		this.controller = controller;
+	}
+	
+	public void changeUsername() {
+		if(!this.usernameField.getText().equals(username)) {
+			int result = controller.editUsername(this.usernameField.getText());
+			if (result >= 0)
+				this.userNameErrorText.setVisible(false);
+			else
+				this.userNameErrorText.setVisible(true);
+		}
+	}
+	
+	public void changePassword() {
+		if(this.passwordField1.equals(this.passwordField2))
+		{
+			this.passwordErrorText.setText("Error! Passwords don't match");
+			this.passwordErrorText.setVisible(true);
+		}
+		int result = controller.editPassword(this.usernameField.getText());
+		if(result >= 0) {
+			this.passwordErrorText.setVisible(false);
+		}
+		else {
+			this.passwordErrorText.setText("Incorrect Password!");
+			this.passwordErrorText.setVisible(true);
+		}
+			
+	}
+	
+	public void changeName() {
+		controller.editName(this.firstNameField.getText(), this.lastNameField.getText());
+	}
+	
+	public void changeEmail() {
+		if(!this.emailField.getText().equals(email)) {
+			int result = controller.editEmail(this.emailField.getText());
+			if (result >= 0)
+				this.userNameErrorText.setVisible(false);
+			else
+				this.userNameErrorText.setVisible(true);
+		}
 	}
 }

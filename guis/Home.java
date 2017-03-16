@@ -22,6 +22,8 @@ public class Home extends Page {
 	private JLabel groupButton;
 	private JLabel settingsButton;
 	private JPanel homepageOptions; 
+	private logic.SettingsPage settingsController;
+	private logic.TopicListPage topicController;
 	
 	/**
 	 * Create the panel.
@@ -80,6 +82,7 @@ public class Home extends Page {
 			@Override
 			public void mouseClicked(MouseEvent event) {
 				super.mouseClicked(event);
+				settingsController.updateSettings();
 			   showCard(event, "settings");
 			}
 		});
@@ -117,15 +120,15 @@ public class Home extends Page {
       }
 	}
 
-	public void addTopicController(MouseAdapter controller) {
-		topicButton.addMouseListener(controller);
+	public void addTopicController(logic.TopicListPage controller) {
+		topicController = controller;
 	}
 	
 	public void addCourseController(MouseAdapter controller) {
-		groupButton.addMouseListener(controller);
+		//groupController = controller;
 	}
 	
-	public void addSettingsController(MouseAdapter controller) {
-		settingsButton.addMouseListener(controller);
+	public void addSettingsController(logic.SettingsPage controller) {
+		settingsController = controller;
 	}
 }
