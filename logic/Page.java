@@ -12,7 +12,7 @@ import java.awt.event.MouseAdapter;
  */
 public abstract class Page extends MouseAdapter {
 
-	  private String name;
-	  
-	  public abstract void display();
+  public User user;
+  
+  public abstract void display();
 }
