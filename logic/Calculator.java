@@ -75,25 +75,6 @@ public class Calculator extends JFrame implements ActionListener {
         buttons[i].addActionListener(this);
         buttons[i].setBackground(new Color(200, 50, 40));
     	rows[r].add(buttons[i]);
-    	/*
-    	if((i>=0)&&(i<5)){
-    		rows[1].add(buttons[i]);
-    	}
-    	else if((i>=5)&&(i<10)){
-    		rows[2].add(buttons[i]);
-    	}
-    	else if((i>=10)&&(i<15)){
-    		rows[3].add(buttons[i]);
-    	}
-    	else if((i>=15)&&(i<20)){
-    		rows[4].add(buttons[i]);
-    	}
-    	else if((i>=20)&&(i<25)){
-    		rows[5].add(buttons[i]);
-    	}
-    	else if((i>=25)&&(i<30)){
-    		rows[6].add(buttons[i]);
-    	}*/
     }
     
     
@@ -225,8 +206,5 @@ public class Calculator extends JFrame implements ActionListener {
     }
     public void setExpression(String e){
     	expression = e;
-    }
-    public static void main(String args[]){
-    	Calculator c = new Calculator();
     }
 }
