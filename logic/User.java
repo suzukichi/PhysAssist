@@ -7,6 +7,8 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
+
 import logic.Classroom;
 import logic.ClassroomPage;
 import logic.GeneralUser;
@@ -274,7 +276,7 @@ public class User {
 	  try {
 		  MessageDigest digest = MessageDigest.getInstance("SHA-256");
 		  byte[] hash = digest.digest(plainText.getBytes(StandardCharsets.UTF_8));
-		  hashedText = new String(Base64.getDecoder().decode(hash));
+		  hashedText = new HexBinaryAdapter().marshal(hash);
 	  }
 	  catch(NoSuchAlgorithmException e){
 		  e.printStackTrace();
@@ -289,7 +291,6 @@ public class User {
    * @return userID on success, < 0  on fail
    */
   public static long verify(String username, String password) {
-	    List<Course> list = new ArrayList<Course>();
 	    DB db = DB.getInstance();
 
 	    String qGetLoginInfo = "SELECT password, userID" +
@@ -310,5 +311,22 @@ public class User {
 	    }
 	    
 	    return -1;
+  }
+  
+  public static boolean nameExists(String username) {
+	  DB db = DB.getInstance();
+
+	    String qGetLoginInfo = "SELECT *" +
+	    							" FROM `users`" +
+	    							" WHERE `username` = ?";
+	    
+	    String[] pGetLoginInfo = {DB.T_I, String.valueOf(username)};
+
+	    ArrayList<HashMap<String, String>> rows = db.query(qGetLoginInfo, pGetLoginInfo);
+	    
+	    if(rows.size() != 1) {
+	    	return true; //no username found or multiple in database(checked on creation)
+	    }
+	    return false;
   }
 }
