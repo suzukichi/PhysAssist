@@ -18,7 +18,7 @@ import logic.User;
 public class TestUser {
 
   @Test
-  public void TestGetPermissionStudent() {
+  public void testGetPermissionStudent() {
     User user = new User("username", "bob", "smith", "bla", "bob@email.com");
     Course c = new Course(1, "test course", "test course description", System.currentTimeMillis());
     
@@ -27,7 +27,7 @@ public class TestUser {
   }
   
   @Test
-  public void TestGetPermissionProfessor() {
+  public void testGetPermissionProfessor() {
     User user = new User("username", "bob", "smith", "bla", "bob@email.com");
     Course c = new Course(1, "test course", "test course description", System.currentTimeMillis());
     
@@ -36,7 +36,7 @@ public class TestUser {
   }
   
   @Test
-  public void TestGetPermissionGeneralUser() {
+  public void testGetPermissionGeneralUser() {
     User user = new User("username", "bob", "smith", "bla", "bob@email.com");
     Course c = new Course(1, "test course", "test course description", System.currentTimeMillis());
     
@@ -44,12 +44,12 @@ public class TestUser {
   }
   
   @Test
-  public void TestConstructionDB() {
+  public void testConstructionDB() {
      long now = System.currentTimeMillis() / 1000L;
      User u = new User("TestDBUser-" + now, "firstname", "lastName", "pass", "asdf@as.df");
      u.save();
 
-     User uDB = new User(u.userID);
+     User uDB = new User(u.getUserID());
      
      assertEquals(u, uDB);
      
