@@ -197,9 +197,9 @@ public class Calculator extends JFrame implements ActionListener {
 			rad=true;
 		}
     }
-    // Loop tested in test/TestLoopCalculatorOther.java
     public int anyOtherButton(String ae){
     	int i;
+    	// Loop tested in test/TestLoopCalculatorOther.java
     	for(i = 0; i<buttonNames.length;i++){
 			if(buttonNames[i].equals(ae)){
 				display.append(buttonNames[i]);
