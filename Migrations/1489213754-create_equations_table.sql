@@ -4,8 +4,20 @@ CREATE TABLE `equataions` (
    `description` VARCHAR(255),
    `history` VARCHAR(255),
    `view` VARCHAR(255),
-   PRIMARY KEY `equationid` (`equationid`)
+   `topicid` INT(11),
+   PRIMARY KEY `equationid` (`equationid`),
+   INDEX `topicid` (`topicid`)
 );
+
+-- DATA
+INSERT INTO `equations` (`name`, `description`, `history`, `view`) 
+VALUES 
+("Newton's Second Law of Motion", "The force (F) acting on an object is equal to the mass (m) of an object times its acceleration (a).", "Isaac Newton's laws of motion were first set down in his Principia Mathematica Philosophiae Naturalis in 1687.", "F = m * a"),
+("Hooke's Law", "The extension of a spring (x) is proportional to the load placed on the spring (F), until it reaches the limit of proportionality. K is the spring constant.", "Hooke's law, law of elasticity discovered by the English scientist Robert Hooke in 1660.", "F = K * x"),
+("Speed Equation", "Speed equals distance divided by time", "It all started with an apple.", "s = d / t");
+
+
+-- AST TABLE
 
 CREATE TABLE `ast` (
    `id` INT(11) NOT NULL AUTO_INCREMENT, 
@@ -14,3 +26,16 @@ CREATE TABLE `ast` (
    `ast` VARCHAR(255),
    PRIMARY KEY `id` (`id`)
 );
+
+-- AST DATA
+INSERT INTO `ast` (`term`, `equationid`, `ast`)
+VALUES 
+("F", 0, "* m a"),
+("m", 0, "/ F a"),
+("a", 0, "/ F m"),
+("F", 1, "* k x"),
+("x", 1, "/ F K"),
+("K", 1, "/ F x"),
+("s", 2, "/ d t"),
+("d", 2, "* t s"),
+("t", 2, "/ d s");
