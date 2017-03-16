@@ -36,6 +36,7 @@ public class Calculator extends JFrame implements ActionListener {
             rows[i] = new JPanel();
             rows[i].setBackground(new Color(200, 0, 0));
         }
+        
         rows[0].setLayout(f1);
         for(int i = 1; i < rows.length; i++){
             rows[i].setLayout(f2);
@@ -56,30 +57,15 @@ public class Calculator extends JFrame implements ActionListener {
         }
         rows[0].add(display);
         add(rows[0]);
-        initButtons();
+        initButtons(buttonNames.length);
         setVisible(true);
     }
     
-    public void initButtons(){
-        for(int i = 0; i < 30; i++){
-        	if((i>=0)&&(i<5)){
-        		rows[1].add(buttons[i]);
-        	}
-        	else if((i>=5)&&(i<10)){
-        		rows[2].add(buttons[i]);
-        	}
-        	else if((i>=10)&&(i<15)){
-        		rows[3].add(buttons[i]);
-        	}
-        	else if((i>=15)&&(i<20)){
-        		rows[4].add(buttons[i]);
-        	}
-        	else if((i>=20)&&(i<25)){
-        		rows[5].add(buttons[i]);
-        	}
-        	else if((i>=25)&&(i<30)){
-        		rows[6].add(buttons[i]);
-        	}
+    public int initButtons(int bSize){
+    	int i;
+    	// Loop tested in test/TestLoopCalculator.java
+        for(i=0; i < bSize; i++){
+        	initButtonsHelper(i);
         }
         add(rows[1]);
         add(rows[2]);
@@ -87,15 +73,38 @@ public class Calculator extends JFrame implements ActionListener {
         add(rows[4]);
         add(rows[5]);
         add(rows[6]);
-    }    
+        return i;
+    }   
+    
+    public void initButtonsHelper(int i){
+    	if((i>=0)&&(i<5)){
+    		rows[1].add(buttons[i]);
+    	}
+    	else if((i>=5)&&(i<10)){
+    		rows[2].add(buttons[i]);
+    	}
+    	else if((i>=10)&&(i<15)){
+    		rows[3].add(buttons[i]);
+    	}
+    	else if((i>=15)&&(i<20)){
+    		rows[4].add(buttons[i]);
+    	}
+    	else if((i>=20)&&(i<25)){
+    		rows[5].add(buttons[i]);
+    	}
+    	else if((i>=25)&&(i<30)){
+    		rows[6].add(buttons[i]);
+    	}
+    }
     
     
     public void initCalcFrame(){
         setDesign();
         setSize(400, 700);
+        setBounds(0,0,500,700);
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        GridLayout grid = new GridLayout(10,10);
+        GridLayout grid = new GridLayout(7,5);
         setLayout(grid);   
     }
     
