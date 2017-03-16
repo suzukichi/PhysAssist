@@ -20,6 +20,7 @@ import logic.Variable;
  */
 public class TestEquation {
    private Equation equation;
+   private static final long EQUATION_1 = 1;
 
    /*
     * Integration test: Equation.java, DB.java, Variable.java, Term.java,
@@ -32,7 +33,7 @@ public class TestEquation {
       ArrayList<Term> terms = new ArrayList<Term>();
       terms.add(new Variable("m", 9.0));
       terms.add(new Variable("a", 5.0));
-      equation = new Equation(equationName);
+      equation = new Equation(EQUATION_1);
       assertEquals(42.0, (equation.solve(solveFor, terms)).getValue(), 0.01);
    }
 
@@ -44,7 +45,7 @@ public class TestEquation {
       String equationName = "Newton's Second Law of Motion";
       String expectedView = "F = m * a";
 
-      Equation eq = new Equation(equationName);
+      Equation eq = new Equation(EQUATION_1);
       assertEquals(expectedView, eq.getView());
    }
 
@@ -53,7 +54,7 @@ public class TestEquation {
       String equationName = "Newton's Second Law of Motion";
       String expectedDescription = "The force (F) acting on an object is equal to the mass (m) of an object times its acceleration (a).";
 
-      Equation eq = new Equation(equationName);
+      Equation eq = new Equation(EQUATION_1);
       assertEquals(expectedDescription, eq.getDescription());
    }
 
@@ -62,7 +63,7 @@ public class TestEquation {
       String equationName = "Newton's Second Law of Motion";
       String expectedHistory = "Isaac Newton's laws of motion were first set down in his Principia Mathematica Philosophiae Naturalis in 1687.";
 
-      Equation eq = new Equation(equationName);
+      Equation eq = new Equation(EQUATION_1);
       assertEquals(expectedHistory, eq.getHistory());
    }
 }

@@ -75,32 +75,33 @@ public class Lists {
   }
   
   //TODO
+  /*
+   * Returns a list of Equation objects from the DB with the given topicID.
+   */
   public static List<Equation> getEquationList(long topicID) {
     List<Equation> list = new ArrayList<Equation>();
     DB db = DB.getInstance();
     
     /*
-    String qGetEquationsForTopic = "SELECT t.`topicid`, tr.`title` FROM `topics` t" +
-        " JOIN `topic_revisions` tr USING (`topicid`)" + 
-        " WHERE `parentid` = ?" + 
-        " GROUP BY t.`topicid`" + 
-        " ORDER BY tr.`revisionid` DESC";
-        */
-    
-    /*
     String qGetEquationsForTopic = "SELECT * FROM `equations` " + 
         " WHERE `parentID` = ?";
         */
-    String qGetEquationsForTopic = "SELECT * FROM `equations` ";
-
     
+    //TODO Get "name" for all equations with given topicid
+    String qGetEquationsForTopic = "SELECT `equationid` FROM `equations` " +
+        " WHERE `topicid` = ?";
+
     String[] pGetEquationsForTopic = {DB.T_I, String.valueOf(topicID)};
 
     ArrayList<HashMap<String, String>> rows = db.query(qGetEquationsForTopic, pGetEquationsForTopic);
     
-    System.out.println(rows);
+    for (HashMap<String, String> row : rows) {
+      list.add(new Equation(Long.parseLong(row.get("equationid"))));
+    }
     
-    return null;
+    System.out.println(list);
+    
+    return list;
   }
   
   public static void main(String[] args) {
@@ -109,6 +110,9 @@ public class Lists {
     
     System.out.println("\nget topic list");
     Lists.getTopicList(1);
+    
+    System.out.println("\nget equation list");
+    Lists.getEquationList(1);
     
     //makePost();
     

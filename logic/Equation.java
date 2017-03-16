@@ -6,25 +6,23 @@ import java.util.List;
 
 public class Equation {
    private String name;
-   private int id;
    public long topicID;
    private String view;
    private String description;
    private String history;
 
-   public Equation(String name) {
-      this.name = name;
-      getEquation();
+   public Equation(long topicID) {
+      getEquation(topicID);
    }
 
-   private void getEquation() {
+   private void getEquation(long topicID) {
       String[] pGetEquation = {DB.T_S, this.name};
 
-      String qGetEquation = "SELECT `equationid`, `view`, `description`, `history` FROM `equations` WHERE `name` = ?";
+      String qGetEquation = "SELECT `name`, `view`, `description`, `history` FROM `equations` WHERE `equationid` = ?";
       ArrayList<HashMap<String, String>> rows = DB.getInstance().query(qGetEquation, pGetEquation);
 
       for (HashMap<String, String> row : rows) {
-         this.id = Integer.parseInt(row.get("equationid"));
+         this.name = row.get("name");
          this.view = row.get("view");
          this.description = row.get("description");
          this.history = row.get("history");
