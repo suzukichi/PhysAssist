@@ -69,7 +69,7 @@ public class Equation {
 		return equation.compute();
 	}
 
-	private String getAST(Term term) throws Exception
+	private String getAST(Term term) throws IllegalArgumentException
 	{
 		String ast = "";
 		String[] pGetAST = {

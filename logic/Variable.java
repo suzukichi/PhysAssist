@@ -33,6 +33,7 @@ public class Variable implements Term
 		return name;
 	}
 
+	@Override
 	public String toString() {
 		return Double.toString(value);
 	}

@@ -8,7 +8,7 @@ public class BinaryOperator extends Operator
 			this.value = value;
 	}
 	
-	public Term perform(Term l, Term r) throws ArithmeticException
+	public Term perform(Term l, Term r) throws Exception
 	{
 		double left = l.getValue();
 		double right = r.getValue();

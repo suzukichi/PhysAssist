@@ -1,8 +1,5 @@
 package logic;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public abstract class Operator {
 	protected String value;
 
@@ -30,11 +27,17 @@ public abstract class Operator {
 	}
 
 	public static boolean isBinaryOperator(String value) 
-	{
-		if ("*".equals(value) || "/".equals(value) || "+".equals(value) || "-".equals(value) || "^".equals(value)) 
+	{ 
+		switch (value)
 		{
-			return true;
+			case "*":
+			case "/":
+			case "+":
+			case "-":
+			case "^":
+				return true;
+			default:
+				return false;				
 		}
-		return false;
 	}
 }

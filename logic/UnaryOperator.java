@@ -7,7 +7,7 @@ public class UnaryOperator extends Operator {
 		this.value = value;
 	}
 
-	public Term perform(Term left) throws Exception 
+	public Term perform(Term left) throws IllegalArgumentException 
 	{
 		double l = left.getValue();
 		double result;
@@ -35,7 +35,7 @@ public class UnaryOperator extends Operator {
 				result = Math.toRadians(l);
 				break;
 			default:
-				throw new Exception("Unary Operator " + value + " could not be performed.");
+				throw new IllegalArgumentException("Unary Operator " + value + " could not be performed.");
 		}
 		return new Variable(result);
 	}

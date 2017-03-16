@@ -85,6 +85,7 @@ public class AST {
 
 	private interface Node 
 	{
+		@Override
 		public String toString();
 	}
 

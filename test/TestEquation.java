@@ -23,15 +23,14 @@ public class TestEquation {
 
 	@Test public void TestEquationSolve()
 	{
-		String equationName = "Eqn Name";
-		Term solveFor = new Variable("Term", 0.0);
+		String equationName = "Newton's Second Law of Motion";
+		Term solveFor = new Variable("F", 0.0);
 		ArrayList<Term> terms = new ArrayList<Term>();
-		terms.add(new Variable("Term1", 90.0));
-		terms.add(new Variable("Term2", 1.0));
-		terms.add(new Variable("Term3", 0.0));
+		terms.add(new Variable("m", 9.0));
+		terms.add(new Variable("a", 5.0));
 		equation = new Equation(equationName);
 		try {
-			assertEquals(Math.PI / 2, (equation.solve(solveFor, terms)).getValue(), 0.01);
+			assertEquals(45.0, (equation.solve(solveFor, terms)).getValue(), 0.01);
 		} catch (Exception e) {
 			LOGGER.log(Level.FINE, e.toString(), e);
 		}
