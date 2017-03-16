@@ -108,7 +108,10 @@ public class TestBinaryOperator {
 		}
 		try 
 		{
-			assertEquals(expected, result.getValue(), 0);
+			if (result != null)
+			{
+				assertEquals(expected, result.getValue(), 0);
+			}
 		} 
 		catch (Exception e) 
 		{

@@ -102,7 +102,10 @@ public class TestUnaryOperator {
 		}
 		try 
 		{
-			assertEquals(expected, result.getValue(), 0.00001);
+			if (result != null)
+			{
+				assertEquals(expected, result.getValue(), 0.00001);
+			}
 		}
 		catch (Exception e) 
 		{
