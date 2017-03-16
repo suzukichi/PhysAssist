@@ -1,23 +1,33 @@
 package guis;
 
 import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 public class Login extends Page {
+	private JPanel bodyPanel;
+	private JPanel formatPanel;
 	private JTextField usernameField;
 	private JPasswordField passwordField;
-	private JButton loginButton, createButton, forgotButton;
+	private JButton loginButton;
+	private JButton createButton;
 	private logic.LoginPage controller;
+	private JPanel textPanel;
+	private JTextPane txtpnErrorInvalidUsername;
 	
 	/**
 	 * Create the panel.
@@ -27,32 +37,45 @@ public class Login extends Page {
 		this.createHeader();
 		// TODO: hide menu.
 		
+		bodyPanel = new JPanel();
+		GridBagLayout gbl_bodyPanel = new GridBagLayout();
+		this.contentPanel.add(bodyPanel);
+		bodyPanel.setLayout(gbl_bodyPanel);
+		
+		formatPanel = new JPanel();
+		formatPanel.setLayout(new BoxLayout(formatPanel, BoxLayout.Y_AXIS));
+		bodyPanel.add(formatPanel);
+		
 		this.createUsernamePanel();
 		this.createPasswordPanel();
 		this.createButtons();
+		this.createErrorText();
 	}
+	
 
 	private void createUsernamePanel() {
 		JPanel usernamePanel = new JPanel();
-		this.contentPanel.add(usernamePanel);
-
+		formatPanel.add(usernamePanel);
+		
 		JTextPane usernameText = new JTextPane();
+		usernameText.setFocusable(false);
+		usernamePanel.add(usernameText);
 		usernameText.setText("Username: ");
 		usernameText.setBackground(UIManager.getColor("Button.background"));
-		usernameText.setBounds(124, 61, 86, 20);
- 		usernamePanel.add(usernameText);
-
+		usernameText.setBounds(100, 86, 61, 20);
+		
 		usernameField = new JTextField();
-		usernameField.setBounds(237, 61, 110, 20);
 		usernamePanel.add(usernameField);
+		usernameField.setBounds(215, 86, 86, 20);
 		usernameField.setColumns(10);
 	}
 	
 	private void createPasswordPanel() {	
 		JPanel passwordPanel = new JPanel();
-		this.contentPanel.add(passwordPanel);
+		formatPanel.add(passwordPanel);
 
 		JTextPane passwordText = new JTextPane();
+		passwordText.setFocusable(false);
 		passwordText.setText("Password: ");
 		passwordText.setBounds(124, 104, 86, 20);
 		passwordText.setBackground(UIManager.getColor("Button.background"));
@@ -66,30 +89,19 @@ public class Login extends Page {
 	
 	private void createButtons() {
 		JPanel buttonsPanel = new JPanel();
-		this.contentPanel.add(buttonsPanel);
+		formatPanel.add(buttonsPanel);
 
 		createButton = new JButton("Sign Up");
 		createButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-            JButton button = (JButton) e.getSource();
-            JPanel temp = (JPanel) button.getParent();
-            JPanel temp2 = (JPanel) temp.getParent();
-            JPanel temp3 = (JPanel) temp2.getParent();
-            MainWindow main = (MainWindow) temp3.getParent();
+            MainWindow main = getMainFromButton((JButton) e.getSource());
             CardLayout cards = main.getCardLayout();
+            txtpnErrorInvalidUsername.setVisible(false);
             cards.show(main, "create_account");
 			}
 		});
 		createButton.setBounds(237, 216, 89, 23);
 		buttonsPanel.add(createButton);
-
-		forgotButton = new JButton("Forgot Password?");
-		forgotButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		forgotButton.setBounds(91, 216, 119, 23);
-		buttonsPanel.add(forgotButton);
 
 		loginButton = new JButton("Login");
 		loginButton.addMouseListener(new MouseAdapter() {
@@ -100,22 +112,44 @@ public class Login extends Page {
 		});
 		loginButton.setBounds(258, 135, 89, 23);
 		buttonsPanel.add(loginButton);
+		
+		
 	}
 
+	private void createErrorText() {
+		textPanel = new JPanel();
+		formatPanel.add(textPanel);
+		
+		txtpnErrorInvalidUsername = new JTextPane();
+		txtpnErrorInvalidUsername.setForeground(StyleGuide.errorText);
+		txtpnErrorInvalidUsername.setBackground(UIManager.getColor("Button.background"));
+		txtpnErrorInvalidUsername.setText("Error! Invalid username / password combination!");
+		txtpnErrorInvalidUsername.setFocusable(false);
+		txtpnErrorInvalidUsername.setVisible(false);
+		textPanel.add(txtpnErrorInvalidUsername);
+	}
+	
 	public void addController(logic.LoginPage controller) {
 		this.controller = controller;
 	}
 	
+	private MainWindow getMainFromButton(JButton button) {
+		JPanel temp = (JPanel) button.getParent();
+   		JPanel temp2 = (JPanel) temp.getParent();
+   		JPanel temp3 = (JPanel) temp2.getParent();
+   		JPanel temp4 = (JPanel) temp3.getParent();
+   		JPanel temp5 = (JPanel) temp4.getParent();
+   		return (MainWindow) temp5.getParent();
+	}
+	
 	public void login(MouseEvent event){
 		if (controller.verify(usernameField.getText(), new String(passwordField.getPassword())) == 1) {
-			JPanel temp = (JPanel) ((JButton)event.getSource()).getParent();
-   		 JPanel temp2 = (JPanel) temp.getParent();
-   		 JPanel temp3 = (JPanel) temp2.getParent();
-   		 MainWindow main = (MainWindow) temp3.getParent();
-   		 CardLayout cards = main.getCardLayout();
-   		 cards.show(main, "home");
+			MainWindow main = getMainFromButton((JButton)event.getSource());
+			CardLayout cards = main.getCardLayout();
+	   		txtpnErrorInvalidUsername.setVisible(false);
+	   		cards.show(main, "home");
 		} else {
-		   // TODO Show invalid username/password combo.
+			txtpnErrorInvalidUsername.setVisible(true);
 		}
 			
 	}

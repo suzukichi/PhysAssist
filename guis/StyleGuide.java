@@ -9,4 +9,5 @@ public class StyleGuide {
 
    // Text colors:
    static Color header1 = Color.decode("#FFFFFF");
+   static Color errorText = Color.decode("#FF0000");
 }
