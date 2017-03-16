@@ -1,17 +1,16 @@
 package guis;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
-import java.awt.Insets;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import java.awt.Color;
-import javax.swing.border.CompoundBorder;
 
 public class About extends Page {
 

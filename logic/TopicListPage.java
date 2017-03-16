@@ -8,13 +8,7 @@ package logic;
  * Created Feb 13, 2017
  */
 
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
 
 import guis.MainWindow;
 

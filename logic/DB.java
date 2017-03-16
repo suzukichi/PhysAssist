@@ -125,39 +125,42 @@ public class DB {
 
       int ndx = 1;
       for (int i = 0; i < params.length; i += 2) {
-         switch (params[i]) {
-            case T_I:
-               if (params[i + 1] == null) {
-                  preparedStmt.setNull(ndx, Types.FLOAT);
-               } else {
-                  preparedStmt.setInt(ndx, Integer.valueOf(params[i + 1])); 
-               }
-            break;
-            case T_D:
-               if (params[i + 1] == null) {
-                  preparedStmt.setNull(ndx, Types.FLOAT);
-               } else {
-                  preparedStmt.setFloat(ndx, Float.valueOf(params[i + 1])); 
-               }
-            break;
-            case T_S:
-               if (params[i + 1] == null) {
-                  preparedStmt.setNull(ndx, Types.VARCHAR);
-               } else {
-                  preparedStmt.setString(ndx, params[i + 1]);
-               }
-            break;
-            default:
-               throw new ArrayIndexOutOfBoundsException("Missing or invalid parameter type");
-         }
-         ndx++;
+         parseParam(params, preparedStmt, i, ndx++);
       }
       
-      if (this.DEBUG_MODE) {
+      if (DB.DEBUG_MODE) {
          System.out.println(preparedStmt.toString());
       }
 
       return preparedStmt;
+	}
+	
+	private void parseParam(String[] params, PreparedStatement preparedStmt, int i, int ndx) throws SQLException {
+      switch (params[i]) {
+         case T_I:
+            if (params[i + 1] == null) {
+               preparedStmt.setNull(ndx, Types.FLOAT);
+            } else {
+               preparedStmt.setInt(ndx, Integer.valueOf(params[i + 1])); 
+            }
+         break;
+         case T_D:
+            if (params[i + 1] == null) {
+               preparedStmt.setNull(ndx, Types.FLOAT);
+            } else {
+               preparedStmt.setFloat(ndx, Float.valueOf(params[i + 1])); 
+            }
+         break;
+         case T_S:
+            if (params[i + 1] == null) {
+               preparedStmt.setNull(ndx, Types.VARCHAR);
+            } else {
+               preparedStmt.setString(ndx, params[i + 1]);
+            }
+         break;
+         default:
+            throw new ArrayIndexOutOfBoundsException("Missing or invalid parameter type");
+      }
 	}
 
 	public void connect() throws SQLException {

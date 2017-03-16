@@ -1,6 +1,10 @@
 package guis;
 
+import java.awt.Component;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,14 +16,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
-import javax.swing.SwingConstants;
-import java.awt.FlowLayout;
-import java.awt.Component;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
 import javax.swing.border.EmptyBorder;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 
 public class Settings extends Page {
 	private JTextField usernameField;
