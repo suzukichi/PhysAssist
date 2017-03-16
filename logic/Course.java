@@ -138,7 +138,7 @@ public class Course {
    * Saves all Posts that belong to this Course to the DB.
    */
   private void savePosts() {
-    // Tested in test/TestLoopCourseSavePosts.java
+    // Loop tested in test/TestLoopCourseSavePosts.java
     for (Post p : posts) {
       p.save();
     }
