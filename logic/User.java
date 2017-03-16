@@ -197,7 +197,9 @@ public class User {
   
   // duplicate of dropClassroom() ?
   public void dropCourse(Course course) {
-    coursesEnrolled.remove(course);
+    if (course.dropStudent(this)) {
+       coursesEnrolled.remove(course);
+    }
     
     //TODO: need to remove this enrollment from the students table
   }

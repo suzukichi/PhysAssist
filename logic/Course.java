@@ -176,6 +176,21 @@ public class Course {
      // In the future, check that public registration is enabled here.
      return true;
   }
+
+  public boolean dropStudent(User s) {
+     DB db = DB.getInstance();
+    
+     String qEnrollStudent = "DELETE FROM `students` WHERE `userid` = ? AND `classroomid` = ?";
+     String[] pEnrollStudent = {
+        DB.T_I, String.valueOf(this.courseID),
+        DB.T_I, String.valueOf(s.userID)
+     };
+     
+     db.execute(qEnrollStudent, pEnrollStudent);
+     
+     // In the future, check # rows altered.
+     return true;
+  }
   
   public String toString() {
     String rep = "{Course: ";
