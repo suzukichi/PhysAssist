@@ -2,6 +2,7 @@ package logic;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * Post represents notifications posted by a classrooms teacher or contributor.
@@ -54,6 +55,7 @@ public class Post {
       HashMap<String, String> row = rows.get(0);
     	this.title = row.get("title");
     	this.text = row.get("text");
+    	//TODO finish filling in attributes
     	//this.classroomID = Integer.parseInt(row.get("classroomid"));
     }
     
@@ -109,6 +111,33 @@ public class Post {
     
     public String toString() {
       return "   Post: " + title + ", " + text;
+    }
+    
+    @Override
+    public int hashCode() {
+      return Objects.hash(postID, classroomID, authorID, publishTS, lastEditTS, title, text);
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+      if (this == obj) {
+        return true;
+      }
+      if (obj == null) {
+        return false;
+      }
+      if (getClass() != obj.getClass()) {
+        return false;
+      }
+      Post other = (Post) obj;
+      
+      return Objects.equals(this.postID, other.postID) &&
+          Objects.equals(this.classroomID, other.classroomID) &&
+          Objects.equals(this.authorID, other.authorID) &&
+          Objects.equals(this.publishTS, other.publishTS) &&
+          Objects.equals(this.lastEditTS, other.lastEditTS) &&
+          Objects.equals(this.title, other.title) &&
+          Objects.equals(this.text, this.text);
     }
 }
 

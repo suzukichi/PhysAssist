@@ -24,6 +24,7 @@ public class TestCourse {
     course.save();
     
     Course fromDB = new Course(course.courseID);
+    //TODO should compare objects
     assertEquals(course.courseName, fromDB.courseName);
     
     course.delete();
@@ -42,7 +43,8 @@ public class TestCourse {
     
     Course fromDB = new Course(course.courseID);
     // This should check the post text, not compare objects.
-    //assertEquals(course, fromDB);
+    //TODO Comparing objects is a more rigorous test
+    assertEquals(course, fromDB);
     
     course.delete();
     

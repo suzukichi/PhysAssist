@@ -3,17 +3,11 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
-
-import logic.Classroom;
-import logic.ClassroomPage;
-import logic.GeneralUser;
-import logic.Professor;
-import logic.Student;
 
 /*
  * User.java
@@ -311,6 +305,36 @@ public class User {
 	    }
 	    
 	    return -1;
+  }
+  
+  @Override
+  public int hashCode() {
+    return Objects.hash(username, firstName, lastName, userID, password, email, registrationDate,
+        coursesEnrolled, coursesOwned);
+  }
+  
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    User other = (User) obj;
+    
+    return Objects.equals(this.username, other.username) &&
+        Objects.equals(this.firstName, other.firstName) &&
+        Objects.equals(this.lastName, other.lastName) &&
+        Objects.equals(this.userID, other.userID) &&
+        Objects.equals(this.password, other.password) &&
+        Objects.equals(this.email, other.email) &&
+        Objects.equals(this.registrationDate, this.registrationDate) &&
+        Objects.equals(this.coursesEnrolled, other.coursesEnrolled) &&
+        Objects.equals(this.coursesOwned, this.coursesOwned);
   }
   
   public static boolean nameExists(String username) {

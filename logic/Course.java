@@ -160,8 +160,46 @@ public class Course {
      }
 
      this.posts.clear();
- }
+  }
   
+  public boolean enrollStudent(User s) {
+     DB db = DB.getInstance();
+    
+     String qEnrollStudent = "INSERT IGNORE INTO `students` SET `userid` = ?, `classroomid` = ?";
+     String[] pEnrollStudent = {
+        DB.T_I, String.valueOf(this.courseID),
+        DB.T_I, String.valueOf(s.userID)
+     };
+     
+     db.execute(qEnrollStudent, pEnrollStudent);
+     
+     // In the future, check that public registration is enabled here.
+     return true;
+  }
+  
+  public String toString() {
+    String rep = "{Course: ";
+    rep += " courseID: " + courseID;
+    rep += " courseName: " + courseName;
+    rep += " description: " + description;
+    rep += " posts: [\n";
+    
+    for (Post p : posts) {
+      rep += "   " + p.toString() + ", \n";
+    }
+    
+    rep += "   ]}\n";
+    
+    return rep;
+    //return "Course: " + courseID + ", " + courseName + ", " + description;
+  }
+  
+  @Override
+  public int hashCode() {
+    return Objects.hash(courseID, courseName, description, professorID, startDate, posts);
+  }
+  
+  @Override
   public boolean equals(Object obj) {
     if (this == obj) {
       return true;
@@ -180,42 +218,5 @@ public class Course {
         Objects.equals(this.professorID, other.professorID) &&
         Objects.equals(this.startDate, other.startDate) &&
         Objects.equals(this.posts, other.posts);
-  }
-  
-  public boolean enrollStudent(User s) {
-     DB db = DB.getInstance();
-    
-     String qEnrollStudent = "INSERT IGNORE INTO `students` SET `userid` = ?, `classroomid` = ?";
-     String[] pEnrollStudent = {
-        DB.T_I, String.valueOf(this.courseID),
-        DB.T_I, String.valueOf(s.userID)
-     };
-     
-     db.execute(qEnrollStudent, pEnrollStudent);
-     
-     // In the future, check that public registration is enabled here.
-     return true;
-  }
-  
-  @Override
-  public int hashCode() {
-    return Objects.hash(courseID, courseName, description, professorID, startDate, posts);
-  }
-  
-  public String toString() {
-    String rep = "{Course: ";
-    rep += " courseID: " + courseID;
-    rep += " courseName: " + courseName;
-    rep += " description: " + description;
-    rep += " posts: [\n";
-    
-    for (Post p : posts) {
-      rep += "   " + p.toString() + ", \n";
-    }
-    
-    rep += "   ]}\n";
-    
-    return rep;
-    //return "Course: " + courseID + ", " + courseName + ", " + description;
   }
 }

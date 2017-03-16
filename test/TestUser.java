@@ -1,34 +1,59 @@
 package test;
 
-import static org.junit.Assert.*;
-import org.hamcrest.core.IsCollectionContaining;
-import org.hamcrest.core.IsInstanceOf;
+/*
+ * TestUser.java
+ * 
+ * Holds all unit tests for Test.java.
+ * 
+ * @author Daniel Sabsay
+ * Created Feb 8, 2017
+ */
 
+import static org.junit.Assert.*;
 import org.junit.Test;
 
-import logic.Classroom;
-import logic.ClassroomHomePage;
-import logic.EquationPage;
-import logic.GeneralUser;
-import logic.Page;
-import logic.Professor;
-import logic.Student;
-import logic.Topic;
+import logic.Course;
 import logic.User;
 
 public class TestUser {
 
   @Test
-  public void TestUserConstructionDB() {
+  public void TestConstructionDB() {
      long now = System.currentTimeMillis() / 1000L;
      User u = new User("TestDBUser-" + now, "firstname", "lastName", "pass", "asdf@as.df");
      u.save();
 
      User uDB = new User(u.userID);
      
-     assertEquals(u.username, uDB.username);
+     assertEquals(u, uDB);
      
      u.delete();
+  }
+  
+  @Test
+  public void TestGetPermissionStudent() {
+    User user = new User("username", "bob", "smith", "bla", "bob@email.com");
+    Course c = new Course(1, "test course", "test course description", System.currentTimeMillis());
+    
+    user.enrollCourse(c);
+    assertEquals("student", user.getPermission(c));
+  }
+  
+  @Test
+  public void TestGetPermissionProfessor() {
+    User user = new User("username", "bob", "smith", "bla", "bob@email.com");
+    Course c = new Course(1, "test course", "test course description", System.currentTimeMillis());
+    
+    user.teachCourse(c);
+    assertEquals("professor", user.getPermission(c));
+  }
+  
+  @Test
+  public void TestGetPermissionGeneralUser() {
+    User user = new User("username", "bob", "smith", "bla", "bob@email.com");
+    Course c = new Course(1, "test course", "test course description", System.currentTimeMillis());
+    
+    assertEquals("general_user", user.getPermission(c));
   }
   
   /*
