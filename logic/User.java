@@ -20,11 +20,11 @@ import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
 
 public class User {
   public String username;
-  private String firstName;
-  private String lastName;
+  public String firstName;
+  public String lastName;
   public long userID;
-  private String password;
-  private String email;
+  public String password;
+  public String email;
   private long registrationDate;
   private List<Course> coursesEnrolled;
   private List<Course> coursesOwned;
@@ -350,6 +350,23 @@ public class User {
 	    
 	    if(rows.size() != 1) {
 	    	return true; //no username found or multiple in database(checked on creation)
+	    }
+	    return false;
+  }
+  
+  public static boolean emailExists(String email) {
+	  DB db = DB.getInstance();
+
+	    String qGetLoginInfo = "SELECT *" +
+	    							" FROM `users`" +
+	    							" WHERE `email` = ?";
+	    
+	    String[] pGetLoginInfo = {DB.T_I, String.valueOf(email)};
+
+	    ArrayList<HashMap<String, String>> rows = db.query(qGetLoginInfo, pGetLoginInfo);
+	    
+	    if(rows.size() != 1) {
+	    	return true; //no email found or multiple in database(checked on creation)
 	    }
 	    return false;
   }
