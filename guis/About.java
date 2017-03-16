@@ -2,12 +2,16 @@ package guis;
 
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.Insets;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.border.CompoundBorder;
 
 public class About extends Page {
 
@@ -43,7 +47,7 @@ public class About extends Page {
 		systemDescriptionTextArea.setPreferredSize(new Dimension(400, 300));
 		systemDescriptionTextArea.setColumns(10);
 		systemDescriptionTextArea.setRows(10);
-		systemDescriptionTextArea.setBorder(new EmptyBorder(10, 10, 10, 10));
+		systemDescriptionTextArea.setBorder(new CompoundBorder(new LineBorder(new Color(0, 0, 0), 2, true), new EmptyBorder(5, 5, 5, 5)));
 
 		panel.add(systemDescriptionTextArea);
 	}

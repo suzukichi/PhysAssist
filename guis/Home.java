@@ -12,6 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.EtchedBorder;
 
 public class Home extends Page {
 
@@ -29,7 +32,6 @@ public class Home extends Page {
 		
 		homepageOptions = new JPanel();
 		homepageOptions.setBackground(UIManager.getColor("Button.background"));
-		homepageOptions.setSize(new Dimension(448, 50));
 		homepageOptions.setBorder(new EmptyBorder(0, 0, 0, 0));
 		FlowLayout flowLayout_1 = (FlowLayout) homepageOptions.getLayout();
 		flowLayout_1.setVgap(0);
@@ -41,6 +43,7 @@ public class Home extends Page {
 		
 	private void createHomepageOptions() {
 		topicButton = new JLabel("");
+		topicButton.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		topicButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent event) {
@@ -55,6 +58,7 @@ public class Home extends Page {
 		homepageOptions.add(topicButton);
 		
 		groupButton = new JLabel("");
+		groupButton.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		homepageOptions.add(groupButton);
 		groupButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -70,6 +74,7 @@ public class Home extends Page {
 		
 		
 		settingsButton = new JLabel("");
+		settingsButton.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		homepageOptions.add(settingsButton);
 		settingsButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -84,6 +89,7 @@ public class Home extends Page {
 		settingsButton.setIcon(settingsIcon);
 		
 		JLabel aboutButton = new JLabel("");
+		aboutButton.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		homepageOptions.add(aboutButton);
 		aboutButton.addMouseListener(new MouseAdapter() {
 			@Override
