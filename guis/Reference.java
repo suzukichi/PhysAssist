@@ -26,7 +26,7 @@ public class Reference extends Page {
 	
 	public long topicID;
 	
-	public transient logic.Topic topic;
+	public logic.Topic topic;
 	
 	/**
 	 * Create the panel.

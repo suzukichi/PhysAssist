@@ -19,8 +19,8 @@ public class Home extends Page {
 	private JLabel groupButton;
 	private JLabel settingsButton;
 	private JPanel homepageOptions; 
-	private transient logic.SettingsPage settingsController;
-	private transient logic.TopicListPage topicController;
+	private logic.SettingsPage settingsController;
+	private logic.TopicListPage topicController;
 	
 	/**
 	 * Create the panel.
