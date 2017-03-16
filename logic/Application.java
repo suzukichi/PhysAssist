@@ -24,7 +24,6 @@ public class Application {
 			public void run() {
 				try {
 					Application exec = new Application();
-					exec.frame.setVisible(true);
 				} catch (Exception e) {
 					LOGGER.log(Level.FINE, e.toString(), e);
 				}
@@ -42,6 +41,7 @@ public class Application {
 		//create login controller, passes user ID to home
 		homeController = new HomePage(view);
 		loginController = new LoginPage(view);
+		loginController.homeController = homeController;
 		//creates home page controller
 			//creates topic controller 
 				//cascades to create reference, equations, topics and lists views

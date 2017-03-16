@@ -19,8 +19,10 @@ import guis.MainWindow;
 
 public class LoginPage extends Page {
   private boolean isRegister;
-  private guis.Login page;
+  private guis.Login loginPage;
+  private guis.CreateAccount createPage;
   public guis.MainWindow view;
+  public logic.HomePage homeController;
   
   //pass controller topics or query them
   public LoginPage(guis.MainWindow view){
@@ -32,16 +34,6 @@ public class LoginPage extends Page {
   public void display() {
       
   }
-  
-	/**
-	 * This controller exists on home page topics button and menu topics.
-	 * Nothing need be done as topics will not dynamically change.
-	 */
-	@Override
-	public void mouseClicked(MouseEvent event) {
-		// TODO Auto-generated method stub
-		//nothing here
-	}
  
 	/**
 	 * 
@@ -56,14 +48,30 @@ public class LoginPage extends Page {
 		   return -1;
 	   }
 	   else {
-		   this.user = new User(userID);
+		   homeController.user =  new User(userID);
+		   homeController.passUser();
 		   return 1;
 	   }
    }
 	
+   public int validate(String username, String firstName, String lastName, String password, String email) {
+	   if(User.nameExists(username))
+		   return -1;
+	   if(User.emailExists(email))
+		   return -2;
+	   homeController.user = new logic.User(username, firstName, lastName, password, email);
+	   homeController.passUser();
+	   return 1;
+   }
+   
+   
 	public void initView(MainWindow view){
-		  page = new guis.Login();
-		  page.addController(this);
-		  view.add(page, "login");
-	  }
+		loginPage = new guis.Login();
+		loginPage.addController(this);
+		view.add(loginPage, "login");
+		
+		createPage = new guis.CreateAccount();
+		createPage.addController(this);
+		view.add(createPage, "create_account");
+	}
 }
