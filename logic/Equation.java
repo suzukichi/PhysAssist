@@ -7,18 +7,19 @@ import java.util.List;
 public class Equation {
    private String name;
    public long topicID;
+   public long equationID;
    private String view;
    private String description;
    private String history;
 
-   public Equation(long topicID) {
-      getEquation(topicID);
+   public Equation(long equationID) {
+      getEquation(equationID);
    }
 
-   private void getEquation(long topicID) {
+   private void getEquation(long equationID) {
       String[] pGetEquation = {DB.T_S, this.name};
 
-      String qGetEquation = "SELECT `name`, `view`, `description`, `history` FROM `equations` WHERE `equationid` = ?";
+      String qGetEquation = "SELECT `name`, `view`, `description`, `history`, `topicid` FROM `equations` WHERE `equationid` = ?";
       ArrayList<HashMap<String, String>> rows = DB.getInstance().query(qGetEquation, pGetEquation);
 
       for (HashMap<String, String> row : rows) {
@@ -27,6 +28,7 @@ public class Equation {
          this.description = row.get("description");
          this.history = row.get("history");
          this.topicID = Long.parseLong(row.get("topicid"));
+         this.equationID = equationID;
       }
    }
 
@@ -58,7 +60,7 @@ public class Equation {
 
    private String getAST(Term term) {
       String ast = "";
-      String[] pGetAST = { DB.T_I, String.valueOf(id), DB.T_S, term.getName() };
+      String[] pGetAST = { DB.T_I, String.valueOf(equationID), DB.T_S, term.getName() };
 
       String qGetAST = "SELECT `ast` FROM `ast` WHERE `eqid` = ?, `term` = ?";
       ArrayList<HashMap<String, String>> rows = DB.getInstance().query(qGetAST, pGetAST);
