@@ -205,7 +205,6 @@ public class TestAST {
 		}
 	}
 
-	// add a test for constant when database is working
 	/*
 	 * Integration test: Operator.java, Term.java
 	 */
@@ -265,9 +264,9 @@ public class TestAST {
 	 * Integration test: Operator.java, Term.java
 	 */
 	@Test
-	public void testASTComputeBinaryBranchComplex() // adjust when constants have values
+	public void testASTComputeBinaryBranchComplex()
 	{
-		String tree = "* 3 + 5 / f 100";
+		String tree = "* 3 + 5 / 0 100";
 		double expected = 15.0;
 		testASTCompute(tree, expected);
 	}
@@ -276,9 +275,9 @@ public class TestAST {
 	 * Integration test: Operator.java, Term.java
 	 */
 	@Test
-	public void testASTComputeBinaryBranchNightmare() // adjust when constants have values
+	public void testASTComputeBinaryBranchNightmare() 
 	{
-		String tree = "- * 3 + 4 / c 5 + * 6 + 7 / d 8 * 9 + 10 / e 11";
+		String tree = "- * 3 + 4 / 0 5 + * 6 + 7 / 0 8 * 9 + 10 / 0 11";
 		double expected = -120.0;
 		testASTCompute(tree, expected);
 	}
@@ -330,9 +329,9 @@ public class TestAST {
 	 * Integration test: Operator.java, Term.java
 	 */
 	@Test
-	public void testASTComputeMixedBranchNightmare() // adjust when constants have values - database set up
+	public void testASTComputeMixedBranchNightmare()
 	{
-		String tree = "sin - * 3 + cos sin deg tan abs c ^ c 5 + * abs 5 + 7 / d deg 50 * 9 + log abs -4.33 / e 11";
+		String tree = "sin - * 3 + cos sin deg tan abs 0 ^ 0 5 + * abs 5 + 7 / 0 deg 50 * 9 + log abs -4.33 / 0 11";
 		double expected = -0.0292;
 		testASTCompute(tree, expected);
 	}
