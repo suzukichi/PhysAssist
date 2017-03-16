@@ -19,42 +19,28 @@ public class Calculator extends JFrame implements ActionListener {
     		                 "sin", "cos", "tan",   "/", "var",
     		                   "7",   "8",   "9",   "*",  "PI",
     		                   "4",   "5",   "6",   "-",  "deg",
-    		                   "3",   "2",   "1",   "+",  "B2",
+    		                   "3",   "2",   "1",   "+",  "tmp",
     		                   "0",   ".",   "-",   ",",  "="};
     private JButton[] buttons = new JButton[buttonNames.length];
     private Dimension buttonDim = new Dimension(60,50);
     private JTextArea display = new JTextArea(10,30);
     private Font f = new Font("Times new Roman", Font.BOLD, 14);
+    private FlowLayout f1 = new FlowLayout(FlowLayout.CENTER);
+    private FlowLayout f2 = new FlowLayout(FlowLayout.CENTER,1,1);
+	
     
     public Calculator() {
     	super("Calculator");
     	initCalcFrame();
-    	FlowLayout f1 = new FlowLayout(FlowLayout.CENTER);
-        FlowLayout f2 = new FlowLayout(FlowLayout.CENTER,1,1);
-    	
         for(int i = 0; i < rows.length; i++){
             rows[i] = new JPanel();
             rows[i].setBackground(new Color(200, 0, 0));
         }
         
         rows[0].setLayout(f1);
-        for(int i = 1; i < rows.length; i++){
-            rows[i].setLayout(f2);
-        }
-        
-        for(int i = 0; i < buttons.length; i++) {
-            buttons[i] = new JButton();
-            buttons[i].setText(buttonNames[i]);
-            buttons[i].setFont(f);
-            buttons[i].addActionListener(this);
-            buttons[i].setBackground(new Color(200, 50, 40));
-        }
         
         display.setFont(f);
         display.setEditable(false);
-        for(int i = 0; i < buttons.length; i++){
-            buttons[i].setPreferredSize(buttonDim);
-        }
         rows[0].add(display);
         add(rows[0]);
         initButtons(buttonNames.length);
@@ -63,9 +49,13 @@ public class Calculator extends JFrame implements ActionListener {
     
     public int initButtons(int bSize){
     	int i;
+    	int r=0;
     	// Loop tested in test/TestLoopCalculator.java
         for(i=0; i < bSize; i++){
-        	initButtonsHelper(i);
+        	if(i%5==0){
+        		r++;
+        	}
+        	initButtonsHelper(r,i);
         }
         add(rows[1]);
         add(rows[2]);
@@ -76,7 +66,16 @@ public class Calculator extends JFrame implements ActionListener {
         return i;
     }   
     
-    public void initButtonsHelper(int i){
+    public void initButtonsHelper(int r, int i){
+    	rows[r].setLayout(f2);
+    	buttons[i] = new JButton();
+    	buttons[i].setPreferredSize(buttonDim);
+        buttons[i].setText(buttonNames[i]);
+        buttons[i].setFont(f);
+        buttons[i].addActionListener(this);
+        buttons[i].setBackground(new Color(200, 50, 40));
+    	rows[r].add(buttons[i]);
+    	/*
     	if((i>=0)&&(i<5)){
     		rows[1].add(buttons[i]);
     	}
@@ -94,7 +93,7 @@ public class Calculator extends JFrame implements ActionListener {
     	}
     	else if((i>=25)&&(i<30)){
     		rows[6].add(buttons[i]);
-    	}
+    	}*/
     }
     
     
@@ -226,5 +225,8 @@ public class Calculator extends JFrame implements ActionListener {
     }
     public void setExpression(String e){
     	expression = e;
+    }
+    public static void main(String args[]){
+    	Calculator c = new Calculator();
     }
 }
