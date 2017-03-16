@@ -14,6 +14,7 @@ import logic.Variable;
  * TestEquation.java
  * 
  * Test class that tests the Equation class.
+ * Integration Testing: Equation.java, DB.java, Term.java, Variable.java, AST.java
  * 
  * @author Arianna Olson
  */
@@ -21,6 +22,9 @@ public class TestEquation {
 	private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
 	private Equation equation;
 
+	/*
+	 * Integration test: Equation.java, DB.java, Variable.java, Term.java, AST.java
+	 */
 	@Test public void TestEquationSolve()
 	{
 		String equationName = "Newton's Second Law of Motion";
@@ -36,10 +40,13 @@ public class TestEquation {
 		}
 	}
 	
+	/*
+	 * Integration test: Equation.java, DB.java
+	 */
 	@Test public void TestEquationGetView()
 	{
 		String equationName = "Newton's Second Law of Motion";
-		String expectedView = "F = ma";
+		String expectedView = "F = m * a";
 		
 		Equation eq = new Equation(equationName);
 		assertEquals(expectedView, eq.getView());
