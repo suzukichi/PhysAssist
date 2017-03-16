@@ -18,7 +18,8 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-public class CreateCourse extends Page {
+public class EditCourse extends Page {
+
 	JPanel usernamePanel; 
 	private JTextField titleField;
 	private JTextField emailField;
@@ -28,9 +29,13 @@ public class CreateCourse extends Page {
 	public JPanel bodyPanel;
 	public JPanel formatPanel;
 	
-	public CreateCourse() {
-	   this.locationName = "Create Class";
+	/**
+	 * Create the panel.
+	 */
+	public EditCourse() {
+	   this.locationName = "Edit Course";
 	   this.createHeader();
+	   
 	   bodyPanel = new JPanel();
 	   GridBagLayout gbl_bodyPanel = new GridBagLayout();
 	   this.contentPanel.add(bodyPanel);
@@ -45,11 +50,11 @@ public class CreateCourse extends Page {
 	}
 	
 	private void createCoursePanel() {
-		JPanel courseWrap = new JPanel();
-		courseWrap.setBorder(new EmptyBorder(10, 0, 10, 0));
-		courseWrap.setBackground(UIManager.getColor("Button.background"));
-		formatPanel.add(courseWrap);
-		courseWrap.setLayout(new BoxLayout(courseWrap, BoxLayout.Y_AXIS));
+		JPanel postWrap = new JPanel();
+		postWrap.setBorder(new EmptyBorder(10, 0, 10, 0));
+		postWrap.setBackground(UIManager.getColor("Button.background"));
+		formatPanel.add(postWrap);
+		postWrap.setLayout(new BoxLayout(postWrap, BoxLayout.Y_AXIS));
 		
 		JPanel p1 = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) p1.getLayout();
@@ -58,17 +63,17 @@ public class CreateCourse extends Page {
 		titleText.setFocusable(false);
 		p1.add(titleText);
 		titleText.setBackground(UIManager.getColor("Button.background"));
-		titleText.setText("Course Name: ");
+		titleText.setText("Course Name:  ");
 		titleText.setBounds(91, 30, 122, 20);
 		
 		titleField = new JTextField();
 		p1.add(titleField);
 		titleField.setBounds(10, 30, 130, 20);
 		titleField.setColumns(15);
-		courseWrap.add(p1);
+		postWrap.add(p1);
 		
 		JPanel p2 = new JPanel();
-		courseWrap.add(p2);
+		postWrap.add(p2);
 		
 		JTextArea descriptionText = new JTextArea();
 		descriptionText.setLineWrap(true);
@@ -82,9 +87,9 @@ public class CreateCourse extends Page {
 		JPanel p3 = new JPanel();
 		flowLayout = (FlowLayout) p3.getLayout();
 		flowLayout.setAlignment(FlowLayout.RIGHT);
-		courseWrap.add(p3);
+		postWrap.add(p3);
 		
-		JButton btnCreate = new JButton("Create Course");
+		JButton btnCreate = new JButton("Edit Course");
 		p3.add(btnCreate);
 		btnCreate.setBounds(83, 61, 130, 23);
 	}
