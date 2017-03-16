@@ -69,6 +69,7 @@ public class AST {
 		public static String nextWord() 
 		{
 			String word = ch.toString();
+			// Loop tested in test/TestLoopASTBuildTree.java
 			while (' ' != (ch = iterator.next()) && StringCharacterIterator.DONE != ch) 
 			{
 				word += ch.toString();
