@@ -26,16 +26,7 @@ public class TestBinaryOperator {
 		binOp = new BinaryOperator("+");
 		Term t1 = new Variable(5.0);
 		Term t2 = new Variable(2.0);
-		Term result = null;
-		try 
-		{
-			result = binOp.perform(t1, t2);
-		} 
-		catch (Exception e) 
-		{
-			LOGGER.log(Level.FINE, e.toString(), e);
-		}
-		assertEquals(7.0, result.getValue(), 0);
+		testCompute(t1, t2, 7.0);
 	}
 	
 	@Test public void testComputeSubtract()
@@ -43,16 +34,7 @@ public class TestBinaryOperator {
 		binOp = new BinaryOperator("-");
 		Term t1 = new Variable(2.0);
 		Term t2 = new Variable(5.0);
-		Term result = null;
-		try 
-		{
-			result = binOp.perform(t1, t2);
-		} 
-		catch (Exception e) 
-		{
-			LOGGER.log(Level.FINE, e.toString(), e);
-		}
-		assertEquals(-3.0, result.getValue(), 0);
+		testCompute(t1, t2, -3.0);
 	}
 	
 	@Test public void testComputeMultiply()
@@ -60,16 +42,7 @@ public class TestBinaryOperator {
 		binOp = new BinaryOperator("*");
 		Term t1 = new Variable(5.0);
 		Term t2 = new Variable(2.0);
-		Term result = null;
-		try 
-		{
-			result = binOp.perform(t1, t2);
-		} 
-		catch (Exception e) 
-		{
-			LOGGER.log(Level.FINE, e.toString(), e);
-		}
-		assertEquals(10.0, result.getValue(), 0);
+		testCompute(t1, t2, 10.0);
 	}
 	
 	@Test public void testComputeDivide()
@@ -77,16 +50,7 @@ public class TestBinaryOperator {
 		binOp = new BinaryOperator("/");
 		Term t1 = new Variable(6.0);
 		Term t2 = new Variable(2.0);
-		Term result = null;
-		try 
-		{
-			result = binOp.perform(t1, t2);
-		} 
-		catch (Exception e) 
-		{
-			LOGGER.log(Level.FINE, e.toString(), e);
-		}
-		assertEquals(3.0, result.getValue(), 0);
+		testCompute(t1, t2, 3.0);
 	}
 	
 	@Test public void testComputeDivideByZero()
@@ -111,16 +75,7 @@ public class TestBinaryOperator {
 		binOp = new BinaryOperator("^");
 		Term t1 = new Variable(4.0);
 		Term t2 = new Variable(0.5);
-		Term result = null;
-		try 
-		{
-			result = binOp.perform(t1, t2);
-		} 
-		catch (Exception e) 
-		{
-			LOGGER.log(Level.FINE, e.toString(), e);
-		}
-		assertEquals(2.0, result.getValue(), 0);
+		testCompute(t1, t2, 2.0);
 	}
 	
 	@Test public void testComputeInvalidOperator()
@@ -137,6 +92,27 @@ public class TestBinaryOperator {
 		{
 			LOGGER.log(Level.FINE, e.toString(), e);
 			assertTrue(true);
+		}
+	}
+	
+	private void testCompute(Term t1, Term t2, double expected)
+	{
+		Term result = null;
+		try 
+		{
+			result = binOp.perform(t1, t2);
+		} 
+		catch (Exception e) 
+		{
+			LOGGER.log(Level.FINE, e.toString(), e);
+		}
+		try 
+		{
+			assertEquals(expected, result.getValue(), 0);
+		} 
+		catch (Exception e) 
+		{
+			LOGGER.log(Level.FINE, e.toString(), e);
 		}
 	}
 }

@@ -25,16 +25,7 @@ public class TestUnaryOperator {
 	{
 		unOp = new UnaryOperator("sin");
 		Term t1 = new Variable(Math.PI);
-		Term result = null;
-		try 
-		{
-			result = unOp.perform(t1);
-		} 
-		catch (Exception e) 
-		{
-			LOGGER.log(Level.FINE, e.toString(), e);
-		}
-		assertEquals(0.0, result.getValue(), 0.00001);
+		testCompute(t1, 0.0);
 	}
 	
 	
@@ -42,16 +33,7 @@ public class TestUnaryOperator {
 	{
 		unOp = new UnaryOperator("cos");
 		Term t1 = new Variable(Math.PI);
-		Term result = null;
-		try 
-		{
-			result = unOp.perform(t1);
-		} 
-		catch (Exception e) 
-		{
-			LOGGER.log(Level.FINE, e.toString(), e);
-		}
-		assertEquals(-1.0, result.getValue(), 0);
+		testCompute(t1, -1.0);
 	}
 	
 	
@@ -59,16 +41,7 @@ public class TestUnaryOperator {
 	{
 		unOp = new UnaryOperator("tan");
 		Term t1 = new Variable(Math.PI / 4.0);
-		Term result = null;
-		try 
-		{
-			result = unOp.perform(t1);
-		} 
-		catch (Exception e) 
-		{
-			LOGGER.log(Level.FINE, e.toString(), e);
-		}
-		assertEquals(1.0, result.getValue(), 0.00001);
+		testCompute(t1, 1.0);
 	}
 
 	
@@ -76,64 +49,28 @@ public class TestUnaryOperator {
 	{
 		unOp = new UnaryOperator("log");
 		Term t1 = new Variable(100.0);
-		Term result = null;
-		try 
-		{
-			result = unOp.perform(t1);
-		} 
-		catch (Exception e) 
-		{
-			LOGGER.log(Level.FINE, e.toString(), e);
-		}
-		assertEquals(2.0, result.getValue(), 0);
+		testCompute(t1, 2.0);
 	}
 	
 	@Test public void testComputeLn()
 	{
 		unOp = new UnaryOperator("ln");
 		Term t1 = new Variable(1.0);
-		Term result = null;
-		try 
-		{
-			result = unOp.perform(t1);
-		} 
-		catch (Exception e) 
-		{
-			LOGGER.log(Level.FINE, e.toString(), e);
-		}
-		assertEquals(0.0, result.getValue(), 0);
+		testCompute(t1, 0.0);
 	}
 	
 	@Test public void testComputeAbs()
 	{
 		unOp = new UnaryOperator("abs");
 		Term t1 = new Variable(-1.0);
-		Term result = null;
-		try 
-		{
-			result = unOp.perform(t1);
-		} 
-		catch (Exception e) 
-		{
-			LOGGER.log(Level.FINE, e.toString(), e);
-		}
-		assertEquals(1.0, result.getValue(), 0);
+		testCompute(t1, 1.0);
 	}
 	
 	@Test public void testComputeDeg()
 	{
 		unOp = new UnaryOperator("deg");
 		Term t1 = new Variable(180.0);
-		Term result = null;
-		try 
-		{
-			result = unOp.perform(t1);
-		} 
-		catch (Exception e) 
-		{
-			LOGGER.log(Level.FINE, e.toString(), e);
-		}
-		assertEquals(Math.PI, result.getValue(), 0.00001);
+		testCompute(t1, Math.PI);
 	}
 	
 	@Test public void testComputeInvalidOperator()
@@ -149,6 +86,27 @@ public class TestUnaryOperator {
 		{
 			LOGGER.log(Level.FINE, e.toString(), e);
 			assertTrue(true);
+		}
+	}
+	
+	private void testCompute(Term t1, double expected)
+	{
+		Term result = null;
+		try 
+		{
+			result = unOp.perform(t1);
+		} 
+		catch (Exception e) 
+		{
+			LOGGER.log(Level.FINE, e.toString(), e);
+		}
+		try 
+		{
+			assertEquals(expected, result.getValue(), 0.00001);
+		}
+		catch (Exception e) 
+		{
+			LOGGER.log(Level.FINE, e.toString(), e);
 		}
 	}
 }
