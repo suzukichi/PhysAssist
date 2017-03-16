@@ -2,8 +2,6 @@ package test;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.junit.Test;
 import logic.Equation;
@@ -19,13 +17,12 @@ import logic.Variable;
  * @author Arianna Olson
  */
 public class TestEquation {
-	private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
 	private Equation equation;
 
 	/*
 	 * Integration test: Equation.java, DB.java, Variable.java, Term.java, AST.java
 	 */
-	@Test public void TestEquationSolve()
+	@Test public void TestEquationSolve() throws Exception
 	{
 		String equationName = "Newton's Second Law of Motion";
 		Term solveFor = new Variable("F", 0.0);
@@ -33,11 +30,7 @@ public class TestEquation {
 		terms.add(new Variable("m", 9.0));
 		terms.add(new Variable("a", 5.0));
 		equation = new Equation(equationName);
-		try {
-			assertEquals(45.0, (equation.solve(solveFor, terms)).getValue(), 0.01);
-		} catch (Exception e) {
-			LOGGER.log(Level.FINE, e.toString(), e);
-		}
+		assertEquals(42.0, (equation.solve(solveFor, terms)).getValue(), 0.01);
 	}
 	
 	/*

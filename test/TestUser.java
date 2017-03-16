@@ -3,7 +3,7 @@ package test;
 /*
  * TestUser.java
  * 
- * Holds all unit tests for Test.java.
+ * Holds all unit tests for User.java.
  * 
  * @author Daniel Sabsay
  * Created Feb 8, 2017
@@ -17,19 +17,6 @@ import logic.User;
 
 public class TestUser {
 
-  @Test
-  public void TestConstructionDB() {
-     long now = System.currentTimeMillis() / 1000L;
-     User u = new User("TestDBUser-" + now, "firstname", "lastName", "pass", "asdf@as.df");
-     u.save();
-
-     User uDB = new User(u.userID);
-     
-     assertEquals(u, uDB);
-     
-     u.delete();
-  }
-  
   @Test
   public void TestGetPermissionStudent() {
     User user = new User("username", "bob", "smith", "bla", "bob@email.com");
@@ -54,6 +41,19 @@ public class TestUser {
     Course c = new Course(1, "test course", "test course description", System.currentTimeMillis());
     
     assertEquals("general_user", user.getPermission(c));
+  }
+  
+  @Test
+  public void TestConstructionDB() {
+     long now = System.currentTimeMillis() / 1000L;
+     User u = new User("TestDBUser-" + now, "firstname", "lastName", "pass", "asdf@as.df");
+     u.save();
+
+     User uDB = new User(u.userID);
+     
+     assertEquals(u, uDB);
+     
+     u.delete();
   }
   
   /*

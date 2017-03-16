@@ -7,6 +7,7 @@ import java.util.List;
 public class Equation {
 	private String name;
 	private int id;
+	public long topicID;
 	private String view;
 	private String description;
 	private String history;
@@ -19,10 +20,11 @@ public class Equation {
 
 	private void getEquation()
 	{
-		String[] p_getEquation = {
-		          DB.T_S, name
-		       };
-
+	  String[] p_getEquation = {
+	      DB.T_S, name
+	   };
+	  
+	  //TODO add topicid to query
 		String q_getEquation = "SELECT `id`, `view`, `description`, `history`, FROM `equations` WHERE `name` = ?";
 		ArrayList<HashMap<String, String>> rows = (DB.getInstance()).query(q_getEquation, p_getEquation);
 		
@@ -32,6 +34,7 @@ public class Equation {
 			this.view = row.get("view");
 			this.description = row.get("description");
 			this.history = row.get("history");
+			this.topicID = Long.parseLong(row.get("topicid"));
 		}
 	}
 

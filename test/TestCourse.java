@@ -42,15 +42,17 @@ public class TestCourse {
   public void TestCourseWithPosts() {
     Course course = new Course(50, "test course", "Description of test course.", 1);
     course.save();
+    // have to get courseID
+    long courseID = course.courseID;
 
-    Post p = new Post("test post", "This is a test post for a test course", 100);
+    Post p = new Post("test post", "This is a test post for a test course", courseID);
     //TODO maybe right an addPost() method that would also save the post to the DB.
     course.posts.add(p);
     
     // save to DB
     course.save();
     
-    Course fromDB = new Course(course.courseID);
+    Course fromDB = new Course(courseID);
     // This should check the post text, not compare objects.
     //TODO Comparing objects is a more rigorous test
     assertEquals(course, fromDB);
