@@ -25,7 +25,6 @@ public class MainWindow extends JPanel {
 		add(new Courses(), "groups");
 		add(new Login(), "login");
 		add(new CreateAccount(), "create_account");
-		add(new Quizzes(), "quizzes");
 		add(new Settings(), "settings");
 		
 		add(new ViewTopic(), "category");
@@ -34,7 +33,6 @@ public class MainWindow extends JPanel {
 		Equation temp1 = new Equation();
 		add(temp1, "equation");
 		add(new Notification(), "notification");
-		add(new Quiz(), "quiz");
 		add(new Reference(), "reference");
 		add(new Course(), "group");
 		cardlayout.show(this, "equation");

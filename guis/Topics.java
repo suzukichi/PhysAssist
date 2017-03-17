@@ -35,9 +35,9 @@ public class Topics extends Page {
 
 	public JPanel bodyPanel;
 	public JPanel formatPanel;
-	java.util.List<logic.Topic> topicList;
-	String categoryTitle;
-	Long parentID;
+	private java.util.List<logic.Topic> topicList;
+	private String categoryTitle;
+	private Long parentID;
 	private JPanel innerp1;
 	private JPanel innerp2;
 	private JPanel innerp3;
@@ -49,7 +49,7 @@ public class Topics extends Page {
 	   
 	   if (this.parentID > 0) {
 	      Topic parent = new Topic(this.parentID);
-	      this.categoryTitle = parent.title;
+	      //this.categoryTitle = parent.title;
 	   } else {
 	      this.categoryTitle = "Topics";
 	   }

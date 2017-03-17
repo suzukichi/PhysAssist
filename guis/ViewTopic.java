@@ -18,9 +18,9 @@ import javax.swing.border.LineBorder;
 public class ViewTopic extends Page {
 	public JPanel bodyPanel;
 	public JPanel formatPanel;
-	String categoryTitle;
-	Long topicID;
-	Long equationID;
+	private String categoryTitle;
+	private Long topicID;
+	private Long equationID;
 	private JPanel innerp1;
 	private JPanel innerp2;
 	private JLabel referenceButton;
@@ -35,7 +35,7 @@ public class ViewTopic extends Page {
 	   this.equationID = (long) -1;
 	   if (this.equationID >= 0) {
 		      logic.Topic topic = new logic.Topic(this.topicID);
-		      this.locationName = topic.title;
+		      //this.locationName = topic.title;
 	   } 
 	   //courses = logic.Lists.getCourseList(userID);
 	   

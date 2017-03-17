@@ -16,7 +16,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 public class Reference extends Page {
-	JPanel usernamePanel; 
+	private JPanel usernamePanel; 
 	private JTextField emailField;
 	private JPasswordField passwordField;
 	private JPasswordField passwordField1;
