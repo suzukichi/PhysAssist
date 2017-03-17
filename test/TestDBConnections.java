@@ -30,40 +30,32 @@ private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
    }
 
    @Test 
-   public void testPrepareStatementGeneral() {
+   public void testPrepareStatementGeneral() throws SQLException {
       DB db = DB.getInstance();
-      try {
-         db.connect();
+      db.connect();
 
-         String text = "My cool test text";
-         
-         String query = "INSERT INTO `mysql_test` SET `text` = ";
-         String[] params = {DB.T_S, text}; 
-         
-         PreparedStatement stmnt = db.createPreparedStatement(query + "?", params);
-         String statementString = stmnt.toString();
-         assertEquals(query + "'" + text + "'", statementString.substring(statementString.indexOf(": ") + 2));
-      } catch (SQLException e) {
-    	 LOGGER.log(Level.FINE, e.toString(), e);
-      }
+      String text = "My cool test text";
+
+      String query = "INSERT INTO `mysql_test` SET `text` = ";
+      String[] params = {DB.T_S, text}; 
+
+      PreparedStatement stmnt = db.createPreparedStatement(query + "?", params);
+      String statementString = stmnt.toString();
+      assertEquals(query + "'" + text + "'", statementString.substring(statementString.indexOf(": ") + 2));
    }
 
    @Test 
-   public void testPrepareStatementParametersMissing() {
+   public void testPrepareStatementParametersMissing() throws SQLException {
       DB db = DB.getInstance();
-      try {
-         db.connect();
-         
-         String query = "INSERT INTO `mysql_test` SET `text` = 'This is a parameter test'";
-         String[] params = new String[0];
-         
-         PreparedStatement stmnt;
-         stmnt = db.createPreparedStatement(query, params);
-         String statementString = stmnt.toString();
-         assertEquals(query, statementString.substring(statementString.indexOf(": ") + 2));
-      } catch (SQLException e) {
-    	 LOGGER.log(Level.FINE, e.toString(), e);
-      }
+      db.connect();
+
+      String query = "INSERT INTO `mysql_test` SET `text` = 'This is a parameter test'";
+      String[] params = new String[0];
+
+      PreparedStatement stmnt;
+      stmnt = db.createPreparedStatement(query, params);
+      String statementString = stmnt.toString();
+      assertEquals(query, statementString.substring(statementString.indexOf(": ") + 2));
    }
    
    @Test
