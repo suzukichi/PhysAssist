@@ -16,8 +16,7 @@ import java.util.List;
 public class Lists {
 	
 	
-  private Lists()
-  {
+  private Lists() {
 	  
   }
 	
@@ -40,8 +39,8 @@ public class Lists {
     
     System.out.println(rows);
     
+    // Loop tested in test/TestLoopLists.java 
     for (HashMap<String, String> row : rows) {
-      //list.add(new Category(Long.parseLong(row.get("topicid")), row.get("title")));
       list.add(new Category(Long.parseLong(row.get("topicid"))));
     }
     
@@ -70,6 +69,7 @@ public class Lists {
     
     System.out.println(rows);
     
+    // Loop tested in test/TestLoopLists.java 
     for (HashMap<String, String> row : rows) {
       list.add(new Topic(Long.parseLong(row.get("topicid")), parentID, row.get("title"),
           row.get("text"), Long.parseLong(row.get("authorid")), Long.parseLong(row.get("revisionid")),
@@ -89,19 +89,13 @@ public class Lists {
     List<Equation> list = new ArrayList<>();
     DB db = DB.getInstance();
     
-    /*
-    String qGetEquationsForTopic = "SELECT * FROM `equations` " + 
-        " WHERE `parentID` = ?";
-        */
-    
-    //TODO Get "name" for all equations with given topicid
     String qGetEquationsForTopic = "SELECT `equationid` FROM `equations` " +
         " WHERE `topicid` = ?";
 
     String[] pGetEquationsForTopic = {DB.T_I, String.valueOf(topicID)};
 
     List<HashMap<String, String>> rows = db.query(qGetEquationsForTopic, pGetEquationsForTopic);
-    
+    // Loop tested in test/TestLoopLists.java 
     for (HashMap<String, String> row : rows) {
       list.add(new Equation(Long.parseLong(row.get("equationid"))));
     }
@@ -109,33 +103,5 @@ public class Lists {
     System.out.println(list);
     
     return list;
-  }
-  
-  public static void main(String[] args) {
-    System.out.println("get category list");
-    Lists.getCategoryList();
-    
-    System.out.println("\nget topic list");
-    Lists.getTopicList(1);
-    
-    System.out.println("\nget equation list");
-    Lists.getEquationList(1);
-    
-    //makePost();
-    
-    /*
-    String q_getPost = "SELECT * FROM `posts` " + 
-        " WHERE `postid` = ?";
-    String[] p_getPost = {DB.T_I, String.valueOf(1)};      
-
-    ArrayList<HashMap<String, String>> rows = (DB.getInstance()).query(q_getPost, p_getPost);
-    if (rows.size() == 0) {
-        // Throw exception or something is probably better to do.
-      System.out.println("no posts");
-        return;
-    }
-    
-    System.out.println(rows);
-    */
   }
 }
