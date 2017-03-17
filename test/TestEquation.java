@@ -34,7 +34,7 @@ public class TestEquation {
       terms.add(new Variable("m", 9.0));
       terms.add(new Variable("a", 5.0));
       equation = new Equation(EQUATION_1);
-      assertEquals(42.0, (equation.solve(solveFor, terms)).getValue(), 0.01);
+      assertEquals(45.0, (equation.solve(solveFor, terms)).getValue(), 0.01);
    }
 
    /*
