@@ -17,7 +17,7 @@ public class Equation {
    }
 
    private void getEquation(long equationID) {
-      String[] pGetEquation = {DB.T_S, this.name};
+      String[] pGetEquation = {DB.T_I, String.valueOf(equationID)};
 
       String qGetEquation = "SELECT `name`, `view`, `description`, `history`, `topicid` FROM `equations` WHERE `equationid` = ?";
       ArrayList<HashMap<String, String>> rows = DB.getInstance().query(qGetEquation, pGetEquation);

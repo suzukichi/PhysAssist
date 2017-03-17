@@ -14,7 +14,8 @@ import logic.Variable;
  * TestEquation.java
  * 
  * Test class that tests the Equation class.
- * Integration Testing: Equation.java, DB.java, Term.java, Variable.java, AST.java
+ * 
+ * Integration Testing: Equation.java, DB.java, Term.java, Variable.java, AST.java by Kyle Ringler
  * 
  * @author Arianna Olson
  */
@@ -24,11 +25,10 @@ public class TestEquation {
 
    /*
     * Integration test: Equation.java, DB.java, Variable.java, Term.java,
-    * AST.java
+    * AST.java by Kyle Ringler
     */
    @Test
-   public void TestEquationSolve() throws Exception {
-      String equationName = "Newton's Second Law of Motion";
+   public void testEquationSolve() throws Exception {
       Term solveFor = new Variable("F", 0.0);
       ArrayList<Term> terms = new ArrayList<Term>();
       terms.add(new Variable("m", 9.0));
@@ -38,11 +38,10 @@ public class TestEquation {
    }
 
    /*
-    * Integration test: Equation.java, DB.java
+    * Integration test: Equation.java, DB.java by Kyle Ringler
     */
    @Test
-   public void TestEquationGetView() {
-      String equationName = "Newton's Second Law of Motion";
+   public void testEquationGetView() {
       String expectedView = "F = m * a";
 
       Equation eq = new Equation(EQUATION_1);
@@ -50,8 +49,7 @@ public class TestEquation {
    }
 
    @Test
-   public void TestEquationGetDescription() {
-      String equationName = "Newton's Second Law of Motion";
+   public void testEquationGetDescription() {
       String expectedDescription = "The force (F) acting on an object is equal to the mass (m) of an object times its acceleration (a).";
 
       Equation eq = new Equation(EQUATION_1);
@@ -59,8 +57,7 @@ public class TestEquation {
    }
 
    @Test
-   public void TestEquationGetHistory() {
-      String equationName = "Newton's Second Law of Motion";
+   public void testEquationGetHistory() {
       String expectedHistory = "Isaac Newton's laws of motion were first set down in his Principia Mathematica Philosophiae Naturalis in 1687.";
 
       Equation eq = new Equation(EQUATION_1);
