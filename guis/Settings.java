@@ -33,9 +33,9 @@ public class Settings extends Page {
 	private String username;
 	private String email;
 	
-	private logic.SettingsPage controller;
+	private transient  logic.SettingsPage controller;
 
-	/**
+	/*
 	 * Create the panel.
 	 */
 	public Settings() {

@@ -224,8 +224,7 @@ public class Course {
   public int toStringHelper(String rep){
 	  int iterations = 0;
 	  // Loop tested in test/TestLoopCoursepost.java
-	  for (Post p : posts) {
-	      rep += "   " + p.toString() + ", \n";
+	  for (@SuppressWarnings("unused") Post p : posts) {
 	      iterations++;
 	  }
 	  return iterations;

@@ -169,7 +169,7 @@ public class DB {
             Class.forName(JDBC_DRIVER);
             this.connection = DriverManager.getConnection(DB_URL, USER, PASS);
          } catch (SQLException | ClassNotFoundException e) {
-        	 e.printStackTrace();//LOGGER.log(Level.FINE, e.toString(), e);
+        	 LOGGER.log(Level.FINE, e.toString(), e);
          }
       }
 	}

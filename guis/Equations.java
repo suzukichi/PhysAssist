@@ -24,6 +24,7 @@ import javax.swing.border.SoftBevelBorder;
 
 import logic.Topic;
 
+@SuppressWarnings("serial")
 public class Equations extends Page {
 	
 	private HashMap<String, Long> buttons;
@@ -35,7 +36,7 @@ public class Equations extends Page {
 
 	private JPanel bodyPanel;
 	private JPanel formatPanel;
-	private List<logic.Equation> equations;
+	private transient List<logic.Equation> equations;
 	private String categoryTitle;
 	private Long parentID;
 	private Long topicID;
