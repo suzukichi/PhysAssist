@@ -6,7 +6,7 @@ import logic.Course;
 public class TestLoopCoursepost {
 	
 	@Test
-	public void LoopNever(){
+	public void loopNever(){
 		Course c = new Course(1,"SE", "Programming");
 		String never = c.toString();
 		assertEquals("{Course:  courseID: 0 courseName: SE description: Programming posts: [\n"+
@@ -14,7 +14,7 @@ public class TestLoopCoursepost {
 	}
 	
 	@Test
-	public void LoopOnce(){
+	public void loopOnce(){
 		Course c1 = new Course(1,"SE", "Programming");
 		Post p1 = new Post("abc","def");
 		c1.addPost(p1);
@@ -25,7 +25,7 @@ public class TestLoopCoursepost {
 	}
 	
 	@Test
-	public void LoopN(){
+	public void loopN(){
 		Course c2 = new Course(1,"SE", "Programming");
 		Post p3 = new Post("abc","def");
 		Post p4 = new Post("def","efg");
