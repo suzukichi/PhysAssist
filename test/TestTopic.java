@@ -24,7 +24,7 @@ public class TestTopic {
 		String description = "Is super cool";
 		new Topic(0L, "", description);
 		// This test should fail, since the constructor throws an exception.
-		assert(true);
+		assertTrue(true);
 	}
 	
 	/* Equations have changed! TODO: use real constructor

@@ -23,7 +23,7 @@ public class TestCourse {
    * Integration Test: Course.java, DB.java
    */
   @Test
-  public void TestCourseConstructionDB() {
+  public void testCourseConstructionDB() {
     Course course = new Course(50, "test course", "Description of test course.");
     course.save();
     
@@ -39,7 +39,7 @@ public class TestCourse {
    * Integration Test: Course.java, Post.java, DB.java
    */
   @Test
-  public void TestCourseWithPosts() {
+  public void testCourseWithPosts() {
     Course course = new Course(55, "test course", "Description of test course.");
     course.save();
     // have to get courseID

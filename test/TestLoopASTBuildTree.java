@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 import logic.AST;
 public class TestLoopASTBuildTree 
 {	
-	private final String TESTSTRING = "Hello";
+	private final static String testString = "Hello";
 	
 	@Test
 	public void loopTest1()

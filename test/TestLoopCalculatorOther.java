@@ -6,44 +6,44 @@ import static org.junit.Assert.*;
 import logic.Calculator;
 public class TestLoopCalculatorOther {
 	@Test
-	public void LoopNever(){
+	public void testLoopNever(){
 		String[] names = {};
-		Calculator C = new Calculator();
-		C.setButtonNames(names);
-		int i = C.anyOtherButton("");
+		Calculator c = new Calculator();
+		c.setButtonNames(names);
+		int i = c.anyOtherButton("");
 		assertEquals(0,i,0);
 	}
 	
 	@Test
-	public void LoopOnce(){
+	public void testLoopOnce(){
 		String[] names = {"1","2"};
-		Calculator C = new Calculator();
-		C.setButtonNames(names);
-		int i = C.anyOtherButton("2");
+		Calculator c = new Calculator();
+		c.setButtonNames(names);
+		int i = c.anyOtherButton("2");
 		assertEquals(1,i,0);
 	}
 	@Test
-	public void LoopOnceMore(){
+	public void testLoopOnceMore(){
 		String[] names = {"1","2"};
-		Calculator C = new Calculator();
-		C.setButtonNames(names);
-		int i = C.anyOtherButton("2");
+		Calculator c = new Calculator();
+		c.setButtonNames(names);
+		int i = c.anyOtherButton("2");
 		assertEquals(1,i,0);
 	}
 	@Test
-	public void LoopEntireArray(){
+	public void testLoopEntireArray(){
 		String[] names = {"1","2","3"};
-		Calculator C = new Calculator();
-		C.setButtonNames(names);
-		int i = C.anyOtherButton("3");
+		Calculator c = new Calculator();
+		c.setButtonNames(names);
+		int i = c.anyOtherButton("3");
 		assertEquals(2,i,0);
 	}
 	@Test
-	public void LoopNotInArray(){
+	public void testLoopNotInArray(){
 		String[] names = {"1","2","3","4"};
-		Calculator C = new Calculator();
-		C.setButtonNames(names);
-		int i = C.anyOtherButton("");
+		Calculator c = new Calculator();
+		c.setButtonNames(names);
+		int i = c.anyOtherButton("");
 		assertEquals(4,i,0);
 	}
 }

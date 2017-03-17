@@ -4,10 +4,8 @@ import static org.junit.Assert.*;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.junit.Before;
@@ -18,6 +16,7 @@ import logic.DB;
 public class TestDBConnections {
 private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
    private String testText;
+   private static final String genericQuery = "INSERT INTO `mysql_test` SET `text` = ?";
    /**
     * Tests in this file use the mysql_test db, which is not really part of the
     * PhysAssist program, but useful to check that we can connect to the db, and 
@@ -62,15 +61,15 @@ private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
    public void testInsertGeneric() {
       DB db = DB.getInstance();
       String[] params = {DB.T_S, this.testText + " made by testInsertGeneric"};
-      int rowsUpdated = db.execute("INSERT INTO `mysql_test` SET `text` = ?", params);
+      int rowsUpdated = db.execute(genericQuery, params);
       assertEquals(1, rowsUpdated);
    }
 
    @Test
    public void testSelectNoRows() {
       DB db = DB.getInstance();
-      String q_getTestRow = "SELECT `id`, `text` FROM `mysql_test` WHERE `id` < 0";
-      List<HashMap<String, String>>rows = db.query(q_getTestRow, null);
+      String qGetTestRow = "SELECT `id`, `text` FROM `mysql_test` WHERE `id` < 0";
+      List<HashMap<String, String>>rows = db.query(qGetTestRow, null);
 
       assertEquals(0, rows.size());
    }
@@ -79,10 +78,10 @@ private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
    public void testSelectOneRow() {
       DB db = DB.getInstance();
       String[] params = {DB.T_S, this.testText};
-      db.execute("INSERT INTO `mysql_test` SET `text` = ?", params);
-      String q_getTestRow = "SELECT `id`, `text` FROM `mysql_test` LIMIT 1";
-      String[] p_getTestRow = {};
-      List<HashMap<String, String>>rows = db.query(q_getTestRow, p_getTestRow);
+      db.execute(genericQuery, params);
+      String qGetTestRow = "SELECT `id`, `text` FROM `mysql_test` LIMIT 1";
+      String[] pGetTestRow = {};
+      List<HashMap<String, String>>rows = db.query(qGetTestRow, pGetTestRow);
 
       assertEquals(1, rows.size());
    }
@@ -91,14 +90,14 @@ private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
    @Test
    public void testUpdateOne() {
       DB db = DB.getInstance();
-      String[] p_insert = {DB.T_S, this.testText};
-      db.execute("INSERT INTO `mysql_test` SET `text` = ?", p_insert);
+      String[] pInsert = {DB.T_S, this.testText};
+      db.execute(genericQuery, pInsert);
 
       String editedText = "Text inserted by TestDBConnections.testUpdateOne at " +
        System.currentTimeMillis() / 1000L;
       String[] p_updateText = {
           DB.T_S, editedText,
-          DB.T_S, this.testText 
+          DB.T_S, this.testText
       };
 
       int rowsUpdated = db.execute("UPDATE `mysql_test` SET `text` = ? WHERE `text` = ?", p_updateText);
@@ -110,9 +109,9 @@ private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
    @Test
    public void testSelectMultipleRows() {
       DB db = DB.getInstance();
-      String q_getTestRow = "SELECT `id`, `text` FROM `mysql_test` WHERE `id` > 0 LIMIT 2";
-      String[] p_getTestRow = {};
-      List<HashMap<String, String>>rows = db.query(q_getTestRow, p_getTestRow);
+      String qGetTestRow = "SELECT `id`, `text` FROM `mysql_test` WHERE `id` > 0 LIMIT 2";
+      String[] pGetTestRow = {};
+      List<HashMap<String, String>>rows = db.query(qGetTestRow, pGetTestRow);
 
       assertEquals(2, rows.size());
    }

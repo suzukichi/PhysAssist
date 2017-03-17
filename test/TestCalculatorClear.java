@@ -7,16 +7,16 @@ import logic.Calculator;
 public class TestCalculatorClear {	
 	@Test
 	public void testClearNoInput(){
-		Calculator C = new Calculator();
-		C.clear();
-		assertEquals("",C.getExpression());
+		Calculator c = new Calculator();
+		c.clear();
+		assertEquals("",c.getExpression());
 	}
 	
 	@Test
 	public void testClearWithInput(){
-		Calculator C = new Calculator();
-		C.setExpression("Math.pow(1,0)");
-		C.clear();
-		assertEquals("",C.getExpression());
+		Calculator c = new Calculator();
+		c.setExpression("Math.pow(1,0)");
+		c.clear();
+		assertEquals("",c.getExpression());
 	}
 }
