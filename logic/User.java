@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 
 import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
 
-import test.TestAST;
 
 /*
  * User.java
@@ -23,7 +22,7 @@ import test.TestAST;
  */
 
 public class User {
-  private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
+  private static final Logger LOGGER = Logger.getLogger(test.TestAST.class.getName());
   private boolean testMode = false;
   private String username;
   private String firstName;
@@ -118,7 +117,7 @@ public class User {
     List<Course> list = new ArrayList<>();
     DB db = DB.getInstance();
 
-    String qGetOwnedCourses = "SELECT * FROM `classes` t" +
+    String qGetOwnedCourses = "SELECT * FROM `classrooms` t" +
         " WHERE `ownerid` = ?";
     
     String[] pGetOwnedCourses = {DB.T_I, String.valueOf(userID)};
@@ -287,7 +286,7 @@ public class User {
 		  hashedText = new HexBinaryAdapter().marshal(hash);
 	  }
 	  catch(NoSuchAlgorithmException e){
-		  LOGGER.log(Level.FINE, e.toString(), e);
+		  e.printStackTrace();//LOGGER.log(Level.FINE, e.toString(), e);
 	  }
 	  return hashedText;
   }
@@ -301,9 +300,10 @@ public class User {
   public static long verify(String username, String password) {
 	    DB db = DB.getInstance();
 
-	    String qGetLoginInfo = "SELECT password, userID" + " FROM `users` WHERE `username` = ?";
-	    
-	    String[] pGetLoginInfo = {DB.T_I, String.valueOf(username)};
+	    String qGetLoginInfo = "SELECT password, userID" + 
+	    						" FROM `users`" +
+	    						" WHERE `username` = ?";
+	    String[] pGetLoginInfo = {DB.T_S, String.valueOf(username)};
 
 	    List<HashMap<String, String>> rows = db.query(qGetLoginInfo, pGetLoginInfo);
 	    
@@ -313,7 +313,10 @@ public class User {
 	    
 	    HashMap<String, String> row = rows.get(0);
 	    if(row.get("password").equals(encrypt(password))) {
-	    	return Long.parseLong(row.get("userID"));
+	    	String userID = row.get("userID");
+	    	if (userID == null) 
+	    		return 1;
+	    	return Long.parseLong(userID);
 	    }
 	    
 	    return -1;
@@ -353,16 +356,14 @@ public class User {
   
   public static boolean nameExists(String username) {
 	  DB db = DB.getInstance();
-
-	    String qGetLoginInfo = "SELECT *" +
+	    String qGetLoginInfo = "SELECT `username`" +
 	    							" FROM `users`" +
 	    							" WHERE `username` = ?";
 	    
-	    String[] pGetLoginInfo = {DB.T_I, String.valueOf(username)};
-
+	    String[] pGetLoginInfo = {DB.T_S, String.valueOf(username)};
 	    List<HashMap<String, String>> rows = db.query(qGetLoginInfo, pGetLoginInfo);
 	    
-	    if(rows.size() != 1) {
+	    if(rows.size() < 0) {
 	    	return true; //no username found or multiple in database(checked on creation)
 	    }
 	    return false;
@@ -375,11 +376,11 @@ public class User {
 	    							" FROM `users`" +
 	    							" WHERE `email` = ?";
 	    
-	    String[] pGetLoginInfo = {DB.T_I, String.valueOf(email)};
+	    String[] pGetLoginInfo = {DB.T_S, String.valueOf(email)};
 
 	    List<HashMap<String, String>> rows = db.query(qGetLoginInfo, pGetLoginInfo);
 	    
-	    if(rows.size() != 1) {
+	    if(rows.size() < 0) {
 	    	return true; //no email found or multiple in database(checked on creation)
 	    }
 	    return false;
