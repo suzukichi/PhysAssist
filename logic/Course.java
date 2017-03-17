@@ -147,11 +147,22 @@ public class Course {
      db.execute(qDeleteTopic, params);
      
      // Must delete all Posts from DB as well.
+     /*
      for (Post p : this.posts) {
         p.delete();
-     }
+     }*/
+     deleteHelper();
 
      this.posts.clear();
+  }
+  //isolated the for loop for testing, returns an int for testing purposes
+  public int deleteHelper(){
+	  int iterations=0;
+	  for (Post p : this.posts) {
+	        p.delete();
+	        iterations++;
+	  }
+	  return iterations;
   }
   
   public boolean enrollStudent(User s) {
