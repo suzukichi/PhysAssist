@@ -22,6 +22,10 @@ public class TopicListPage extends Page {
   //public TopicPage topicController;
   private long parentID;
   
+  public TopicListPage(){
+	  catCursor = 0;
+	  topicCursor=0;
+  }
   
   
   public TopicListPage(MainWindow view){
