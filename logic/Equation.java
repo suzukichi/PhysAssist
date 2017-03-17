@@ -64,14 +64,13 @@ public class Equation {
       String ast = "";
       String[] pGetAST = { DB.T_I, String.valueOf(equationID), DB.T_S, term.getName() };
 
-      String qGetAST = "SELECT `ast` FROM `ast` WHERE `eqid` = ?, `term` = ?";
+      String qGetAST = "SELECT `ast` FROM `ast` WHERE `equationid` = ? AND `term` = ? LIMIT 1";
       List<HashMap<String, String>> rows = DB.getInstance().query(qGetAST, pGetAST);
 
-      for (HashMap<String, String> row : rows) {
-         ast = row.get("view");
-      }
+      HashMap<String, String> row = rows.get(0); 
+      ast = row.get("ast");
 
-      if ("".equals(ast)) {
+      if (ast.equals("")) {
          throw new IllegalArgumentException("Invalid ast string.");
       }
 
