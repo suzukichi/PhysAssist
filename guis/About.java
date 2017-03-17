@@ -20,8 +20,6 @@ public class About extends Page {
 	public About() {
       this.locationName = "About";
 		this.createHeader();
-		//Not working, possibly not needed?
-		//this.createBackButton();
 		
 		JPanel panel = new JPanel();
 		this.contentPanel.add(panel);

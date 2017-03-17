@@ -23,9 +23,11 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.SoftBevelBorder;
 
 public class Courses extends Page {
-	private HashMap<String, Long> buttons;
-	private JButton item1Button, item2Button, item3Button;
-	private JLabel upButton, downButton;
+	private JButton item1Button;
+	private JButton item2Button;
+	private JButton item3Button;
+	private JLabel upButton;
+	private JLabel downButton;
 	private JPanel main;
 	private JPanel p1;
 	private JPanel p2;
@@ -50,20 +52,20 @@ public class Courses extends Page {
 	   
 	   
 	   bodyPanel = new JPanel();
-	   GridBagLayout gbl_bodyPanel = new GridBagLayout();
-	   gbl_bodyPanel.rowWeights = new double[]{0.0};
-	   gbl_bodyPanel.columnWeights = new double[]{1.0};
+	   GridBagLayout gblBodyPanel = new GridBagLayout();
+	   gblBodyPanel.rowWeights = new double[]{0.0};
+	   gblBodyPanel.columnWeights = new double[]{1.0};
 	   main.add(bodyPanel);
-	   bodyPanel.setLayout(gbl_bodyPanel);
+	   bodyPanel.setLayout(gblBodyPanel);
 	   
 	   formatPanel = new JPanel();
 	   formatPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 	   formatPanel.setLayout(new BoxLayout(formatPanel, BoxLayout.Y_AXIS));
-	   GridBagConstraints gbc_formatPanel = new GridBagConstraints();
-	   gbc_formatPanel.insets = new Insets(0, 0, 5, 0);
-	   gbc_formatPanel.gridy = 0;
-	   gbc_formatPanel.gridx = 0;
-	   bodyPanel.add(formatPanel, gbc_formatPanel);
+	   GridBagConstraints gbcFormatPanel = new GridBagConstraints();
+	   gbcFormatPanel.insets = new Insets(0, 0, 5, 0);
+	   gbcFormatPanel.gridy = 0;
+	   gbcFormatPanel.gridx = 0;
+	   bodyPanel.add(formatPanel, gbcFormatPanel);
 	   
 	   
 	   this.createListPanel();
@@ -125,8 +127,8 @@ public class Courses extends Page {
 		p1.add(upButton);
 		
 		p2 = new JPanel();
-		FlowLayout flowLayout_1 = (FlowLayout) p2.getLayout();
-		flowLayout_1.setAlignment(FlowLayout.RIGHT);
+		flowLayout = (FlowLayout) p2.getLayout();
+		flowLayout.setAlignment(FlowLayout.RIGHT);
 	    main.add(p2, BorderLayout.SOUTH);
 		downButton = new JLabel("");
 		downButton.setBounds(394, 188, 56, 56);
@@ -160,7 +162,7 @@ public class Courses extends Page {
 	}*/
 	
 
-	public void updateButtons(String[] titles, int index){
+	public void updateButtons(String[] titles){
 		item1Button.setText(titles[0]);
 		item2Button.setText(titles[1]);
 		item3Button.setText(titles[2]);
