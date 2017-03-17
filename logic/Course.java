@@ -159,6 +159,7 @@ public class Course {
   //isolated the for loop for testing, returns an int for testing purposes
   public int deleteHelper(){
 	  int iterations=0;
+	  // Loop tested in test/TestLoopCourseDeleteHelper.java
 	  for (Post p : this.posts) {
 		  if(!testMode){
 	        p.delete();
