@@ -20,9 +20,6 @@ public class TestAST {
 	private AST ast;
 	private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
 
-	/*
-	 * Integration test: Operator.java, Term.java
-	 */
 	@Test public void testASTBuildTreeConstant()
 	{
 		String constant = "c";
@@ -34,9 +31,6 @@ public class TestAST {
 		assertEquals(constant, ast.toString());
 	}
 
-	/*
-	 * Integration test: Operator.java, Term.java
-	 */
 	@Test
 	public void testASTBuildTreeVariable() {
 		String variable = "5.0";
@@ -48,9 +42,6 @@ public class TestAST {
 		assertEquals(variable, ast.toString());
 	}
 
-	/*
-	 * Integration test: Operator.java, Term.java
-	 */
 	@Test
 	public void testASTBuildTreeUnaryBranchSimple() 
 	{
@@ -58,10 +49,7 @@ public class TestAST {
 		String expected = "deg 180.0";
 		testASTBuild(tree, expected);
 	}
-
-	/*
-	 * Integration test: Operator.java, Term.java
-	 */
+	
 	@Test
 	public void testASTBuildTreeUnaryBranchComplex() 
 	{
@@ -70,9 +58,6 @@ public class TestAST {
 		testASTBuild(tree, expected);
 	}
 
-	/*
-	 * Integration test: Operator.java, Term.java
-	 */
 	@Test
 	public void testASTBuildTreeUnaryBranchNightmare() 
 	{
@@ -81,9 +66,6 @@ public class TestAST {
 		testASTBuild(tree, expected);
 	}
 
-	/*
-	 * Integration test: Operator.java, Term.java
-	 */
 	@Test
 	public void testASTBuildTreeBinaryBranchSimple() 
 	{
@@ -92,9 +74,6 @@ public class TestAST {
 		testASTBuild(tree, expected);
 	}
 
-	/*
-	 * Integration test: Operator.java, Term.java
-	 */
 	@Test
 	public void testASTBuildTreeBinaryBranchComplex() {
 		String tree = "* 3 + 5 / f 100";
@@ -102,9 +81,6 @@ public class TestAST {
 		testASTBuild(tree, expected);
 	}
 
-	/*
-	 * Integration test: Operator.java, Term.java
-	 */
 	@Test
 	public void testASTBuildTreeBinaryBranchNightmare() 
 	{
@@ -113,9 +89,7 @@ public class TestAST {
 		testASTBuild(tree, expected);
 	}
 
-	/*
-	 * Integration test: Operator.java, Term.java
-	 */
+
 	@Test
 	public void testASTBuildTreeMixedBranchSimple()
 	{
@@ -124,9 +98,6 @@ public class TestAST {
 		testASTBuild(tree, expected);
 	}
 
-	/*
-	 * Integration test: Operator.java, Term.java
-	 */
 	@Test
 	public void testASTBuildTreeMixedBranchComplex()
 	{
@@ -146,9 +117,6 @@ public class TestAST {
 		testASTBuild(tree, expected);
 	}
 
-	/*
-	 * Integration test: Operator.java, Term.java
-	 */
 	@Test
 	public void testASTBuildTreeElseDoneAndToEmptyTree() {
 		String tree = "";
@@ -169,9 +137,6 @@ public class TestAST {
 		assertEquals(expected, ast.toString());
 	}
 
-	/*
-	 * Integration test: Operator.java, Term.java
-	 */
 	@Test
 	public void testASTBuildTreeElseException() {
 		String tree = "$$$";
@@ -184,9 +149,6 @@ public class TestAST {
 		}
 	}
 
-	/*
-	 * Integration test: Operator.java, Term.java
-	 */
 	@Test
 	public void testASTComputeEmptyTree()
 	{
@@ -205,9 +167,6 @@ public class TestAST {
 		}
 	}
 
-	/*
-	 * Integration test: Operator.java, Term.java
-	 */
 	@Test
 	public void testASTComputeVariable()
 	{
@@ -216,9 +175,6 @@ public class TestAST {
 		testASTCompute(tree, expected);
 	}
 
-	/*
-	 * Integration test: Operator.java, Term.java
-	 */
 	@Test
 	public void testASTComputeUnaryBranchSimple()
 	{
@@ -227,9 +183,6 @@ public class TestAST {
 		testASTCompute(tree, expected);
 	}
 
-	/*
-	 * Integration test: Operator.java, Term.java
-	 */
 	@Test
 	public void testASTComputeUnaryBranchComplex()
 	{
@@ -238,9 +191,6 @@ public class TestAST {
 		testASTCompute(tree, expected);
 	}
 
-	/*
-	 * Integration test: Operator.java, Term.java
-	 */
 	@Test
 	public void testASTComputeUnaryBranchNightmare()
 	{
@@ -249,9 +199,6 @@ public class TestAST {
 		testASTCompute(tree, expected);
 	}
 
-	/*
-	 * Integration test: Operator.java, Term.java
-	 */
 	@Test
 	public void testASTComputeBinaryBranchSimple()
 	{
@@ -260,9 +207,6 @@ public class TestAST {
 		testASTCompute(tree, expected);
 	}
 
-	/*
-	 * Integration test: Operator.java, Term.java
-	 */
 	@Test
 	public void testASTComputeBinaryBranchComplex()
 	{
@@ -271,9 +215,6 @@ public class TestAST {
 		testASTCompute(tree, expected);
 	}
 
-	/*
-	 * Integration test: Operator.java, Term.java
-	 */
 	@Test
 	public void testASTComputeBinaryBranchNightmare() 
 	{
@@ -282,9 +223,6 @@ public class TestAST {
 		testASTCompute(tree, expected);
 	}
 
-	/*
-	 * Integration test: Operator.java, Term.java
-	 */
 	@Test
 	public void testASTComputeBinaryBranchDivideByZero()
 	{
@@ -303,9 +241,6 @@ public class TestAST {
 		}
 	}
 
-	/*
-	 * Integration test: Operator.java, Term.java
-	 */
 	@Test
 	public void testASTComputeMixedBranchSimple()
 	{
@@ -314,9 +249,6 @@ public class TestAST {
 		testASTCompute(tree, expected);
 	}
 
-	/*
-	 * Integration test: Operator.java, Term.java
-	 */
 	@Test
 	public void testASTComputeMixedBranchComplex()
 	{

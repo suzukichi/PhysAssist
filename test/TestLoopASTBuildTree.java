@@ -1,39 +1,41 @@
-//loop test for calculator
+//loop test for AST
 
 package test;
 import org.junit.Test;
 
 import static org.junit.Assert.*; 
 import logic.AST;
-public class TestLoopASTBuildTree {
-	/* not sure how this should be handled or even considered.
-	@Test
-	public void LoopTest1() throws Exception{
-		AST a = new AST(null);
-		String root = a.toString();
-		assertEquals("",root);
-	}*/
+public class TestLoopASTBuildTree 
+{	
+	private final String TESTSTRING = "Hello";
 	
 	@Test
-	public void LoopTest2() throws IllegalArgumentException{
+	public void loopTest1()
+	{
 		AST a = new AST(" ");
 		String root = a.toString();
 		assertEquals("",root);
 	}
+	
 	@Test
-	public void LoopTest3() throws IllegalArgumentException{
-		AST a = new AST("Hello");
+	public void loopTest2()
+	{
+		AST a = new AST(TESTSTRING);
 		String root = a.toString();
-		assertEquals("Hello",root);
+		assertEquals(TESTSTRING,root);
 	}
+	
 	@Test
-	public void LoopTest4() throws IllegalArgumentException{
+	public void loopTest3()
+	{
 		AST a = new AST("Hello World");
 		String root = a.toString();
-		assertEquals("Hello",root);
+		assertEquals(TESTSTRING,root);
 	}
+	
 	@Test
-	public void LoopTest5() throws IllegalArgumentException{
+	public void loopTest4()
+	{
 		AST a = new AST("");
 		String root = a.toString();
 		assertEquals("",root);
