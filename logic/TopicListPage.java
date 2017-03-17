@@ -21,6 +21,7 @@ public class TopicListPage extends Page {
   private int topicCursor;
   //public TopicPage topicController;
   private long parentID;
+  public boolean testMode=false;
   
   public TopicListPage(){
 	  catCursor = 0;
@@ -46,13 +47,21 @@ public class TopicListPage extends Page {
 	  view.add(categoryList, "categories");
    }
 
-   public void updateCategoryList(){
+   public int updateCategoryList(){
 	   String[] buttons = {"N/A", "N/A", "N/A"};
 	   parentID = 0;
 	   topics = Lists.getTopicList(parentID);
-	   for(int i = catCursor; i < topics.size() && i < 3; i++)
-		   buttons[i] = topics.get(i).getTitle();
-	   categoryList.updateButtons(buttons);
+	   int iterator = 0;
+	   for(int i = catCursor; i < topics.size() && i < 3; i++){
+		   iterator++;
+		   if(!testMode){
+			   buttons[i] = topics.get(i).getTitle();
+		   }
+	   }
+	   if(!testMode){
+		   categoryList.updateButtons(buttons);
+	   }
+	   return iterator;
    }
    
    public void initCatPage(){
@@ -73,5 +82,8 @@ public class TopicListPage extends Page {
    }
    public void setCatCursor(int i){
 	   this.catCursor=i;
+   }
+   public void setTestMode(boolean mode){
+	   this.testMode = mode;
    }
 }
