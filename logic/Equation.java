@@ -61,7 +61,7 @@ public class Equation {
    }
 
    private String getAST(Term term) {
-      String ast = "";
+      String ast;
       String[] pGetAST = { DB.T_I, String.valueOf(equationID), DB.T_S, term.getName() };
 
       String qGetAST = "SELECT `ast` FROM `ast` WHERE `equationid` = ? AND `term` = ? LIMIT 1";
@@ -70,7 +70,7 @@ public class Equation {
       HashMap<String, String> row = rows.get(0); 
       ast = row.get("ast");
 
-      if (ast.equals("")) {
+      if ("".equals(ast)) {
          throw new IllegalArgumentException("Invalid ast string.");
       }
 

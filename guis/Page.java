@@ -20,6 +20,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 
+@SuppressWarnings("serial")
 public class Page extends JPanel {
    protected String locationName;
    protected JPanel contentPanel;
@@ -145,7 +146,7 @@ public class Page extends JPanel {
 			@Override
 			public void mousePressed(MouseEvent event) {
 				super.mousePressed(event);
-				logic.Calculator calc = new logic.Calculator();
+				new logic.Calculator();
 				showDropdownCard(event, "calculator");
 			}
 		});

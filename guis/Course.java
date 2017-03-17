@@ -22,6 +22,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.SoftBevelBorder;
 
+@SuppressWarnings("serial")
 public class Course extends Page {
 	private JButton item1Button; 
 	private JButton item2Button;
@@ -34,7 +35,7 @@ public class Course extends Page {
 
 	public JPanel bodyPanel;
 	public JPanel formatPanel;
-	List<logic.Post> posts;
+	transient List<logic.Post> posts;
 	String categoryTitle;
 	Long courseID;
 	private JPanel innerp1;

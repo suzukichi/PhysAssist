@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +17,7 @@ import logic.DB;
 
 public class TestDBConnections {
    private String testText;
+   private static final Logger LOGGER = Logger.getLogger(TestDBConnections.class.getName());
    private static final String GENERIC_QUERY = "INSERT INTO `mysql_test` SET `text` = ?";
    /**
     * Tests in this file use the mysql_test db, which is not really part of the
@@ -95,6 +98,7 @@ public class TestDBConnections {
       try {
          db.createPreparedStatement(query, params);
       } catch (ArrayIndexOutOfBoundsException e) {
+         LOGGER.log(Level.FINE, e.toString(), e);
          thrown = true;
       }
       assertTrue(thrown);

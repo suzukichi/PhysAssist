@@ -32,7 +32,7 @@ public class CreateAccount extends Page {
 	public JTextPane userNameErrorText;
 	public JTextPane emailErrorText;
 	
-	public logic.LoginPage controller;
+	public transient logic.LoginPage controller;
 
 	public CreateAccount() {
 		

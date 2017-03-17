@@ -15,6 +15,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+@SuppressWarnings("serial")
 public class Reference extends Page {
 	private JPanel usernamePanel; 
 	private JTextField emailField;
@@ -26,7 +27,7 @@ public class Reference extends Page {
 	
 	public long topicID;
 	
-	public logic.Topic topic;
+	public transient logic.Topic topic;
 	
 	/**
 	 * Create the panel.

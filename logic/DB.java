@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 //import test.TestAST;
 
 public class DB {
-	//private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(DB.class.getName());
     private static DB instance = null;
     
 	private Connection connection;
@@ -64,8 +64,7 @@ public class DB {
 
          this.getConnection().close();
 		} catch (SQLException e) {
-			e.printStackTrace();
-			//LOGGER.log(Level.FINE, e.toString(), e);
+			LOGGER.log(Level.FINE, e.toString(), e);
 		}
 		
 		return rowsUpdated;
@@ -117,7 +116,7 @@ public class DB {
             results.add(row);
          }
       } catch (SQLException e) {
-    	  e.printStackTrace();//LOGGER.log(Level.FINE, e.toString(), e);
+    	  LOGGER.log(Level.FINE, e.toString(), e);
       }
 	   
 	   return results;
@@ -179,7 +178,7 @@ public class DB {
 	   try {
          this.connect();
       } catch (SQLException e) {
-    	  e.printStackTrace();//LOGGER.log(Level.FINE, e.toString(), e);
+    	  LOGGER.log(Level.FINE, e.toString(), e);
       }
 	   return this.connection;
 	}

@@ -25,7 +25,7 @@ public class TestLoopLists {
    @Test
    public void testEquationListMultiple() {
       List<Equation> e = Lists.getEquationList(1);
-      assertTrue(e.size() >= 1);
+      assertTrue(!e.isEmpty());
    }
 
    /**

@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
  */
 
 public class User {
-  private static final Logger LOGGER = Logger.getLogger(test.TestAST.class.getName());
+  private static final Logger LOGGER = Logger.getLogger(User.class.getName());
   private boolean testMode = false;
   private String username;
   private String firstName;
@@ -287,7 +287,7 @@ public class User {
 		  hashedText = new HexBinaryAdapter().marshal(hash);
 	  }
 	  catch(NoSuchAlgorithmException e){
-		  e.printStackTrace();//LOGGER.log(Level.FINE, e.toString(), e);
+		  LOGGER.log(Level.FINE, e.toString(), e);
 	  }
 	  return hashedText;
   }

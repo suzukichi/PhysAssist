@@ -13,14 +13,15 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
+@SuppressWarnings("serial")
 public class Home extends Page {
 
 	private JLabel topicButton;
 	private JLabel groupButton;
 	private JLabel settingsButton;
 	private JPanel homepageOptions; 
-	private logic.SettingsPage settingsController;
-	private logic.TopicListPage topicController;
+	private transient logic.SettingsPage settingsController;
+	private transient logic.TopicListPage topicController;
 	
 	/**
 	 * Create the panel.

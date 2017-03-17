@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 
+@SuppressWarnings("serial")
 public class Login extends Page {
 	private JPanel bodyPanel;
 	private JPanel formatPanel;
@@ -22,7 +23,7 @@ public class Login extends Page {
 	private JPasswordField passwordField;
 	private JButton loginButton;
 	private JButton createButton;
-	private logic.LoginPage controller;
+	private transient logic.LoginPage controller;
 	private JPanel textPanel;
 	private JTextPane txtpnErrorInvalidUsername;
 	

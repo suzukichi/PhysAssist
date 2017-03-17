@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 
 public class Application {
-	// static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
+	static final Logger LOGGER = Logger.getLogger(Application.class.getName());
 	private guis.MainFrame frame;
 	private LoginPage loginController;
 	private HomePage homeController;
@@ -19,9 +19,9 @@ public class Application {
 	}
 	
 	public static void main(String[] args){
-		EventQueue.invokeLater(() -> {try { Application app = new Application(); } 
+		EventQueue.invokeLater(() -> {try { new Application(); } 
 		 catch (Exception e) { 
-			 e.printStackTrace();//LOGGER.log(Level.FINE, e.toString(), e); 
+			 LOGGER.log(Level.FINE, e.toString(), e); 
 			 } 
 		});
 				

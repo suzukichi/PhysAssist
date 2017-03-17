@@ -24,6 +24,7 @@ import javax.swing.border.SoftBevelBorder;
 
 import logic.Topic;
 
+@SuppressWarnings("serial")
 public class Topics extends Page {
 	private JButton item1Button;
 	private JButton item2Button;
@@ -36,13 +37,13 @@ public class Topics extends Page {
 
 	public JPanel bodyPanel;
 	public JPanel formatPanel;
-	private java.util.List<logic.Topic> topicList;
+	private transient java.util.List<logic.Topic> topicList;
 	private String categoryTitle;
 	private Long parentID;
 	private JPanel innerp1;
 	private JPanel innerp2;
 	private JPanel innerp3;
-	private logic.TopicListPage topicController;
+	private transient logic.TopicListPage topicController;
 	
 	public Topics() {
 	   if (this.parentID == null) {
