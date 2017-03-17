@@ -13,7 +13,7 @@ public class TestLoopTopicPageList {
 	public void testLoopNever(){
 		TopicListPage t = new TopicListPage();
 		t.setTestMode(true);
-		List<Topic> topics = new ArrayList<Topic>();
+		List<Topic> topics = new ArrayList<>();
 		t.setTopics(topics);
 		int i = t.updateCategoryList();
 		assertEquals(0,i,0);
@@ -23,7 +23,7 @@ public class TestLoopTopicPageList {
 		TopicListPage t = new TopicListPage();
 		t.setTestMode(true);
 		t.setCatCursor(3);
-		List<Topic> topics = new ArrayList<Topic>();
+		List<Topic> topics = new ArrayList<>();
 		Topic tpc1 = new Topic((long)1,"aaaa","aa");
 		Topic tpc2 = new Topic((long)2,"aaaa","aa");
 		Topic tpc3 = new Topic((long)3,"aaaa","aa");
@@ -40,7 +40,7 @@ public class TestLoopTopicPageList {
 	public void testLoopOverFour(){
 		TopicListPage t = new TopicListPage();
 		t.setTestMode(true);
-		List<Topic> topics = new ArrayList<Topic>();
+		List<Topic> topics = new ArrayList<>();
 		Topic tpc1 = new Topic((long)1,"aaaa","aa");
 		Topic tpc2 = new Topic((long)2,"aaaa","aa");
 		Topic tpc3 = new Topic((long)3,"aaaa","aa");
@@ -58,7 +58,7 @@ public class TestLoopTopicPageList {
 	public void testLoopOverTwo(){
 		TopicListPage t = new TopicListPage();
 		t.setTestMode(true);
-		List<Topic> topics = new ArrayList<Topic>();
+		List<Topic> topics = new ArrayList<>();
 		Topic tpc1 = new Topic((long)1,"aaaa","aa");
 		Topic tpc2 = new Topic((long)2,"aaaa","aa");
 		Topic tpc3 = new Topic((long)3,"aaaa","aa");
@@ -76,7 +76,7 @@ public class TestLoopTopicPageList {
 	public void testLoopAtThree(){
 		TopicListPage t = new TopicListPage();
 		t.setTestMode(true);
-		List<Topic> topics = new ArrayList<Topic>();
+		List<Topic> topics = new ArrayList<>();
 		Topic tpc1 = new Topic((long)1,"aaaa","aa");
 		Topic tpc2 = new Topic((long)2,"aaaa","aa");
 		Topic tpc3 = new Topic((long)3,"aaaa","aa");

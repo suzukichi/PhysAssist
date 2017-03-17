@@ -42,7 +42,7 @@ public class TestDBConnections {
 
       String text = "My cool test text";
 
-      String query = "INSERT INTO `mysql_test` SET `text` = ";
+      String query = GENERIC_QUERY;
       String[] params = {DB.T_S, text}; 
 
       PreparedStatement stmnt = db.createPreparedStatement(query + "?", params);
@@ -75,7 +75,7 @@ public class TestDBConnections {
       DB db = DB.getInstance();
       db.connect();
 
-      String query = "INSERT INTO `mysql_test` SET `text` = ?";
+      String query = GENERIC_QUERY;
       String[] params = {DB.T_D, null};
 
       PreparedStatement stmnt;

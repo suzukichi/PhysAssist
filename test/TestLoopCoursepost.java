@@ -5,17 +5,18 @@ import static org.junit.Assert.*;
 import logic.Post;
 import logic.Course;
 public class TestLoopCoursepost {
+	private String PROGRAMMING = "Programming";
 	
 	@Test
 	public void testLoopNever(){
-		Course c = new Course(1,"SE", "Programming");
+		Course c = new Course(1,"SE", PROGRAMMING);
 		int never = c.toStringHelper("");
 		assertEquals(0,never,0);
 	}
 	
 	@Test
 	public void testLoopOnce(){
-		Course c1 = new Course(1,"SE", "Programming");
+		Course c1 = new Course(1,"SE", PROGRAMMING);
 		Post p1 = new Post("abc","def");
 		c1.addPost(p1);
 		int one = c1.toStringHelper("");
@@ -24,7 +25,7 @@ public class TestLoopCoursepost {
 	
 	@Test
 	public void testLoopN(){
-		Course c2 = new Course(1,"SE", "Programming");
+		Course c2 = new Course(1,"SE", PROGRAMMING);
 		Post p3 = new Post("abc","def");
 		Post p4 = new Post("def","efg");
 		c2.addPost(p3);

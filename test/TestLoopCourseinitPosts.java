@@ -12,7 +12,7 @@ public class TestLoopCourseinitPosts {
 	public void testLoopNever(){
 	    Course c = new Course(0,"a","b");
 	    c.setTestingMode(true);
-	    ArrayList<Long> postIDList = new ArrayList<Long>();
+	    ArrayList<Long> postIDList = new ArrayList<>();
 	    int i = c.initPosts(postIDList);
 		assertEquals(0,i,0);
 	}
@@ -20,7 +20,7 @@ public class TestLoopCourseinitPosts {
 	public void testLoopOnce(){
 	    Course c = new Course(0,"a","b");
 	    c.setTestingMode(true);
-	    ArrayList<Long> postIDList = new ArrayList<Long>();
+	    ArrayList<Long> postIDList = new ArrayList<>();
 	    postIDList.add((long)11);
 	    int i = c.initPosts(postIDList);
 		assertEquals(1,i,0);
@@ -29,7 +29,7 @@ public class TestLoopCourseinitPosts {
 	public void testLoopN(){
 	    Course c = new Course(0,"a","b");
 	    c.setTestingMode(true);
-	    ArrayList<Long> postIDList = new ArrayList<Long>();
+	    ArrayList<Long> postIDList = new ArrayList<>();
 	    postIDList.add((long)11);
 	    postIDList.add((long)12);
 	    int i = c.initPosts(postIDList);
