@@ -154,10 +154,6 @@ public class Course {
      db.execute(qDeleteTopic, params);
      
      // Must delete all Posts from DB as well.
-     /*
-     for (Post p : this.posts) {
-        p.delete();
-     }*/
      deleteHelper();
 
      this.posts.clear();
