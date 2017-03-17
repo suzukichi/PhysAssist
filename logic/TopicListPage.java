@@ -40,8 +40,6 @@ public class TopicListPage extends Page {
    public void initView(MainWindow view){
 	  categoryList = new guis.Topics();
 	  view.add(categoryList, "categories");
-	  topicList = new guis.Topics();
-	  view.add(topicList, "topics");
    }
 
    public void updateCategoryList(){
@@ -55,7 +53,6 @@ public class TopicListPage extends Page {
    
    public void initCatPage(){
 	   catCursor = 0;
-	   updateCategoryList();
    }
    
    public void initTopicPage(){
@@ -65,5 +62,12 @@ public class TopicListPage extends Page {
    public void updateTopicList(){
 	   parentID = 0;
 	   Lists.getTopicList(parentID);
+   }
+   
+   public void setTopics(List<Topic> topics){
+	   this.topics = topics;
+   }
+   public void setCatCursor(int i){
+	   this.catCursor=i;
    }
 }
