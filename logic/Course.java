@@ -129,12 +129,18 @@ public class Course {
   
   /*
    * Saves all Posts that belong to this Course to the DB.
+   * Sorry I got to make savePosts public to test it. It has a loop.
    */
-  private void savePosts() {
-    // Loop tested in test/TestLoopCourseSavePosts.java
+  public int savePosts() {
+    int iterations=0;
+	// Loop tested in test/TestLoopCourseSavePosts.java
     for (Post p : posts) {
-      p.save();
+      if(!testMode){
+    	  p.save();
+      }
+      iterations++;
     }
+    return iterations;
   }
   
   /*
