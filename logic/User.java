@@ -95,11 +95,14 @@ public class User {
     }
     
     // now get course objects
-    for (long courseID : courseIDList) {
-      list.add(new Course(courseID));
-    }
-        
+    initCourses(list,courseIDList);       
     return list;
+  }
+  
+  public void initCourses(List<Course> list, ArrayList<Long> courseIDList){
+	  for (long courseID : courseIDList) {
+	      list.add(new Course(courseID));
+	  }  
   }
   
   /*
@@ -123,9 +126,7 @@ public class User {
     }
     
     // now get course objects
-    for (long courseID : courseIDList) {
-      list.add(new Course(courseID));
-    }
+    initCourses(list,courseIDList);
     
     return list;
   }
