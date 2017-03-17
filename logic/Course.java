@@ -191,7 +191,7 @@ public class Course {
     rep += " courseName: " + courseName;
     rep += " description: " + description;
     rep += " posts: [\n";
-    
+    // Loop tested in test/TestLoopCoursepost.java
     for (Post p : posts) {
       rep += "   " + p.toString() + ", \n";
     }
