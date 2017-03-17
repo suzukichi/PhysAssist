@@ -8,9 +8,8 @@ public class TestLoopCoursepost {
 	@Test
 	public void testLoopNever(){
 		Course c = new Course(1,"SE", "Programming");
-		String never = c.toString();
-		assertEquals("{Course:  courseID: 0 courseName: SE description: Programming posts: [\n"+
-				"   ]}\n",never);
+		int never = c.toStringHelper("");
+		assertEquals(0,never,0);
 	}
 	
 	@Test
@@ -18,10 +17,8 @@ public class TestLoopCoursepost {
 		Course c1 = new Course(1,"SE", "Programming");
 		Post p1 = new Post("abc","def");
 		c1.addPost(p1);
-		String one = c1.toString();
-		assertEquals("{Course:  courseID: 0 courseName: SE description: Programming posts: [\n"
-				+"      Post: abc, def, \n"
-				+"   ]}\n",one);
+		int one = c1.toStringHelper("");
+		assertEquals(1,one,0);
 	}
 	
 	@Test
@@ -31,10 +28,7 @@ public class TestLoopCoursepost {
 		Post p4 = new Post("def","efg");
 		c2.addPost(p3);
 		c2.addPost(p4);
-		String n = c2.toString();
-		assertEquals("{Course:  courseID: 0 courseName: SE description: Programming posts: [\n"
-				+"      Post: abc, def, \n"
-				+"      Post: def, efg, \n"
-				+"   ]}\n",n);
+		int n = c2.toStringHelper("");
+		assertEquals(2,n,0);
 	}
 }
