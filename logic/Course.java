@@ -20,10 +20,6 @@ public class Course {
     this.description = description;
     this.startDate = System.currentTimeMillis() / 1000L;
     this.posts = new ArrayList<>();
-
-    //this.posts = posts;
-    
-    //loadPosts();
   }
   
   public Course(long courseID) {
@@ -65,8 +61,8 @@ public class Course {
   private void loadPosts() {
     DB db = DB.getInstance();
     
-    String qGetPostsForCourse = "SELECT * FROM `posts` t" +
-        " WHERE `classroomid` = ?";
+    String qGetPostsForCourse = "SELECT `postid` FROM `posts`" +
+                                " WHERE `classroomid` = ?";
     
     String[] pGetPostsForCourse = {DB.T_I, String.valueOf(courseID)};
 
@@ -75,7 +71,7 @@ public class Course {
     ArrayList<Long> postIDList = new ArrayList<>();
     
     for (HashMap<String, String> row : rows) {
-      postIDList.add(Long.parseLong(row.get("postid")));
+      postIDList.add(Long.valueOf(row.get("postid")));
     }
     
     this.posts = new ArrayList<>();

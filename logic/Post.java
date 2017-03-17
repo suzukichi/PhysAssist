@@ -15,11 +15,10 @@ import java.util.Objects;
 
 public class Post {
 	private long postID;
-    private long classroomID;
-    private long authorID;
-    private long publishTS;
-    private long lastEditTS;
-    private String title, text;
+   private long classroomID;
+   private long authorID;
+   private long publishTS;
+   private String title, text;
 
     public Post(String title, String text, long courseID) {
       this.title = title;
@@ -31,8 +30,7 @@ public class Post {
     public Post(String title, String text) {
     	this.title = title;
     	this.text = text;
-        this.publishTS = System.currentTimeMillis() / 1000L;
-    	this.lastEditTS = publishTS;
+      this.publishTS = System.currentTimeMillis() / 1000L;
     }
     
     /**
@@ -41,7 +39,6 @@ public class Post {
      * @param postID
      */
     public Post(long postID) {
-    	this.postID = postID;
 
     	String qgetPost = "SELECT * FROM `posts` " + 
     	                   " WHERE `postid` = ?";
@@ -53,28 +50,31 @@ public class Post {
     	}
 
       HashMap<String, String> row = rows.get(0);
+    	this.postID = postID;
     	this.title = row.get("title");
     	this.text = row.get("text");
-    	//TODO finish filling in attributes
-    	//this.classroomID = Integer.parseInt(row.get("classroomid"));
+    	this.publishTS = Long.valueOf(row.get("publish_date"));
+    	this.classroomID = Long.valueOf(row.get("classroomid"));
     }
     
     /**
      * Saves the post to the db.
      */
     public long save() {
-       String setFields = "`title` = ?, `text` = ?, `classroomid` = ?, `postid` = ?";
+       String setFields = "`title` = ?, `text` = ?, `classroomid` = ?, `postid` = ?, `publish_date` = ?";
        String classroomIDStr = String.valueOf(this.classroomID); 
        String[] pSavePost = {
           DB.T_S, this.title,
           DB.T_S, this.text,
           DB.T_I, classroomIDStr,
           DB.T_I, String.valueOf(this.postID), 
+          DB.T_I, String.valueOf(this.publishTS), 
 
           DB.T_S, this.title,
           DB.T_S, this.text,
           DB.T_I, classroomIDStr,
-          DB.T_I, String.valueOf(this.postID) 
+          DB.T_I, String.valueOf(this.postID), 
+          DB.T_I, String.valueOf(this.publishTS) 
        };
 
        String qSavePost = "INSERT INTO `posts` SET " + setFields +
@@ -111,12 +111,15 @@ public class Post {
     
     @Override
     public String toString() {
-      return "   Post: " + title + ", " + text;
+      return "Post " + this.postID + " in class " + this.classroomID + " by " + this.authorID + "\n" + 
+             "Title:" + this.title + "\n " + 
+             "Description: " + this.text + "\n"  + 
+             "published " + this.publishTS;
     }
     
     @Override
     public int hashCode() {
-      return Objects.hash(postID, classroomID, authorID, publishTS, lastEditTS, title, text);
+      return Objects.hash(postID, classroomID, authorID, publishTS, title, text);
     }
     
     @Override
@@ -136,7 +139,6 @@ public class Post {
       		  Objects.equals(this.classroomID, other.classroomID) &&
       		  Objects.equals(this.authorID, other.authorID);
       boolean secondComp = Objects.equals(this.publishTS, other.publishTS) &&
-              Objects.equals(this.lastEditTS, other.lastEditTS) &&
               Objects.equals(this.title, other.title);
       
       
