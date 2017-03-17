@@ -20,7 +20,7 @@ public class TestUser {
   @Test
   public void testGetPermissionStudent() {
     User user = new User("username", "bob", "smith", "bla", "bob@email.com");
-    Course c = new Course(1, "test course", "test course description", System.currentTimeMillis());
+    Course c = new Course(1, "test course", "test course description");
     
     user.enrollCourse(c);
     assertEquals("student", user.getPermission(c));
@@ -29,7 +29,7 @@ public class TestUser {
   @Test
   public void testGetPermissionProfessor() {
     User user = new User("username", "bob", "smith", "bla", "bob@email.com");
-    Course c = new Course(1, "test course", "test course description", System.currentTimeMillis());
+    Course c = new Course(1, "test course", "test course description");
     
     user.teachCourse(c);
     assertEquals("professor", user.getPermission(c));
@@ -38,7 +38,7 @@ public class TestUser {
   @Test
   public void testGetPermissionGeneralUser() {
     User user = new User("username", "bob", "smith", "bla", "bob@email.com");
-    Course c = new Course(1, "test course", "test course description", System.currentTimeMillis());
+    Course c = new Course(1, "test course", "test course description");
     
     assertEquals("general_user", user.getPermission(c));
   }

@@ -24,7 +24,7 @@ public class TestCourse {
    */
   @Test
   public void TestCourseConstructionDB() {
-    Course course = new Course(50, "test course", "Description of test course.", 1);
+    Course course = new Course(50, "test course", "Description of test course.");
     course.save();
     
     Course fromDB = new Course(course.courseID);
@@ -40,7 +40,7 @@ public class TestCourse {
    */
   @Test
   public void TestCourseWithPosts() {
-    Course course = new Course(55, "test course", "Description of test course.", 1);
+    Course course = new Course(55, "test course", "Description of test course.");
     course.save();
     // have to get courseID
     long courseID = course.courseID;
@@ -58,10 +58,6 @@ public class TestCourse {
     assertEquals(course, fromDB);
     
     course.delete();
-    
-    Course c = new Course(116);
-    c.delete();
-    
   }
 
 }

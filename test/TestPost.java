@@ -30,6 +30,7 @@ public class TestPost {
 	   
 	   assertEquals(postID, post.postID);
 	   
+	   op.delete();
 	}
 
 	@Test
@@ -48,6 +49,7 @@ public class TestPost {
 	   
 	   assertEquals(op.title, post.title);
 	   
+	   op.delete();
 	}
 
 }

@@ -14,12 +14,12 @@ public class Course {
   public long startDate;
   public List<Post> posts;
   
-  public Course(long professorID, String courseName, String description, long startDate) {
+  public Course(long professorID, String courseName, String description) {
     this.courseID = 0;
     this.professorID = professorID;
     this.courseName = courseName;
     this.description = description;
-    this.startDate = startDate;
+    this.startDate = System.currentTimeMillis() / 1000L;
     this.posts = new ArrayList<Post>();
 
     //this.posts = posts;
