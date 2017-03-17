@@ -205,13 +205,20 @@ public class Course {
     rep += " description: " + description;
     rep += " posts: [\n"; 
     // Loop tested in test/TestLoopCoursepost.java
-    for (Post p : posts) {
-      rep += "   " + p.toString() + ", \n";
-    }
+    toStringHelper(rep);
     
     rep += "   ]}\n";
     
     return rep;
+  }
+  public int toStringHelper(String rep){
+	  int iterations = 0;
+	  // Loop tested in test/TestLoopCoursepost.java
+	  for (Post p : posts) {
+	      rep += "   " + p.toString() + ", \n";
+	      iterations++;
+	  }
+	  return iterations;
   }
   
   @Override
