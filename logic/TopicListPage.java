@@ -20,8 +20,11 @@ public class TopicListPage extends Page {
   private int catCursor;
   private int topicCursor;
   private long parentID;
+  private boolean testMode = false;
   
-  
+  public TopicListPage(){
+	  
+  }
   
   public TopicListPage(MainWindow view){
 	  //topicController = new TopicPage(view);
@@ -45,16 +48,26 @@ public class TopicListPage extends Page {
 	  view.add(topicList, "topics");
    }
 
-   public void updateCategoryList(){
+   public int updateCategoryList(){
 	   String[] buttons = {"N/A", "N/A", "N/A"};
 	   String[] IDs = {"","",""};
 	   parentID = 0;
-	   topics = Lists.getTopicList(parentID);
-	   for(int i = catCursor; i < topics.size() && i < 3; i++) {
-		   buttons[i] = topics.get(i).getTitle();
-		   IDs[i] = Long.toString(topics.get(i).getTopicID());
+	   int iterator=0;
+	   if(!testMode){
+		   topics = Lists.getTopicList(parentID);
 	   }
-	   categoryList.updateButtons(buttons, IDs);
+	   // Loop tested in test/TestLoopTopicPageList.java
+	   for(int i = catCursor; i < topics.size() && i < 3; i++) {
+		   if(!testMode){
+			   buttons[i] = topics.get(i).getTitle();
+			   IDs[i] = Long.toString(topics.get(i).getTopicID());
+		   }
+		   iterator++;
+	   }
+	   if(!testMode){
+		   categoryList.updateButtons(buttons, IDs);
+	   }
+	   return iterator;
    }
    
    public void initCatPage(){
@@ -77,5 +90,14 @@ public class TopicListPage extends Page {
 		   IDs[i] = Long.toString(topics.get(i).getTopicID());
 	   }
 	   topicList.updateButtons(buttons, IDs);
+   }
+   public void setTopics(List<Topic> topics){
+	   this.topics = topics;
+   }
+   public void setCatCursor(int i){
+	   this.catCursor=i;
+   }
+   public void setTestMode(boolean mode){
+	   this.testMode = mode;
    }
 }
