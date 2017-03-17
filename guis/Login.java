@@ -101,9 +101,8 @@ public class Login extends Page {
 		buttonsPanel.add(createButton);
 
 		loginButton = new JButton("Login");
-		loginButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		loginButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				login(e);
 			}
 		});
@@ -139,9 +138,9 @@ public class Login extends Page {
    		return (MainWindow) temp5.getParent();
 	}
 	
-	public void login(MouseEvent event){
+	public void login(ActionEvent e){
 		if (controller.verify(usernameField.getText(), new String(passwordField.getPassword())) == 1) {
-			MainWindow main = getMainFromButton((JButton)event.getSource());
+			MainWindow main = getMainFromButton((JButton)e.getSource());
 			CardLayout cards = main.getCardLayout();
 	   		txtpnErrorInvalidUsername.setVisible(false);
 	   		cards.show(main, "home");

@@ -18,27 +18,30 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
+@SuppressWarnings("serial")
 public class CreateAccount extends Page {
-JPanel usernamePanel; 
-private JTextField usernameField;
-private JTextField firstNameField;
-private JTextField lastNameField;
-private JTextField emailField;
-private JPasswordField passwordField;
-private JPasswordField passwordField1;
-public JPanel bodyPanel;
-public JPanel formatPanel;
-public JTextPane userNameErrorText;
-public JTextPane emailErrorText;
-
-public logic.LoginPage controller;
+	JPanel usernamePanel; 
+	private JTextField usernameField;
+	private JTextField firstNameField;
+	private JTextField lastNameField;
+	private JTextField emailField;
+	private JPasswordField passwordField;
+	private JPasswordField passwordField1;
+	public JPanel bodyPanel;
+	public JPanel formatPanel;
+	public JTextPane userNameErrorText;
+	public JTextPane emailErrorText;
+	
+	public logic.LoginPage controller;
 
 	public CreateAccount() {
 		
 	   this.locationName = "Sign Up";
 	   this.createHeader();
 	   
+	   
 	   bodyPanel = new JPanel();
+	   this.contentPanel.add(bodyPanel);
 	   GridBagLayout gblBodyPanel = new GridBagLayout();
 	   gblBodyPanel.rowWeights = new double[]{0.0};
 	   gblBodyPanel.columnWeights = new double[]{1.0};
@@ -186,7 +189,11 @@ public logic.LoginPage controller;
 		formatPanel.add(p7);
 		
 		JButton btnCreate = new JButton("Create Account");
-		btnCreate.addActionListener(e -> validate());
+		btnCreate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				validate(e);
+			}
+		});
 		
 		p7.add(btnCreate);
 		btnCreate.setBounds(83, 61, 130, 23);

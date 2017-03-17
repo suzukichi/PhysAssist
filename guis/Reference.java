@@ -35,7 +35,7 @@ public class Reference extends Page {
 	   this.locationName = "Post";
 	   this.createHeader();
 	   
-	   topic = new logic.Topic(topicID);
+	   //topic = new logic.Topic(topicID);
 	   
 	   bodyPanel = new JPanel();
 	   GridBagLayout gbl_bodyPanel = new GridBagLayout();

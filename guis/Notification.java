@@ -36,7 +36,7 @@ public class Notification extends Page {
 	   this.locationName = "Post";
 	   this.createHeader();
 	   
-	   post = new logic.Post(postID);
+	   //post = new logic.Post(postID);
 	   
 	   bodyPanel = new JPanel();
 	   GridBagLayout gbl_bodyPanel = new GridBagLayout();

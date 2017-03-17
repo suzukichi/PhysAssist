@@ -140,27 +140,12 @@ public class Page extends JPanel {
 		menuGroupButton.setFont(new Font("DialogInput", Font.PLAIN, 12));
 		popupMenu.add(menuGroupButton);
 		
-		JMenuItem menuQuizButton = new JMenuItem("Quizzes");
-		menuQuizButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent event) {
-				super.mousePressed(event);
-				showDropdownCard(event, "quizzes");
-			}
-		});
-		menuQuizButton.setBorder(null);
-		menuQuizButton.setHorizontalTextPosition(SwingConstants.LEFT);
-		menuQuizButton.setVerticalTextPosition(SwingConstants.TOP);
-		menuQuizButton.setVerticalAlignment(SwingConstants.TOP);
-		menuQuizButton.setPreferredSize(new Dimension(45, 22));
-		menuQuizButton.setFont(new Font("DialogInput", Font.PLAIN, 12));
-		popupMenu.add(menuQuizButton);
-		
 		JMenuItem mntmCalculator = new JMenuItem("Calculator");
 		mntmCalculator.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent event) {
 				super.mousePressed(event);
+				logic.Calculator calc = new logic.Calculator();
 				showDropdownCard(event, "calculator");
 			}
 		});

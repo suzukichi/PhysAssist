@@ -47,7 +47,9 @@ public class Home extends Page {
 			@Override
 			public void mouseClicked(MouseEvent event) {
 				super.mouseClicked(event);
-			   showCard(event, "topics");
+			   
+				topicController.initCatPage();
+				showCard(event, "categories");   
 			}
 		});
 		ImageIcon topicIcon = new ImageIcon(Home.class.getResource("/images/topicIcon.png"));

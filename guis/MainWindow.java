@@ -17,16 +17,6 @@ public class MainWindow extends JPanel {
 		setLayout(cardlayout);
 		
 		main = new JPanel(cardlayout);
-		add(new Home(), "home");
-		add(new About(), "about");
-		
-		topicList = new Topics();
-		add(topicList, "topics");
-		add(new Courses(), "groups");
-		add(new Login(), "login");
-		add(new CreateAccount(), "create_account");
-		add(new Settings(), "settings");
-		
 		add(new ViewTopic(), "category");
 		Equations temp = new Equations();
 		add(temp, "equations");
