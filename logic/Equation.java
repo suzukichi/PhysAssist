@@ -17,31 +17,33 @@ public class Equation {
    }
 
    private void getEquation(long equationID) {
+      String qGetEquation = "SELECT `name`, `view`, `description`, `history`, `topicid` " + 
+                            " FROM `equations`" + 
+                            " WHERE `equationid` = ? " + 
+                            " LIMIT 1";
       String[] pGetEquation = {DB.T_I, String.valueOf(equationID)};
-
-      String qGetEquation = "SELECT `name`, `view`, `description`, `history`, `topicid` FROM `equations` WHERE `equationid` = ?";
       ArrayList<HashMap<String, String>> rows = DB.getInstance().query(qGetEquation, pGetEquation);
 
-      for (HashMap<String, String> row : rows) {
-         this.name = row.get("name");
-         this.view = row.get("view");
-         this.description = row.get("description");
-         this.history = row.get("history");
-         this.topicID = Long.parseLong(row.get("topicid"));
-         this.equationID = equationID;
-      }
+      this.equationID = equationID;
+
+      HashMap<String, String> row = rows.get(0);
+      this.name = row.get("name");
+      this.view = row.get("view");
+      this.description = row.get("description");
+      this.history = row.get("history");
+      this.topicID = Long.parseLong(row.get("topicid"));
    }
 
    public String getView() {
-      return view;
+      return this.view;
    }
 
    public String getDescription() {
-      return description;
+      return this.description;
    }
 
    public String getHistory() {
-      return history;
+      return this.history;
    }
 
    public Term solve(Term target, List<Term> terms) throws Exception {
