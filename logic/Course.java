@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Course {
+  private boolean testMode = false;
   private long courseID;
   private long professorID;
   private String courseName;
@@ -159,8 +160,10 @@ public class Course {
   public int deleteHelper(){
 	  int iterations=0;
 	  for (Post p : this.posts) {
+		  if(!testMode){
 	        p.delete();
-	        iterations++;
+		  }
+	      iterations++;
 	  }
 	  return iterations;
   }
@@ -240,11 +243,13 @@ public class Course {
         
   }
 
-public long getCourseID() {
-	return this.courseID;
-}
-
-public void addPost(Post p) {
+  public long getCourseID() {
+	  return this.courseID;
+  }
+  public void addPost(Post p) {
 	this.posts.add(p);	
-}
+  }
+  public void setTestingMode(boolean mode){
+	testMode = mode;
+  }
 }
