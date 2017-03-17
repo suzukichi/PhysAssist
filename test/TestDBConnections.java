@@ -14,9 +14,8 @@ import org.junit.Test;
 import logic.DB;
 
 public class TestDBConnections {
-private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
    private String testText;
-   private static final String genericQuery = "INSERT INTO `mysql_test` SET `text` = ?";
+   private static final String GENERIC_QUERY = "INSERT INTO `mysql_test` SET `text` = ?";
    /**
     * Tests in this file use the mysql_test db, which is not really part of the
     * PhysAssist program, but useful to check that we can connect to the db, and 
@@ -61,7 +60,7 @@ private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
    public void testInsertGeneric() {
       DB db = DB.getInstance();
       String[] params = {DB.T_S, this.testText + " made by testInsertGeneric"};
-      int rowsUpdated = db.execute(genericQuery, params);
+      int rowsUpdated = db.execute(GENERIC_QUERY, params);
       assertEquals(1, rowsUpdated);
    }
 
@@ -78,7 +77,7 @@ private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
    public void testSelectOneRow() {
       DB db = DB.getInstance();
       String[] params = {DB.T_S, this.testText};
-      db.execute(genericQuery, params);
+      db.execute(GENERIC_QUERY, params);
       String qGetTestRow = "SELECT `id`, `text` FROM `mysql_test` LIMIT 1";
       String[] pGetTestRow = {};
       List<HashMap<String, String>>rows = db.query(qGetTestRow, pGetTestRow);
@@ -91,7 +90,7 @@ private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
    public void testUpdateOne() {
       DB db = DB.getInstance();
       String[] pInsert = {DB.T_S, this.testText};
-      db.execute(genericQuery, pInsert);
+      db.execute(GENERIC_QUERY, pInsert);
 
       String editedText = "Text inserted by TestDBConnections.testUpdateOne at " +
        System.currentTimeMillis() / 1000L;

@@ -30,12 +30,12 @@ CREATE TABLE `ast` (
 -- AST DATA
 INSERT INTO `ast` (`term`, `equationid`, `ast`)
 VALUES 
-("F", 0, "* m a"),
-("m", 0, "/ F a"),
-("a", 0, "/ F m"),
-("F", 1, "* k x"),
-("x", 1, "/ F K"),
-("K", 1, "/ F x"),
-("s", 2, "/ d t"),
-("d", 2, "* t s"),
-("t", 2, "/ d s");
+("F", 1, "* m a"),
+("m", 1, "/ F a"),
+("a", 1, "/ F m"),
+("F", 2, "* k x"),
+("x", 2, "/ F K"),
+("K", 2, "/ F x"),
+("s", 3, "/ d t"),
+("d", 3, "* t s"),
+("t", 3, "/ d s");

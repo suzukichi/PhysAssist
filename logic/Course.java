@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Course {
+  private boolean testMode = false;
   private long courseID;
   private long professorID;
   private String courseName;
@@ -124,12 +125,18 @@ public class Course {
   
   /*
    * Saves all Posts that belong to this Course to the DB.
+   * Sorry I got to make savePosts public to test it. It has a loop.
    */
-  private void savePosts() {
-    // Loop tested in test/TestLoopCourseSavePosts.java
+  public int savePosts() {
+    int iterations=0;
+	// Loop tested in test/TestLoopCourseSavePosts.java
     for (Post p : posts) {
-      p.save();
+      if(!testMode){
+    	  p.save();
+      }
+      iterations++;
     }
+    return iterations;
   }
   
   /*
@@ -154,9 +161,12 @@ public class Course {
   //isolated the for loop for testing, returns an int for testing purposes
   public int deleteHelper(){
 	  int iterations=0;
+	  // Loop tested in test/TestLoopCourseDeleteHelper.java
 	  for (Post p : this.posts) {
+		  if(!testMode){
 	        p.delete();
-	        iterations++;
+		  }
+	      iterations++;
 	  }
 	  return iterations;
   }
@@ -236,11 +246,13 @@ public class Course {
         
   }
 
-public long getCourseID() {
-	return this.courseID;
-}
-
-public void addPost(Post p) {
+  public long getCourseID() {
+	  return this.courseID;
+  }
+  public void addPost(Post p) {
 	this.posts.add(p);	
-}
+  }
+  public void setTestingMode(boolean mode){
+	testMode = mode;
+  }
 }

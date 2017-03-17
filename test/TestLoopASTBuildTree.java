@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 import logic.AST;
 public class TestLoopASTBuildTree 
 {	
-	private final static String testString = "Hello";
+	private static final String TEST_STRING = "Hello";
 	
 	@Test
 	public void loopTest1()
@@ -20,9 +20,9 @@ public class TestLoopASTBuildTree
 	@Test
 	public void loopTest2()
 	{
-		AST a = new AST(TESTSTRING);
+		AST a = new AST(TEST_STRING);
 		String root = a.toString();
-		assertEquals(TESTSTRING,root);
+		assertEquals(TEST_STRING,root);
 	}
 	
 	@Test
@@ -30,7 +30,7 @@ public class TestLoopASTBuildTree
 	{
 		AST a = new AST("Hello World");
 		String root = a.toString();
-		assertEquals(TESTSTRING,root);
+		assertEquals(TEST_STRING,root);
 	}
 	
 	@Test
