@@ -76,21 +76,11 @@ public class Course {
     }
     
     this.posts = new ArrayList<>();
-    initPosts(postIDList);
+    
+    for (long postID : postIDList) {
+      posts.add(new Post(postID));
+    }
   }
-  
-  public int initPosts(ArrayList<Long> postIDList){
-	  int iterations = 0;
-	  // Loop tested in test/TestLoopCourseinitPosts.java
-	  for (long postID : postIDList) {
-	      if(!testMode){
-	    	  posts.add(new Post(postID));
-	      }
-	      iterations++;
-	  }
-	  return iterations;
-  }
-  
   
   public void save() {
     DB db = DB.getInstance();
@@ -214,18 +204,14 @@ public class Course {
     rep += " courseName: " + courseName;
     rep += " description: " + description;
     rep += " posts: [\n"; 
-    toStringHelper(rep);
+    // Loop tested in test/TestLoopCoursepost.java
+    for (Post p : posts) {
+      rep += "   " + p.toString() + ", \n";
+    }
+    
     rep += "   ]}\n";
+    
     return rep;
-  }
-  public int toStringHelper(String rep){
-	  int iterations = 0;
-	  // Loop tested in test/TestLoopCoursepost.java
-	  for (Post p : posts) {
-	      rep += "   " + p.toString() + ", \n";
-	      iterations++;
-	  }
-	  return iterations;
   }
   
   @Override

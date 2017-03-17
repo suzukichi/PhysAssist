@@ -4,12 +4,12 @@ import java.awt.EventQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import test.TestAST;
+//import test.TestAST;
 
 
 
 public class Application {
-	private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
+	// static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
 	private guis.MainFrame frame;
 	private LoginPage loginController;
 	private HomePage homeController;
@@ -19,8 +19,11 @@ public class Application {
 	}
 	
 	public static void main(String[] args){
-		EventQueue.invokeLater(() -> {try { new Application(); } 
-		 catch (Exception e) { LOGGER.log(Level.FINE, e.toString(), e); } });
+		EventQueue.invokeLater(() -> {try { Application app = new Application(); } 
+		 catch (Exception e) { 
+			 e.printStackTrace();//LOGGER.log(Level.FINE, e.toString(), e); 
+			 } 
+		});
 				
 				/*new Runnable() {
 			@Override
@@ -45,6 +48,7 @@ public class Application {
 		homeController = new HomePage(view);
 		loginController = new LoginPage(view);
 		loginController.setHomeController(homeController);
+		view.getCardLayout().show(view, "login");
 		//creates home page controller
 			//creates topic controller 
 				//cascades to create reference, equations, topics and lists views

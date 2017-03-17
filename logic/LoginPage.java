@@ -14,12 +14,10 @@ public class LoginPage extends Page {
   private boolean isRegister;
   private guis.Login loginPage;
   private guis.CreateAccount createPage;
-  private guis.MainWindow view;
   private logic.HomePage homeController;
   
   //pass controller topics or query them
   public LoginPage(guis.MainWindow view){
-	  this.view = view;
 	  initView(view);
   }
   
@@ -43,6 +41,7 @@ public class LoginPage extends Page {
 	   else {
 		   homeController.user =  new User(userID);
 		   homeController.passUser();
+		   homeController.user.save();
 		   return 1;
 	   }
    }
@@ -54,6 +53,7 @@ public class LoginPage extends Page {
 		   return -2;
 	   homeController.user = new logic.User(username, firstName, lastName, password, email);
 	   homeController.passUser();
+	   homeController.user.save();
 	   return 1;
    }
    

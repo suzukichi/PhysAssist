@@ -10,6 +10,7 @@ package logic;
 
 public class HomePage extends Page {
 	private guis.Home homeView;
+	private guis.About aboutView;
 	public TopicListPage topicController;
 	//public CourseList courseController;
 	public SettingsPage settingsController;
@@ -17,7 +18,7 @@ public class HomePage extends Page {
   public HomePage(guis.MainWindow view){
 	  topicController = new TopicListPage(view);
 	  //courseController = new CourseList(view);
-	  //settingsController = new SettingsPage(view);
+	  settingsController = new SettingsPage(view);
 	  initView(view);
   }
   
@@ -28,6 +29,9 @@ public class HomePage extends Page {
 	  homeView.addSettingsController(settingsController);
 	  settingsController.homeController = this;
 	  view.add(homeView, "home");
+	  
+	  aboutView = new guis.About();
+	  view.add(aboutView, "about");
   }
 	
   /**
@@ -40,6 +44,7 @@ public class HomePage extends Page {
   
   public void passUser(){
 	  settingsController.user = user;
+	  
 	  //courseController.user = user;
   }
 }

@@ -27,6 +27,7 @@ public class SettingsPage extends Page {
   
 	public void initView(guis.MainWindow view){
 		page = new guis.Settings();
+		view.add(page, "settings");
 	}
 
 	public int editEmail(String email) {

@@ -49,10 +49,14 @@ public class Equation {
    public Term solve(Term target, List<Term> terms) throws Exception {
       String ast = getAST(target);
       for (int i = 0; i < terms.size(); i++) {
-    	 ast = ast.replace(terms.get(i).getName(), Double.toString(terms.get(i).getValue()));
+         String[] halves = ast.split((terms.get(i)).getName());
+         if (halves.length == 2) {
+            ast = halves[0] + (terms.get(i)).getValue() + halves[1];
+         } else {
+            throw new IllegalArgumentException("Invalid ast string.");
+         }
       }
       AST equation = new AST(ast);
-      
       return equation.compute();
    }
 
@@ -63,12 +67,13 @@ public class Equation {
       String qGetAST = "SELECT `ast` FROM `ast` WHERE `equationid` = ? AND `term` = ? LIMIT 1";
       List<HashMap<String, String>> rows = DB.getInstance().query(qGetAST, pGetAST);
 
-      HashMap<String, String> row = rows.get(0);
+      HashMap<String, String> row = rows.get(0); 
       ast = row.get("ast");
 
       if (ast.equals("")) {
          throw new IllegalArgumentException("Invalid ast string.");
       }
+
       return ast;
    }
 }

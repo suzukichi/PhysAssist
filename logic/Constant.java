@@ -23,18 +23,16 @@ public class Constant implements Term
 		String qGetConstantValue = "SELECT `value`, FROM `constants` WHERE `symbol` = ?";
 		List<HashMap<String, String>> rows = DB.getInstance().query(qGetConstantValue, pGetConstantValue);
 		
-		HashMap<String, String> row = rows.get(0);
-		valueString = row.get("value");
-
+		for (HashMap<String, String> row : rows) 
+		{
+			valueString = row.get("value");
+		}
 		
 		return checkNegative(valueString);
 	}
 	
 	private double checkNegative(String string) 
 	{
-		if ("".equals(string)) {
-			return 0;
-		}
 		if ('-' == string.charAt(0))
 		{
 			return 0 - Double.parseDouble(string.substring(1, string.length()));
