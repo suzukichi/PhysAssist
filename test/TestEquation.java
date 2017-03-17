@@ -30,7 +30,7 @@ public class TestEquation {
    @Test
    public void testEquationSolve() throws Exception {
       Term solveFor = new Variable("F", 0.0);
-      ArrayList<Term> terms = new ArrayList<Term>();
+      ArrayList<Term> terms = new ArrayList<>();
       terms.add(new Variable("m", 9.0));
       terms.add(new Variable("a", 5.0));
       equation = new Equation(EQUATION_1);
