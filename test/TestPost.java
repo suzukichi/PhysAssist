@@ -8,6 +8,9 @@ import org.junit.Test;
 import logic.Post;
 
 public class TestPost {
+   /**
+    * Diana's unit test
+    */
 	@Test
 	public void testPostNewConstructor() {
 		String title = "Test Post";
@@ -17,6 +20,9 @@ public class TestPost {
 		assertEquals(text, p.getText());
 	}
 	
+   /**
+    * Diana's integration test, DB.java and Post.java
+    */
 	@Test
 	public void testPostConstructorDB() {
 		String title = "Please get me out of the db!";
@@ -33,13 +39,15 @@ public class TestPost {
 	   op.delete();
 	}
 
+   /**
+    * Diana's integration test, DB.java and Post.java
+    */
 	@Test
 	public void testPostUpdate() {
 		String title = "Test Post";
 		String text = "All I want is to be with you!";
 	   Post op = new Post(title, text);
 
-	   // Save must be run before we can retrieve anything.
 	   long postID = op.save();
 
 		op.setTitle("Please get me out of the db!");

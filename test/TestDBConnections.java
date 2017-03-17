@@ -100,6 +100,9 @@ public class TestDBConnections {
       assertTrue(thrown);
    }
    
+   /**
+    * Diana's unit test
+    */
    @Test
    public void testInsertGeneric() {
       DB db = DB.getInstance();
@@ -148,6 +151,9 @@ public class TestDBConnections {
       assertEquals(2, rows.size());
    }
    
+   /**
+    * Diana's unit test
+    */
    @Test
    public void testUpdateOne() {
       DB db = DB.getInstance();

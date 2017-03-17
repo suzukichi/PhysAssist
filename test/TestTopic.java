@@ -9,6 +9,9 @@ import logic.Equation;
 import logic.Topic;
 
 public class TestTopic {
+   /**
+    * Diana's unit test
+    */
 	@Test
 	public void testTopicConstructor() {
 		String title = "My new topic";
@@ -19,6 +22,9 @@ public class TestTopic {
 		assertEquals(description, t.getText());
 	}
 
+   /**
+    * Diana's unit test
+    */
 	@Test(expected=IllegalArgumentException.class)
 	public void testTopicConstructorBadTitle() {
 		String description = "Is super cool";
