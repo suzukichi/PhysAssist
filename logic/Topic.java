@@ -71,19 +71,7 @@ public class Topic {
 	public void save() {
 	   DB db = DB.getInstance();
        List<HashMap<String, String>> rows; 
-	   String qsaveTopic = "INSERT IGNORE INTO `topics`" +
-	                        "SET `parentid` = ?, " +
-                               "`topicid` = ?, " +
-                               "`creation_time` = ? " + 
-	                        "ON DUPLICATE KEY UPDATE " +
-	                            "`parentid` = ? ";
 
-	   String[] psaveTopic = {
-	      DB.T_I, String.valueOf(this.parentTopicID),
-	      DB.T_I, this.topicID > 0 ? String.valueOf(this.topicID) : null,
-	      DB.T_I, String.valueOf(this.creationTime), 
-	      DB.T_I, String.valueOf(this.parentTopicID),
-	   };
 
 	   if (this.topicID <= 0) {
 	      String qgetTopicID = "SELECT `topicid` FROM `topics` " + 
