@@ -7,7 +7,7 @@ public class UnaryOperator extends Operator {
 		this.value = value;
 	}
 
-	public Term perform(Term left) throws IllegalArgumentException 
+	public Term perform(Term left)
 	{
 		double l = left.getValue();
 		double result;

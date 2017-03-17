@@ -5,6 +5,7 @@ package logic;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -76,7 +77,7 @@ public class DB {
 	 * @param query
 	 * @return Hashmap of column name, (string)value
 	 */
-	public ArrayList<HashMap<String, String>> query(String query, String[] params) {
+	public List<HashMap<String, String>> query(String query, String[] params) {
 	   ArrayList<HashMap<String, String>> results = new ArrayList<>();
 
 	   try {
@@ -93,14 +94,16 @@ public class DB {
                switch (md.getColumnType(ndx)) {
                   case Types.TINYINT:
                   case Types.BIT:
+                	  selectedData = String.valueOf(rs.getLong(ndx));
+                	  break;
                   case Types.INTEGER:
                   case Types.BIGINT:
                      selectedData = String.valueOf(rs.getLong(ndx));
-                  break;
+                     break;
                   case Types.VARCHAR:
                   case Types.CHAR:
                      selectedData = rs.getString(ndx);
-                  break;
+                     break;
                   default:
                      throw new IllegalArgumentException("Invalid column type '" + md.getColumnTypeName(ndx) +  "' being selected");
                }
@@ -128,9 +131,6 @@ public class DB {
          parseParam(params, preparedStmt, i, ndx++);
       }
       
-      if (DB.DEBUG_MODE) {
-         System.out.println(preparedStmt.toString());
-      }
 
       return preparedStmt;
 	}
@@ -142,22 +142,19 @@ public class DB {
                preparedStmt.setNull(ndx, Types.FLOAT);
             } else {
                preparedStmt.setInt(ndx, Integer.valueOf(params[i + 1])); 
-            }
-         break;
+            } break;
          case T_D:
             if (params[i + 1] == null) {
                preparedStmt.setNull(ndx, Types.FLOAT);
             } else {
                preparedStmt.setFloat(ndx, Float.valueOf(params[i + 1])); 
-            }
-         break;
+            } break;
          case T_S:
             if (params[i + 1] == null) {
                preparedStmt.setNull(ndx, Types.VARCHAR);
             } else {
                preparedStmt.setString(ndx, params[i + 1]);
-            }
-         break;
+            } break;
          default:
             throw new ArrayIndexOutOfBoundsException("Missing or invalid parameter type");
       }

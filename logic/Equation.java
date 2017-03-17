@@ -6,8 +6,8 @@ import java.util.List;
 
 public class Equation {
    private String name;
-   public long topicID;
-   public long equationID;
+   private long topicID;
+   private long equationID;
    private String view;
    private String description;
    private String history;
@@ -22,7 +22,7 @@ public class Equation {
                             " WHERE `equationid` = ? " + 
                             " LIMIT 1";
       String[] pGetEquation = {DB.T_I, String.valueOf(equationID)};
-      ArrayList<HashMap<String, String>> rows = DB.getInstance().query(qGetEquation, pGetEquation);
+      List<HashMap<String, String>> rows = DB.getInstance().query(qGetEquation, pGetEquation);
 
       this.equationID = equationID;
 
@@ -65,7 +65,7 @@ public class Equation {
       String[] pGetAST = { DB.T_I, String.valueOf(equationID), DB.T_S, term.getName() };
 
       String qGetAST = "SELECT `ast` FROM `ast` WHERE `eqid` = ?, `term` = ?";
-      ArrayList<HashMap<String, String>> rows = DB.getInstance().query(qGetAST, pGetAST);
+      List<HashMap<String, String>> rows = DB.getInstance().query(qGetAST, pGetAST);
 
       for (HashMap<String, String> row : rows) {
          ast = row.get("view");

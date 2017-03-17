@@ -13,8 +13,8 @@ public class TestPost {
 		String title = "Test Post";
 		String text = "This is a post created by TestPostConstructor";
 		Post p = new Post(title, text);
-		assertEquals(title, p.title);
-		assertEquals(text, p.text);
+		assertEquals(title, p.getTitle());
+		assertEquals(text, p.getText());
 	}
 	
 	@Test
@@ -28,7 +28,7 @@ public class TestPost {
 	   
 	   Post post = new Post(postID);
 	   
-	   assertEquals(postID, post.postID);
+	   assertEquals(postID, post.getPostID());
 	   
 	   op.delete();
 	}
@@ -42,12 +42,12 @@ public class TestPost {
 	   // Save must be run before we can retrieve anything.
 	   long postID = op.save();
 
-		op.title = "Please get me out of the db!";
+		op.setTitle("Please get me out of the db!");
 	   op.save();
 	   
 	   Post post = new Post(postID);
 	   
-	   assertEquals(op.title, post.title);
+	   assertEquals(op.getTitle(), post.getTitle());
 	   
 	   op.delete();
 	}

@@ -43,8 +43,8 @@ public class User {
     this.email = email;
     this.userID = 0;
     
-    this.coursesEnrolled = new ArrayList<Course>();
-    this.coursesOwned = new ArrayList<Course>();
+    this.coursesEnrolled = new ArrayList<>();
+    this.coursesOwned = new ArrayList<>();
   }
   
   public User(long userID) {
@@ -53,12 +53,10 @@ public class User {
                       " WHERE `userid` = ?";
     String[] pGetUser = {DB.T_I, String.valueOf(userID)};      
 
-    ArrayList<HashMap<String, String>> rows = (DB.getInstance()).query(qGetUser, pGetUser);
+    List<HashMap<String, String>> rows = (DB.getInstance()).query(qGetUser, pGetUser);
     
     if (rows.size() != 1) {
-      // throw an exception
-      // Means that there is no user in the DB for the userID
-      System.err.println("user rows.size != 1");
+    	throw new IllegalArgumentException("User rows.size != 1 - No such user in database.");
     }
     
     HashMap<String, String> user = rows.get(0);
@@ -80,7 +78,7 @@ public class User {
    * Loads a list of courses the user is enrolled in from the DB.
    */
   private List<Course> loadEnrolledCoursesList() {
-    List<Course> list = new ArrayList<Course>();
+    List<Course> list = new ArrayList<>();
     DB db = DB.getInstance();
 
     String qGetTopicsForParent = "SELECT * FROM `students` t" +
@@ -88,9 +86,9 @@ public class User {
     
     String[] pGetTopicsForParent = {DB.T_I, String.valueOf(userID)};
 
-    ArrayList<HashMap<String, String>> rows = db.query(qGetTopicsForParent, pGetTopicsForParent);
+    List<HashMap<String, String>> rows = db.query(qGetTopicsForParent, pGetTopicsForParent);
     
-    ArrayList<Long> courseIDList = new ArrayList<Long>();
+    ArrayList<Long> courseIDList = new ArrayList<>();
     
     for (HashMap<String, String> row : rows) {
       courseIDList.add(Long.parseLong(row.get("classroomid")));
@@ -108,7 +106,7 @@ public class User {
    * Gets a list of courses the user owns from the DB.
    */
   private List<Course> loadOwnedCoursesList() {
-    List<Course> list = new ArrayList<Course>();
+    List<Course> list = new ArrayList<>();
     DB db = DB.getInstance();
 
     String qGetOwnedCourses = "SELECT * FROM `classes` t" +
@@ -116,9 +114,9 @@ public class User {
     
     String[] pGetOwnedCourses = {DB.T_I, String.valueOf(userID)};
 
-    ArrayList<HashMap<String, String>> rows = db.query(qGetOwnedCourses, pGetOwnedCourses);
+    List<HashMap<String, String>> rows = db.query(qGetOwnedCourses, pGetOwnedCourses);
     
-    ArrayList<Long> courseIDList = new ArrayList<Long>();
+    ArrayList<Long> courseIDList = new ArrayList<>();
     
     for (HashMap<String, String> row : rows) {
       courseIDList.add(Long.parseLong(row.get("classroomid")));
@@ -262,6 +260,7 @@ public class User {
       return "general_user";
   }
   
+  @Override
   public String toString() {
     return "User: {userID: " + userID + ", userName: " + username + "\n   Enrolled: "
         + coursesEnrolled + "\n Owned: " + coursesOwned + "\n}";
@@ -295,13 +294,11 @@ public class User {
   public static long verify(String username, String password) {
 	    DB db = DB.getInstance();
 
-	    String qGetLoginInfo = "SELECT password, userID" +
-	    							" FROM `users`" +
-	    							" WHERE `username` = ?";
+	    String qGetLoginInfo = "SELECT password, userID" + " FROM `users` WHERE `username` = ?";
 	    
 	    String[] pGetLoginInfo = {DB.T_I, String.valueOf(username)};
 
-	    ArrayList<HashMap<String, String>> rows = db.query(qGetLoginInfo, pGetLoginInfo);
+	    List<HashMap<String, String>> rows = db.query(qGetLoginInfo, pGetLoginInfo);
 	    
 	    if(rows.size() != 1) {
 	    	return -2; //no username found or multiple in database(checked on creation)
@@ -334,15 +331,17 @@ public class User {
     }
     User other = (User) obj;
     
-    return Objects.equals(this.username, other.username) &&
-        Objects.equals(this.firstName, other.firstName) &&
-        Objects.equals(this.lastName, other.lastName) &&
-        Objects.equals(this.userID, other.userID) &&
-        Objects.equals(this.password, other.password) &&
-        Objects.equals(this.email, other.email) &&
-        Objects.equals(this.registrationDate, this.registrationDate) &&
-        Objects.equals(this.coursesEnrolled, other.coursesEnrolled) &&
-        Objects.equals(this.coursesOwned, this.coursesOwned);
+    boolean firstComp = Objects.equals(this.username, other.username) &&
+            Objects.equals(this.firstName, other.firstName) &&
+            Objects.equals(this.lastName, other.lastName);
+    boolean secondComp = Objects.equals(this.userID, other.userID) &&
+            Objects.equals(this.password, other.password) &&
+            Objects.equals(this.email, other.email);
+    boolean thirdComp = Objects.equals(this.registrationDate, this.registrationDate) &&
+            Objects.equals(this.coursesEnrolled, other.coursesEnrolled) &&
+            Objects.equals(this.coursesOwned, this.coursesOwned);
+    
+    return firstComp && secondComp && thirdComp;
   }
   
   public static boolean nameExists(String username) {
@@ -354,7 +353,7 @@ public class User {
 	    
 	    String[] pGetLoginInfo = {DB.T_I, String.valueOf(username)};
 
-	    ArrayList<HashMap<String, String>> rows = db.query(qGetLoginInfo, pGetLoginInfo);
+	    List<HashMap<String, String>> rows = db.query(qGetLoginInfo, pGetLoginInfo);
 	    
 	    if(rows.size() != 1) {
 	    	return true; //no username found or multiple in database(checked on creation)
@@ -371,7 +370,7 @@ public class User {
 	    
 	    String[] pGetLoginInfo = {DB.T_I, String.valueOf(email)};
 
-	    ArrayList<HashMap<String, String>> rows = db.query(qGetLoginInfo, pGetLoginInfo);
+	    List<HashMap<String, String>> rows = db.query(qGetLoginInfo, pGetLoginInfo);
 	    
 	    if(rows.size() != 1) {
 	    	return true; //no email found or multiple in database(checked on creation)

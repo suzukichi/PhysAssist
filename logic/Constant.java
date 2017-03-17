@@ -1,7 +1,7 @@
 package logic;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Constant implements Term 
 {
@@ -15,14 +15,13 @@ public class Constant implements Term
 	@Override
 	public double getValue()
 	{
-		//db lookup for constant name
 		String valueString = "";
 		String[] pGetConstantValue = {
 		          DB.T_S, symbol,
 		       };
 
 		String qGetConstantValue = "SELECT `value`, FROM `constants` WHERE `symbol` = ?";
-		ArrayList<HashMap<String, String>> rows = DB.getInstance().query(qGetConstantValue, pGetConstantValue);
+		List<HashMap<String, String>> rows = DB.getInstance().query(qGetConstantValue, pGetConstantValue);
 		
 		for (HashMap<String, String> row : rows) 
 		{

@@ -16,8 +16,9 @@ public class SettingsPage extends Page {
 		initView(view);
 	}
   
+	@Override
 	public void display() {
-    
+		// empty
 	}
   
 	public void updateSettings() {

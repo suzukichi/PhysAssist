@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -77,7 +78,7 @@ private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
    public void testSelectNoRows() {
       DB db = DB.getInstance();
       String q_getTestRow = "SELECT `id`, `text` FROM `mysql_test` WHERE `id` < 0";
-      ArrayList<HashMap<String, String>>rows = db.query(q_getTestRow, null);
+      List<HashMap<String, String>>rows = db.query(q_getTestRow, null);
 
       assertEquals(0, rows.size());
    }
@@ -89,7 +90,7 @@ private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
       db.execute("INSERT INTO `mysql_test` SET `text` = ?", params);
       String q_getTestRow = "SELECT `id`, `text` FROM `mysql_test` LIMIT 1";
       String[] p_getTestRow = {};
-      ArrayList<HashMap<String, String>>rows = db.query(q_getTestRow, p_getTestRow);
+      List<HashMap<String, String>>rows = db.query(q_getTestRow, p_getTestRow);
 
       assertEquals(1, rows.size());
    }
@@ -119,7 +120,7 @@ private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
       DB db = DB.getInstance();
       String q_getTestRow = "SELECT `id`, `text` FROM `mysql_test` WHERE `id` > 0 LIMIT 2";
       String[] p_getTestRow = {};
-      ArrayList<HashMap<String, String>>rows = db.query(q_getTestRow, p_getTestRow);
+      List<HashMap<String, String>>rows = db.query(q_getTestRow, p_getTestRow);
 
       assertEquals(2, rows.size());
    }

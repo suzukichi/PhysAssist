@@ -13,19 +13,19 @@ import java.util.HashMap;
 
 public class Category {
   private long categoryID;
-  public String title;
+  private String title;
   
   public Category(long categoryID) {
     DB db = DB.getInstance();
     
-    String q_getTopic = "SELECT tr.`topicid`, tr.`title`" +  
+    String qgetTopic = "SELECT tr.`topicid`, tr.`title`" +  
                        " FROM `topic_revisions` tr" + 
                        " JOIN `topics` t USING (`topicid`)" +
                        " WHERE `topicid` = ?" + 
                        " ORDER BY `revisionid` DESC" + 
                        " LIMIT 1";
-   String[] p_getTopic = {DB.T_I, String.valueOf(categoryID)};
-   HashMap<String, String> row = db.query(q_getTopic, p_getTopic).get(0);
+   String[] pgetTopic = {DB.T_I, String.valueOf(categoryID)};
+   HashMap<String, String> row = db.query(qgetTopic, pgetTopic).get(0);
    
    this.categoryID = categoryID;
    this.title = row.get("title");
@@ -36,6 +36,7 @@ public class Category {
     this.title = title;
   }
   
+  @Override
   public String toString() {
     return "Category: " + Long.toString(this.categoryID) + ", " + this.title;
   }

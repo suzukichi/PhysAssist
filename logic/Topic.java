@@ -2,13 +2,15 @@ package logic;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Topic {
-	public long topicID;
-	public String title;
-	public String text;
-	public long authorID, revisionID;
-	public long parentTopicID;
+	private long topicID;
+	private String title;
+	private String text;
+	private long authorID; 
+	private long revisionID;
+	private long parentTopicID;
 	private long creationTime;
 	
 	public ArrayList<Equation> equations;
@@ -16,15 +18,15 @@ public class Topic {
 	public Topic(long topicID) {
 	   DB db = DB.getInstance();
 	   
-      String q_getTopic = "SELECT tr.`topicid`, tr.`title`, tr.`text`, tr.`authorid`, tr.`revisionid`," + 
+      String qgetTopic = "SELECT tr.`topicid`, tr.`title`, tr.`text`, tr.`authorid`, tr.`revisionid`," + 
                                 " t.`parentid`, t.`creation_time`" +  
                           " FROM `topic_revisions` tr" + 
                           " JOIN `topics` t USING (`topicid`)" +
                           " WHERE `topicid` = ?" + 
                           " ORDER BY `revisionid` DESC" + 
                           " LIMIT 1";
-      String[] p_getTopic = {DB.T_I, String.valueOf(topicID)};
-      HashMap<String, String> row = db.query(q_getTopic, p_getTopic).get(0);
+      String[] pgetTopic = {DB.T_I, String.valueOf(topicID)};
+      HashMap<String, String> row = db.query(qgetTopic, pgetTopic).get(0);
       
       this.topicID = topicID;
       this.title = row.get("title");
@@ -69,48 +71,48 @@ public class Topic {
 	
 	public void save() {
 	   DB db = DB.getInstance();
-      ArrayList<HashMap<String, String>> rows; 
-	   String q_saveTopic = "INSERT IGNORE INTO `topics`" +
+       List<HashMap<String, String>> rows; 
+	   String qsaveTopic = "INSERT IGNORE INTO `topics`" +
 	                        "SET `parentid` = ?, " +
                                "`topicid` = ?, " +
                                "`creation_time` = ? " + 
 	                        "ON DUPLICATE KEY UPDATE " +
 	                            "`parentid` = ? ";
 
-	   String[] p_saveTopic = {
+	   String[] psaveTopic = {
 	      DB.T_I, String.valueOf(this.parentTopicID),
 	      DB.T_I, this.topicID > 0 ? String.valueOf(this.topicID) : null,
 	      DB.T_I, String.valueOf(this.creationTime), 
 	      DB.T_I, String.valueOf(this.parentTopicID),
 	   };
 
-	   int insertedRows = db.execute(q_saveTopic, p_saveTopic);
+	   int insertedRows = db.execute(qsaveTopic, psaveTopic);
 	   if (insertedRows != 1) {
 	      System.out.println(insertedRows + " rows were inserted!");
 	   }
 
 	   if (this.topicID <= 0) {
-	      String q_getTopicID = "SELECT `topicid` FROM `topics` " + 
+	      String qgetTopicID = "SELECT `topicid` FROM `topics` " + 
 	                            "WHERE `creation_time` = ?";
-	      String[] p_getTopicID = {DB.T_I, String.valueOf(this.creationTime)};
+	      String[] pgetTopicID = {DB.T_I, String.valueOf(this.creationTime)};
 	      
-	      rows = db.query(q_getTopicID, p_getTopicID); 
+	      rows = db.query(qgetTopicID, pgetTopicID); 
 	      this.topicID = Long.valueOf(rows.get(0).get("topicid"));
 	   }
 
-	   String q_saveTopicRevision = "INSERT INTO `topic_revisions` " +
+	   String qsaveTopicRevision = "INSERT INTO `topic_revisions` " +
                                    "SET `topicid` = ?, " + 
                                        "`title` = ?, " + 
                                        "`text` = ?, " +
                                        "`authorid` = ?";
-	   String[] p_saveTopicRevision = {
+	   String[] psaveTopicRevision = {
 	      DB.T_I, String.valueOf(this.topicID),
 	      DB.T_S, this.title,
 	      DB.T_S, this.text,
 	      DB.T_I, String.valueOf(this.authorID)
 	   };
 	   
-	   db.execute(q_saveTopicRevision, p_saveTopicRevision);
+	   db.execute(qsaveTopicRevision, psaveTopicRevision);
 	   
 	   // Update revisionid to be the new revisionid.
       String q_getRevisionID = "SELECT `revisionid` " + 
@@ -126,16 +128,38 @@ public class Topic {
 
 	public void delete() {
 	   DB db = DB.getInstance();
-	   String q_deleteTopic = "DELETE FROM `topics` WHERE `topicid` = ?";
+	   String qdeleteTopic = "DELETE FROM `topics` WHERE `topicid` = ?";
 	   String[] params = {DB.T_I, String.valueOf(this.topicID)};
-	   String q_deleteTopicRevisions = "DELETE FROM `topic_revisions` WHERE `topicid` = ?";
+	   String qdeleteTopicRevisions = "DELETE FROM `topic_revisions` WHERE `topicid` = ?";
 	   
-	   db.execute(q_deleteTopic, params);
-	   db.execute(q_deleteTopicRevisions, params);
+	   db.execute(qdeleteTopic, params);
+	   db.execute(qdeleteTopicRevisions, params);
 	}
 	
+	@Override
 	public String toString() {
 	    return "Topic: " + Long.toString(this.topicID) + ", " + this.title + ", " + this.text;
 	}
+
+	public String getTitle() {
+		return this.title;
+	}
+
+	public String getText() {
+		return this.text;
+	}
+
+	public long getTopicID() {
+		return this.topicID;
+	}
+
+	public long getRevisionID() {
+		return this.revisionID;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	
 }

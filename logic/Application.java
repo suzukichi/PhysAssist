@@ -11,16 +11,19 @@ import test.TestAST;
 public class Application {
 	private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
 	private guis.MainFrame frame;
-	//private TopicList topicListController;
 	private LoginPage loginController;
-	public HomePage homeController;
+	private HomePage homeController;
 	
 	public Application(){
 		init();
 	}
 	
 	public static void main(String[] args){
-		EventQueue.invokeLater(new Runnable() {
+		EventQueue.invokeLater(() -> {try { new Application(); } 
+		 catch (Exception e) { LOGGER.log(Level.FINE, e.toString(), e); } });
+				
+				/*new Runnable() {
+			@Override
 			public void run() {
 				try {
 					new Application();
@@ -28,7 +31,7 @@ public class Application {
 					LOGGER.log(Level.FINE, e.toString(), e);
 				}
 			}
-		});
+		});*/
 		
 		
 	}
@@ -41,7 +44,7 @@ public class Application {
 		//create login controller, passes user ID to home
 		homeController = new HomePage(view);
 		loginController = new LoginPage(view);
-		loginController.homeController = homeController;
+		loginController.setHomeController(homeController);
 		//creates home page controller
 			//creates topic controller 
 				//cascades to create reference, equations, topics and lists views

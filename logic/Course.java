@@ -6,13 +6,12 @@ import java.util.List;
 import java.util.Objects;
 
 public class Course {
-  public long courseID;
-  public long professorID;
-  public String courseName;
-  public String description;
-  public Student[] students;
-  public long startDate;
-  public List<Post> posts;
+  private long courseID;
+  private long professorID;
+  private String courseName;
+  private String description;
+  private long startDate;
+  private List<Post> posts;
   
   public Course(long professorID, String courseName, String description) {
     this.courseID = 0;
@@ -20,7 +19,7 @@ public class Course {
     this.courseName = courseName;
     this.description = description;
     this.startDate = System.currentTimeMillis() / 1000L;
-    this.posts = new ArrayList<Post>();
+    this.posts = new ArrayList<>();
 
     //this.posts = posts;
     
@@ -45,12 +44,10 @@ public class Course {
     
     String[] pGetCourse = {DB.T_I, String.valueOf(courseID)};
 
-    ArrayList<HashMap<String, String>> rows = db.query(qGetCourse, pGetCourse);
+    List<HashMap<String, String>> rows = db.query(qGetCourse, pGetCourse);
     
     if (rows.size() != 1) {
-      // throw an exception
-      // Means that there is no course in the DB for the courseID
-      System.err.println("rows.size != 1");
+      throw new IllegalArgumentException("Rows.size() != 1");
     }
     
     HashMap<String, String> courseEntry = rows.get(0);
@@ -73,18 +70,15 @@ public class Course {
     
     String[] pGetPostsForCourse = {DB.T_I, String.valueOf(courseID)};
 
-    ArrayList<HashMap<String, String>> rows = db.query(qGetPostsForCourse, pGetPostsForCourse);
+    List<HashMap<String, String>> rows = db.query(qGetPostsForCourse, pGetPostsForCourse);
     
-    System.out.println("getPosts: rows: ");
-    System.out.println(rows);
-    
-    ArrayList<Long> postIDList = new ArrayList<Long>();
+    ArrayList<Long> postIDList = new ArrayList<>();
     
     for (HashMap<String, String> row : rows) {
       postIDList.add(Long.parseLong(row.get("postid")));
     }
     
-    this.posts = new ArrayList<Post>();
+    this.posts = new ArrayList<>();
     
     for (long postID : postIDList) {
       posts.add(new Post(postID));
@@ -96,7 +90,7 @@ public class Course {
     
     String setFields = "`classroomid` = ?, `title` = ?, `description` = ?, `ownerid` = ?," +
         " `start_date` = ?";
-    String[] p_saveCourse = {
+    String[] psaveCourse = {
        DB.T_I, String.valueOf(this.courseID),
        DB.T_S, this.courseName,
        DB.T_S, this.description,
@@ -110,13 +104,11 @@ public class Course {
        DB.T_I, String.valueOf(this.startDate)
     };
 
-    String q_saveCourse = "INSERT INTO `classrooms`" +
+    String qsaveCourse = "INSERT INTO `classrooms`" +
                           " SET " + setFields + 
                           " ON DUPLICATE KEY UPDATE " + setFields;
      
-     int insertedRows = db.execute(q_saveCourse, p_saveCourse);
-     
-     System.out.println("Inserted rows: " + insertedRows);
+     db.execute(qsaveCourse, psaveCourse);
     
      if (this.courseID <= 0) {
        String qGetPostid = "SELECT `classroomid`" +
@@ -192,6 +184,7 @@ public class Course {
      return true;
   }
   
+  @Override
   public String toString() {
     String rep = "{Course: ";
     rep += " courseID: " + courseID;
@@ -206,7 +199,6 @@ public class Course {
     rep += "   ]}\n";
     
     return rep;
-    //return "Course: " + courseID + ", " + courseName + ", " + description;
   }
   
   @Override
@@ -226,12 +218,22 @@ public class Course {
       return false;
     }
     Course other = (Course) obj;
+    boolean firstCond = Objects.equals(this.courseID, other.courseID) &&
+            Objects.equals(this.courseName, other.courseName) &&
+            Objects.equals(this.description, other.description);
+    boolean secondCond = Objects.equals(this.professorID, other.professorID) &&
+            Objects.equals(this.startDate, other.startDate) &&
+            Objects.equals(this.posts, other.posts);
     
-    return Objects.equals(this.courseID, other.courseID) &&
-        Objects.equals(this.courseName, other.courseName) &&
-        Objects.equals(this.description, other.description) &&
-        Objects.equals(this.professorID, other.professorID) &&
-        Objects.equals(this.startDate, other.startDate) &&
-        Objects.equals(this.posts, other.posts);
+    return firstCond && secondCond;
+        
   }
+
+public long getCourseID() {
+	return this.courseID;
+}
+
+public void addPost(Post p) {
+	this.posts.add(p);	
+}
 }

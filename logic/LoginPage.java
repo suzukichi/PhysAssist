@@ -14,8 +14,8 @@ public class LoginPage extends Page {
   private boolean isRegister;
   private guis.Login loginPage;
   private guis.CreateAccount createPage;
-  public guis.MainWindow view;
-  public logic.HomePage homeController;
+  private guis.MainWindow view;
+  private logic.HomePage homeController;
   
   //pass controller topics or query them
   public LoginPage(guis.MainWindow view){
@@ -25,7 +25,7 @@ public class LoginPage extends Page {
   
   @Override
   public void display() {
-      
+      // currently empty
   }
  
 	/**
@@ -66,5 +66,9 @@ public class LoginPage extends Page {
 		createPage = new guis.CreateAccount();
 		createPage.addController(this);
 		view.add(createPage, "create_account");
+	}
+
+	public void setHomeController(HomePage homeController) {
+		this.homeController = homeController;
 	}
 }

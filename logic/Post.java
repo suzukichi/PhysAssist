@@ -2,6 +2,7 @@ package logic;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -13,12 +14,12 @@ import java.util.Objects;
  */
 
 public class Post {
-	public long postID;
-    public long classroomID;
-    public long authorID;
-    public long publishTS;
-    public long lastEditTS;
-    public String title, text;
+	private long postID;
+    private long classroomID;
+    private long authorID;
+    private long publishTS;
+    private long lastEditTS;
+    private String title, text;
 
     public Post(String title, String text, long courseID) {
       this.title = title;
@@ -42,14 +43,13 @@ public class Post {
     public Post(long postID) {
     	this.postID = postID;
 
-    	String q_getPost = "SELECT * FROM `posts` " + 
+    	String qgetPost = "SELECT * FROM `posts` " + 
     	                   " WHERE `postid` = ?";
-    	String[] p_getPost = {DB.T_I, String.valueOf(postID)};    	
+    	String[] pgetPost = {DB.T_I, String.valueOf(postID)};    	
     	
-    	ArrayList<HashMap<String, String>> rows = (DB.getInstance()).query(q_getPost, p_getPost);
+    	List<HashMap<String, String>> rows = (DB.getInstance()).query(qgetPost, pgetPost);
     	if (rows.size() == 0) {
-    	   // Throw exception or something is probably better to do.
-    	   return;
+    	   throw new IllegalArgumentException("Rows.size() == 0)");
     	}
 
       HashMap<String, String> row = rows.get(0);
@@ -109,6 +109,7 @@ public class Post {
       db.execute(qDeletePost, params);
    }
     
+    @Override
     public String toString() {
       return "   Post: " + title + ", " + text;
     }
@@ -131,13 +132,32 @@ public class Post {
       }
       Post other = (Post) obj;
       
-      return Objects.equals(this.postID, other.postID) &&
-          Objects.equals(this.classroomID, other.classroomID) &&
-          Objects.equals(this.authorID, other.authorID) &&
-          Objects.equals(this.publishTS, other.publishTS) &&
-          Objects.equals(this.lastEditTS, other.lastEditTS) &&
-          Objects.equals(this.title, other.title) &&
-          Objects.equals(this.text, this.text);
+      boolean firstComp = Objects.equals(this.postID, other.postID) &&
+      		  Objects.equals(this.classroomID, other.classroomID) &&
+      		  Objects.equals(this.authorID, other.authorID);
+      boolean secondComp = Objects.equals(this.publishTS, other.publishTS) &&
+              Objects.equals(this.lastEditTS, other.lastEditTS) &&
+              Objects.equals(this.title, other.title);
+      
+      
+      return firstComp && secondComp && Objects.equals(this.text, this.text);
     }
+
+	public String getTitle() {
+		return this.title;
+	}
+	
+	public void setTitle(String title)
+	{
+		this.title = title;
+	}
+
+	public String getText() {
+		return this.text;
+	}
+
+	public long getPostID() {
+		return this.postID;
+	}
 }
 

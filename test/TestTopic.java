@@ -15,8 +15,8 @@ public class TestTopic {
 		String description = "Is super cool";
 		Topic t = new Topic(0L, title, description);
 		
-		assertEquals(title, t.title);
-		assertEquals(description, t.text);
+		assertEquals(title, t.getTitle());
+		assertEquals(description, t.getText());
 	}
 
 	@Test(expected=IllegalArgumentException.class)
@@ -53,10 +53,10 @@ public class TestTopic {
 		String description = "This is a real topic that will go into the db, really.";
 		Topic t = new Topic(0L, title, description);
 		
-		assertTrue(t.topicID == 0);
+		assertTrue(t.getTopicID() == 0);
 
 		t.save();
-		assertTrue(t.topicID > 0);
+		assertTrue(t.getTopicID() > 0);
 		t.delete();
 	}
 
@@ -67,12 +67,12 @@ public class TestTopic {
 		Topic t = new Topic(0L, title, description);
 
 		t.save();
-		Long revision1 = t.revisionID;
+		Long revision1 = t.getRevisionID();
 		
-		t.title = "Real topic";
+		t.setTitle("Real topic");
 		
 		t.save();
-		assertTrue(revision1 < t.revisionID);
+		assertTrue(revision1 < t.getRevisionID());
 		t.delete();
 	}
 
@@ -84,8 +84,8 @@ public class TestTopic {
 
 		t.save();
 		
-		Topic t2 = new Topic(t.topicID);
-		assertEquals(t.title, t2.title);
+		Topic t2 = new Topic(t.getTopicID());
+		assertEquals(t.getTitle(), t2.getTitle());
 		t.delete();
    }
 	

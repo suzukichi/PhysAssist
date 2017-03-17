@@ -14,11 +14,18 @@ import java.util.List;
  */
 
 public class Lists {
+	
+	
+  private Lists()
+  {
+	  
+  }
+	
   /*
    * Fetches all Category objects from DB (all Topic objects with parentid == 0)
    */
   public static List<Category> getCategoryList() {
-    List<Category> list = new ArrayList<Category>();
+    List<Category> list = new ArrayList<>();
     DB db = DB.getInstance();
     long parentID = 0;
     
@@ -29,7 +36,7 @@ public class Lists {
         " ORDER BY tr.`revisionid` DESC";
     String[] pGetTopicsForParent = {DB.T_I, String.valueOf(parentID)};
 
-    ArrayList<HashMap<String, String>> rows = db.query(qGetTopicsForParent, pGetTopicsForParent);
+    List<HashMap<String, String>> rows = db.query(qGetTopicsForParent, pGetTopicsForParent);
     
     System.out.println(rows);
     
@@ -48,7 +55,7 @@ public class Lists {
    * Effectively, this is the list of topics that belong to the Category c, where c.topicID == parentID.
    */
   public static List<Topic> getTopicList(long parentID) {
-    List<Topic> list = new ArrayList<Topic>();
+    List<Topic> list = new ArrayList<>();
     DB db = DB.getInstance();
     
     String qGetTopicsForParent = "SELECT tr.`topicid`, tr.`title`, tr.`text`, tr.`authorid`," +
@@ -59,7 +66,7 @@ public class Lists {
         " ORDER BY `title` DESC";
     String[] pGetTopicsForParent = {DB.T_I, String.valueOf(parentID)};
     
-    ArrayList<HashMap<String, String>> rows = db.query(qGetTopicsForParent, pGetTopicsForParent);
+    List<HashMap<String, String>> rows = db.query(qGetTopicsForParent, pGetTopicsForParent);
     
     System.out.println(rows);
     
@@ -79,7 +86,7 @@ public class Lists {
    * Returns a list of Equation objects from the DB with the given topicID.
    */
   public static List<Equation> getEquationList(long topicID) {
-    List<Equation> list = new ArrayList<Equation>();
+    List<Equation> list = new ArrayList<>();
     DB db = DB.getInstance();
     
     /*
@@ -93,7 +100,7 @@ public class Lists {
 
     String[] pGetEquationsForTopic = {DB.T_I, String.valueOf(topicID)};
 
-    ArrayList<HashMap<String, String>> rows = db.query(qGetEquationsForTopic, pGetEquationsForTopic);
+    List<HashMap<String, String>> rows = db.query(qGetEquationsForTopic, pGetEquationsForTopic);
     
     for (HashMap<String, String> row : rows) {
       list.add(new Equation(Long.parseLong(row.get("equationid"))));
