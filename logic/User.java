@@ -88,10 +88,6 @@ public class User {
     List<HashMap<String, String>> rows = db.query(qGetTopicsForParent, pGetTopicsForParent);
     
     ArrayList<Long> courseIDList = new ArrayList<>();
-    /*
-    for (HashMap<String, String> row : rows) {
-      courseIDList.add(Long.parseLong(row.get("classroomid")));
-    }*/
     loadLoop(courseIDList,rows);
     
     // now get course objects
