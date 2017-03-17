@@ -1,12 +1,12 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,13 +20,18 @@ public class TestDBConnections {
     * Tests in this file use the mysql_test db, which is not really part of the
     * PhysAssist program, but useful to check that we can connect to the db, and 
     * test failures elsewhere are because of db connectivitiy issues and not bad object code.
+    * 
+    * Any test with statements also tests the loop logic.
     */
    @Before
    public void setUp() {
       this.testText = "Text inserted by TestDBConnections at " +
        System.currentTimeMillis() / 1000L;
    }
-
+   
+   /**
+    * Tests prepare statement loop with valid parameters.
+    */
    @Test 
    public void testPrepareStatementGeneral() throws SQLException {
       DB db = DB.getInstance();
@@ -42,6 +47,9 @@ public class TestDBConnections {
       assertEquals(query + "'" + text + "'", statementString.substring(statementString.indexOf(": ") + 2));
    }
 
+   /**
+    * Tests prepare statement loop with no parameters.
+    */
    @Test 
    public void testPrepareStatementParametersMissing() throws SQLException {
       DB db = DB.getInstance();
@@ -55,6 +63,42 @@ public class TestDBConnections {
       String statementString = stmnt.toString();
       assertEquals(query, statementString.substring(statementString.indexOf(": ") + 2));
    }
+
+   /**
+    * Tests prepare statement loop with null.
+    */
+   @Test 
+   public void testPrepareStatementParametersNull() throws SQLException {
+      DB db = DB.getInstance();
+      db.connect();
+
+      String query = "INSERT INTO `mysql_test` SET `text` = ?";
+      String[] params = {DB.T_D, null};
+
+      PreparedStatement stmnt;
+      stmnt = db.createPreparedStatement(query, params);
+      String statementString = stmnt.toString();
+      assertEquals(query, statementString.substring(statementString.indexOf(": ") + 2));
+   }
+
+   /**
+    * Tests prepare statement loop with invalid number of parameters.
+    */
+   @Test
+   public void testPrepareStatementParametersInvalid() throws SQLException {
+      DB db = DB.getInstance();
+      db.connect();
+      Boolean thrown = false;
+
+      String query = "INSERT INTO `mysql_test` SET `text` = ?";
+      String[] params = {DB.T_D};
+      try {
+         db.createPreparedStatement(query, params);
+      } catch (ArrayIndexOutOfBoundsException e) {
+         thrown = true;
+      }
+      assertTrue(thrown);
+   }
    
    @Test
    public void testInsertGeneric() {
@@ -64,6 +108,9 @@ public class TestDBConnections {
       assertEquals(1, rowsUpdated);
    }
 
+   /**
+    * Tests loop in DB.query with no runs.
+    */
    @Test
    public void testSelectNoRows() {
       DB db = DB.getInstance();
@@ -73,6 +120,9 @@ public class TestDBConnections {
       assertEquals(0, rows.size());
    }
 
+   /**
+    * Tests loop in DB.query with one run.
+    */
    @Test
    public void testSelectOneRow() {
       DB db = DB.getInstance();
@@ -85,6 +135,18 @@ public class TestDBConnections {
       assertEquals(1, rows.size());
    }
    
+   /**
+    * Tests loop in DB.query with multiple runs.
+    */
+   @Test
+   public void testSelectMultipleRows() {
+      DB db = DB.getInstance();
+      String qGetTestRow = "SELECT `id`, `text` FROM `mysql_test` WHERE `id` > 0 LIMIT 2";
+      String[] pGetTestRow = {};
+      List<HashMap<String, String>>rows = db.query(qGetTestRow, pGetTestRow);
+
+      assertEquals(2, rows.size());
+   }
    
    @Test
    public void testUpdateOne() {
@@ -103,15 +165,5 @@ public class TestDBConnections {
 
       assertTrue(rowsUpdated >= 1);
       this.testText = editedText; 
-   }
-   
-   @Test
-   public void testSelectMultipleRows() {
-      DB db = DB.getInstance();
-      String qGetTestRow = "SELECT `id`, `text` FROM `mysql_test` WHERE `id` > 0 LIMIT 2";
-      String[] pGetTestRow = {};
-      List<HashMap<String, String>>rows = db.query(qGetTestRow, pGetTestRow);
-
-      assertEquals(2, rows.size());
    }
 }

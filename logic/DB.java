@@ -88,6 +88,8 @@ public class DB {
 
          String selectedData;
          int colCount = md.getColumnCount();
+
+         // Loop tested in test/TestDBConnections.java
          while (rs.next()) {
             HashMap<String, String> row = new HashMap<>();
 
@@ -128,6 +130,7 @@ public class DB {
       }
 
       int ndx = 1;
+      // Loop tested in test/TestDBConnections.java
       for (int i = 0; i < params.length; i += 2) {
          parseParam(params, preparedStmt, i, ndx++);
       }
