@@ -23,12 +23,12 @@ public class Notification extends Page {
 	private JPasswordField passwordField;
 	private JPasswordField passwordField1;
 	private JPasswordField passwordField2;
-	public JPanel bodyPanel;
-	public JPanel formatPanel;
+	private JPanel bodyPanel;
+	private JPanel formatPanel;
 	
-	public long postID;
+	private long postID;
 	
-	public transient logic.Post post;
+	private transient logic.Post post;
 	
 	/**
 	 * Create the panel.

@@ -7,8 +7,8 @@ import javax.swing.JPanel;
 public class MainWindow extends JPanel {
 
 	private CardLayout cardlayout;
-	public Topics topicList;
-	JPanel main;
+	private Topics topicList;
+	private JPanel main;
 	/**
 	 * Create the panel.
 	 */

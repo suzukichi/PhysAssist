@@ -42,7 +42,7 @@ public class Application {
 	public void init() {
 		//create MainFrame
 		frame = new guis.MainFrame();
-		guis.MainWindow view = frame.panel;
+		guis.MainWindow view = frame.getPanel();
 		
 		//create login controller, passes user ID to home
 		homeController = new HomePage(view);

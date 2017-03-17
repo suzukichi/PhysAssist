@@ -27,12 +27,12 @@ public class CreateAccount extends Page {
 	private JTextField emailField;
 	private JPasswordField passwordField;
 	private JPasswordField passwordField1;
-	public JPanel bodyPanel;
-	public JPanel formatPanel;
-	public JTextPane userNameErrorText;
-	public JTextPane emailErrorText;
+	private JPanel bodyPanel;
+	private JPanel formatPanel;
+	private JTextPane userNameErrorText;
+	private JTextPane emailErrorText;
 	
-	public transient logic.LoginPage controller;
+	private transient logic.LoginPage controller;
 
 	public CreateAccount() {
 		

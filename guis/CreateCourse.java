@@ -22,8 +22,8 @@ import javax.swing.border.LineBorder;
 public class CreateCourse extends Page {
 	JPanel usernamePanel; 
 	private JTextField titleField;
-	public JPanel bodyPanel;
-	public JPanel formatPanel;
+	private JPanel bodyPanel;
+	private JPanel formatPanel;
 	
 	public CreateCourse() {
 	   this.locationName = "Create Class";

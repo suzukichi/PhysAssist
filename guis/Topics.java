@@ -35,8 +35,8 @@ public class Topics extends Page {
 	private JPanel p1;
 	private JPanel p2;
 
-	public JPanel bodyPanel;
-	public JPanel formatPanel;
+	private JPanel bodyPanel;
+	private JPanel formatPanel;
 	private transient java.util.List<logic.Topic> topicList;
 	private String categoryTitle;
 	private Long parentID;

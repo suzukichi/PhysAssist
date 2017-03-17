@@ -22,8 +22,8 @@ public class EditCourse extends Page {
 
 	JPanel usernamePanel; 
 	private JTextField titleField;
-	public JPanel bodyPanel;
-	public JPanel formatPanel;
+	private JPanel bodyPanel;
+	private JPanel formatPanel;
 	
 	/**
 	 * Create the panel.

@@ -11,9 +11,8 @@ package logic;
 public class HomePage extends Page {
 	private guis.Home homeView;
 	private guis.About aboutView;
-	public TopicListPage topicController;
-	//public CourseList courseController;
-	public SettingsPage settingsController;
+	private TopicListPage topicController;
+	private SettingsPage settingsController;
 		
   public HomePage(guis.MainWindow view){
 	  topicController = new TopicListPage(view);
@@ -27,7 +26,7 @@ public class HomePage extends Page {
 	  homeView.addTopicController(topicController);
 	  //homeView.addCourseController(courseController);
 	  homeView.addSettingsController(settingsController);
-	  settingsController.homeController = this;
+	  settingsController.setHomeController(this);
 	  view.add(homeView, "home");
 	  
 	  aboutView = new guis.About();

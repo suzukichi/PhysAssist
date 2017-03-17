@@ -26,14 +26,14 @@ public class Settings extends Page {
 	private JPasswordField passwordField;
 	private JPasswordField passwordField1;
 	private JPasswordField passwordField2;
-	public JPanel bodyPanel;
-	public JPanel formatPanel;
+	private JPanel bodyPanel;
+	private JPanel formatPanel;
 	private JTextPane userNameErrorText;
 	private JTextPane passwordErrorText;
-	public String username;
-	public String email;
+	private String username;
+	private String email;
 	
-	public logic.SettingsPage controller;
+	private logic.SettingsPage controller;
 
 	/**
 	 * Create the panel.

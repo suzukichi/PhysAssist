@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 public class MainFrame extends JFrame {
 
 	private JFrame frame;
-	public MainWindow panel;
+	private MainWindow panel;
 	
 	/**
 	 * Create the application.
@@ -25,6 +25,11 @@ public class MainFrame extends JFrame {
 		frame.getContentPane().add(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+	}
+	
+	public MainWindow getPanel()
+	{
+		return this.panel;
 	}
 
 }

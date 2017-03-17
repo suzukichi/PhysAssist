@@ -33,12 +33,12 @@ public class Equations extends Page {
 	private JPanel p1;
 	private JPanel p2;
 
-	public JPanel bodyPanel;
-	public JPanel formatPanel;
-	List<logic.Equation> equations;
-	String categoryTitle;
-	Long parentID;
-	Long topicID;
+	private JPanel bodyPanel;
+	private JPanel formatPanel;
+	private List<logic.Equation> equations;
+	private String categoryTitle;
+	private Long parentID;
+	private Long topicID;
 	private JPanel innerp1;
 	private JPanel innerp2;
 	private JPanel innerp3;

@@ -16,8 +16,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 public class ViewTopic extends Page {
-	public JPanel bodyPanel;
-	public JPanel formatPanel;
+	private JPanel bodyPanel;
+	private JPanel formatPanel;
 	private String categoryTitle;
 	private Long topicID;
 	private Long equationID;

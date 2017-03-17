@@ -10,7 +10,7 @@ package logic;
 
 public class SettingsPage extends Page {
 	private guis.Settings page;
-	public HomePage homeController;
+	private HomePage homeController;
 	
 	public SettingsPage(guis.MainWindow view) {
 		initView(view);
@@ -72,5 +72,10 @@ public class SettingsPage extends Page {
 		user.save();
 		homeController.user = user;
 		homeController.passUser();
+	}
+
+	public void setHomeController(HomePage homePage) {
+		this.homeController = homePage;
+		
 	}
 }
