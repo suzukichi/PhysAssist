@@ -25,7 +25,7 @@ public class Page extends JPanel {
    protected String locationName;
    protected JPanel contentPanel;
    protected JPanel headerPanel;
-   private JPopupMenu popupMenu;
+   private JPopupMenu popupMenu1;
    private JLabel menu;
    private String dialogInput = "DialogInput";
    
@@ -52,8 +52,8 @@ public class Page extends JPanel {
 
    protected void setupMenu() {	
 		menu = new JLabel("");
-		popupMenu = new JPopupMenu();
-		addPopup(menu, popupMenu);
+		popupMenu1 = new JPopupMenu();
+		addPopup(popupMenu1);
 
 		// click will close the menu. need it to act as a drop down where second click closes.
 		menu.addMouseListener(new MouseAdapter() {
@@ -64,12 +64,12 @@ public class Page extends JPanel {
 
 			      if (event.getSource() instanceof JLabel) {
 			         if (!menuTrigger && event.getButton() == MouseEvent.BUTTON1) {
-                     popupMenu.show(event.getComponent(), -23, 55);
+                     popupMenu1.show(event.getComponent(), -23, 55);
 				         menu.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 				         menuTrigger = true;
 			         }
 
-			         if (!popupMenu.isVisible()) {
+			         if (!popupMenu1.isVisible()) {
 			        	   menuTrigger = false;
 			        	   menu.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
 			         }
@@ -82,7 +82,7 @@ public class Page extends JPanel {
 			@Override
 			public void mouseMoved(MouseEvent arg0) {
 				super.mouseMoved(arg0);
-				if(!popupMenu.isVisible()) {
+				if(!popupMenu1.isVisible()) {
 					menu.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
 				}
 			}
@@ -108,7 +108,7 @@ public class Page extends JPanel {
 		menuHomeButton.setVerticalTextPosition(SwingConstants.TOP);
 		menuHomeButton.setVerticalAlignment(SwingConstants.TOP);
 		menuHomeButton.setFont(new Font(dialogInput, Font.PLAIN, 12));
-		popupMenu.add(menuHomeButton, BorderLayout.EAST);
+		popupMenu1.add(menuHomeButton, BorderLayout.EAST);
 		
 		JMenuItem menuTopicButton = new JMenuItem("Topics");
 		menuTopicButton.addMouseListener(new MouseAdapter() {
@@ -125,7 +125,7 @@ public class Page extends JPanel {
 		menuTopicButton.setVerticalTextPosition(SwingConstants.TOP);
 		menuTopicButton.setVerticalAlignment(SwingConstants.TOP);
 		menuTopicButton.setFont(new Font(dialogInput, Font.PLAIN, 12));
-		popupMenu.add(menuTopicButton, BorderLayout.EAST);
+		popupMenu1.add(menuTopicButton, BorderLayout.EAST);
 		JMenuItem menuGroupButton = new JMenuItem("Groups");
 		menuGroupButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -141,7 +141,7 @@ public class Page extends JPanel {
 		menuGroupButton.setVerticalAlignment(SwingConstants.TOP);
 		menuGroupButton.setPreferredSize(new Dimension(45, 22));
 		menuGroupButton.setFont(new Font(dialogInput, Font.PLAIN, 12));
-		popupMenu.add(menuGroupButton);
+		popupMenu1.add(menuGroupButton);
 		
 		JMenuItem mntmCalculator = new JMenuItem("Calculator");
 		mntmCalculator.addMouseListener(new MouseAdapter() {
@@ -159,7 +159,7 @@ public class Page extends JPanel {
 		mntmCalculator.setVerticalAlignment(SwingConstants.TOP);
 		mntmCalculator.setPreferredSize(new Dimension(65, 22));
 		mntmCalculator.setFont(new Font(dialogInput, Font.PLAIN, 12));
-		popupMenu.add(mntmCalculator);
+		popupMenu1.add(mntmCalculator);
 		
 		JMenuItem mntmSettings = new JMenuItem("Settings");
 		mntmSettings.addMouseListener(new MouseAdapter() {
@@ -176,7 +176,7 @@ public class Page extends JPanel {
 		mntmSettings.setVerticalAlignment(SwingConstants.TOP);
 		mntmSettings.setPreferredSize(new Dimension(45, 22));
 		mntmSettings.setFont(new Font(dialogInput, Font.PLAIN, 12));
-		popupMenu.add(mntmSettings);
+		popupMenu1.add(mntmSettings);
 		
 		JMenuItem mntmLogOut = new JMenuItem("Log Out");
 		mntmLogOut.addMouseListener(new MouseAdapter() {
@@ -195,7 +195,7 @@ public class Page extends JPanel {
 		mntmLogOut.setVerticalAlignment(SwingConstants.TOP);
 		mntmLogOut.setPreferredSize(new Dimension(45, 22));
 		mntmLogOut.setFont(new Font(dialogInput, Font.PLAIN, 12));
-		popupMenu.add(mntmLogOut);
+		popupMenu1.add(mntmLogOut);
 		
 		menu.setToolTipText("Menu");
 		menu.setBorder(new SoftBevelBorder(BevelBorder.RAISED, null, null, null, null));
@@ -256,7 +256,7 @@ public class Page extends JPanel {
       cards.show(main, location);
    }
 
-   private void addPopup(JLabel menu, JPopupMenu popupMenu) {
+   private void addPopup(JPopupMenu popupMenu) {
       // Auto-generated method stub
    }
 }

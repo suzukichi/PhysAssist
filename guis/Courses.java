@@ -10,7 +10,6 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.BoxLayout;
@@ -80,6 +79,7 @@ public class Courses extends Page {
 		item1Button.setPreferredSize(new Dimension(250, 25));
 		innerp1.add(item1Button);
 		item1Button.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// this is empty
 			}
@@ -96,7 +96,9 @@ public class Courses extends Page {
 		item2Button.setToolTipText("");
 		item2Button.setName("2");
 		item2Button.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
+				// this is empty
 			}
 		});
 		item2Button.setBounds(148, 100, 89, 23);

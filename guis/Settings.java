@@ -99,13 +99,13 @@ public class Settings extends Page {
 		JPanel p3 = new JPanel();
 		usernameWrap.add(p3);
 		
-		JTextPane userNameErrorText = new JTextPane();
-		userNameErrorText.setVisible(false);
-		userNameErrorText.setForeground(StyleGuide.errorText);
-		userNameErrorText.setBackground(StyleGuide.background2);
-		userNameErrorText.setText("Name in use!");
-		userNameErrorText.setFocusable(false);
-		p3.add(userNameErrorText);
+		JTextPane userNameErrorText1 = new JTextPane();
+		userNameErrorText1.setVisible(false);
+		userNameErrorText1.setForeground(StyleGuide.errorText);
+		userNameErrorText1.setBackground(StyleGuide.background2);
+		userNameErrorText1.setText("Name in use!");
+		userNameErrorText1.setFocusable(false);
+		p3.add(userNameErrorText1);
 	}
 	
 	private void createPasswordPanel() {
@@ -177,6 +177,7 @@ public class Settings extends Page {
 		p4.add(btnChangePassword);
 		btnChangePassword.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnChangePassword.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
@@ -271,8 +272,8 @@ public class Settings extends Page {
 		emailField.setColumns(20);
 		
 		JPanel p2 = new JPanel();
-		FlowLayout flowLayout_1 = (FlowLayout) p2.getLayout();
-		flowLayout_1.setAlignment(FlowLayout.RIGHT);
+		FlowLayout flowLayout1 = (FlowLayout) p2.getLayout();
+		flowLayout1.setAlignment(FlowLayout.RIGHT);
 		emailWrap.add(p2);
 		
 		JButton btnChangeEmail = new JButton("Change Email");

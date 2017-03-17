@@ -11,7 +11,6 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -37,7 +36,6 @@ public class Topics extends Page {
 
 	private JPanel bodyPanel;
 	private JPanel formatPanel;
-	private transient java.util.List<logic.Topic> topicList;
 	private String categoryTitle;
 	private Long parentID;
 	private JPanel innerp1;
@@ -51,7 +49,7 @@ public class Topics extends Page {
 	   }
 	   
 	   if (this.parentID > 0) {
-	      Topic parent = new Topic(this.parentID);
+	      new Topic(this.parentID);
 	   } else {
 	      this.categoryTitle = "Topics";
 	   }
@@ -94,6 +92,7 @@ public class Topics extends Page {
 		item1Button.setPreferredSize(new Dimension(250, 25));
 		innerp1.add(item1Button);
 		item1Button.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				nextPage(arg0);
 			}
@@ -108,6 +107,7 @@ public class Topics extends Page {
 		innerp2.add(item2Button);
 		item2Button.setToolTipText("");
 		item2Button.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				nextPage(arg0);
 			}
@@ -145,8 +145,8 @@ public class Topics extends Page {
 		p1.add(upButton);
 		
 		p2 = new JPanel();
-		FlowLayout flowLayout_1 = (FlowLayout) p2.getLayout();
-		flowLayout_1.setAlignment(FlowLayout.RIGHT);
+		FlowLayout flowLayout1 = (FlowLayout) p2.getLayout();
+		flowLayout1.setAlignment(FlowLayout.RIGHT);
 	    main.add(p2, BorderLayout.SOUTH);
 		downButton = new JLabel("");
 		downButton.setBounds(394, 188, 56, 56);
@@ -164,9 +164,9 @@ public class Topics extends Page {
 		JButton button = (JButton) arg0.getSource();
 		if(this.parentID == 0) {
 			topicController.initTopicPage(Long.parseLong(button.getName()));
-			MainWindow main = getMainFromButton(button);
-			CardLayout cards = main.getCardLayout();
-			cards.show(main, "topics");
+			MainWindow main1 = getMainFromButton(button);
+			CardLayout cards = main1.getCardLayout();
+			cards.show(main1, "topics");
 		}
 	}
 

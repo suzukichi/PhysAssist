@@ -10,8 +10,6 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -81,6 +79,7 @@ public class Course extends Page {
 		item1Button.setPreferredSize(new Dimension(250, 25));
 		innerp1.add(item1Button);
 		item1Button.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});

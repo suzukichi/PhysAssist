@@ -5,7 +5,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
-import java.util.HashMap;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -15,10 +14,10 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+@SuppressWarnings("serial")
 public class ViewTopic extends Page {
 	private JPanel bodyPanel;
 	private JPanel formatPanel;
-	private String categoryTitle;
 	private Long topicID;
 	private Long equationID;
 	private JPanel innerp1;
@@ -34,10 +33,8 @@ public class ViewTopic extends Page {
 	   
 	   this.equationID = (long) -1;
 	   if (this.equationID >= 0) {
-		      logic.Topic topic = new logic.Topic(this.topicID);
-		      //this.locationName = topic.title;
+		      new logic.Topic(this.topicID);
 	   } 
-	   //courses = logic.Lists.getCourseList(userID);
 	   
 	   
 	   bodyPanel = new JPanel();

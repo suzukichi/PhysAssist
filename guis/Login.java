@@ -90,6 +90,7 @@ public class Login extends Page {
 
 		createButton = new JButton("Sign Up");
 		createButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
             MainWindow main = getMainFromButton((JButton) e.getSource());
             CardLayout cards = main.getCardLayout();
@@ -102,6 +103,7 @@ public class Login extends Page {
 
 		loginButton = new JButton("Login");
 		loginButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				login(e);
 			}
