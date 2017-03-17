@@ -16,7 +16,6 @@ public class HomePage extends Page {
 		
   public HomePage(guis.MainWindow view){
 	  topicController = new TopicListPage(view);
-	  //courseController = new CourseList(view);
 	  settingsController = new SettingsPage(view);
 	  initView(view);
   }
@@ -24,7 +23,6 @@ public class HomePage extends Page {
   public void initView(guis.MainWindow view) {
 	  homeView = new guis.Home();
 	  homeView.addTopicController(topicController);
-	  //homeView.addCourseController(courseController);
 	  homeView.addSettingsController(settingsController);
 	  settingsController.setHomeController(this);
 	  view.add(homeView, "home");
@@ -38,12 +36,10 @@ public class HomePage extends Page {
    */
   @Override
 	public void display() {
-    
+    /* empty */
   }
   
   public void passUser(){
 	  settingsController.user = user;
-	  
-	  //courseController.user = user;
   }
 }

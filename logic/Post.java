@@ -1,6 +1,5 @@
 package logic;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -18,7 +17,8 @@ public class Post {
    private long classroomID;
    private long authorID;
    private long publishTS;
-   private String title, text;
+   private String title;
+   private String text;
 
     public Post(String title, String text, long courseID) {
       this.title = title;
@@ -45,7 +45,7 @@ public class Post {
     	String[] pgetPost = {DB.T_I, String.valueOf(postID)};    	
     	
     	List<HashMap<String, String>> rows = (DB.getInstance()).query(qgetPost, pgetPost);
-    	if (rows.size() == 0) {
+    	if (rows.isEmpty()) {
     	   throw new IllegalArgumentException("Rows.size() == 0)");
     	}
 

@@ -1,12 +1,9 @@
 package logic;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class Equation {
-   private String name;
-   private long topicID;
    private long equationID;
    private String view;
    private String description;
@@ -27,11 +24,9 @@ public class Equation {
       this.equationID = equationID;
 
       HashMap<String, String> row = rows.get(0);
-      this.name = row.get("name");
       this.view = row.get("view");
       this.description = row.get("description");
       this.history = row.get("history");
-      this.topicID = Long.parseLong(row.get("topicid"));
    }
 
    public String getView() {

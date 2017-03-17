@@ -11,8 +11,7 @@ package logic;
 import guis.MainWindow;
 
 public class LoginPage extends Page {
-  private boolean isRegister;
-  private guis.Login loginPage;
+  private guis.Login login;
   private guis.CreateAccount createPage;
   private logic.HomePage homeController;
   
@@ -59,9 +58,9 @@ public class LoginPage extends Page {
    
    
 	public void initView(MainWindow view){
-		loginPage = new guis.Login();
-		loginPage.addController(this);
-		view.add(loginPage, "login");
+		login = new guis.Login();
+		login.addController(this);
+		view.add(login, "login");
 		
 		createPage = new guis.CreateAccount();
 		createPage.addController(this);

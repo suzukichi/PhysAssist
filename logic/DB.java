@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-//import test.TestAST;
-
 public class DB {
 	private static final Logger LOGGER = Logger.getLogger(DB.class.getName());
     private static DB instance = null;
@@ -93,22 +91,7 @@ public class DB {
             HashMap<String, String> row = new HashMap<>();
 
             for (int ndx = 1; ndx <= colCount; ndx++) {
-               switch (md.getColumnType(ndx)) {
-                  case Types.TINYINT:
-                  case Types.BIT:
-                	  selectedData = String.valueOf(rs.getLong(ndx));
-                	  break;
-                  case Types.INTEGER:
-                  case Types.BIGINT:
-                     selectedData = String.valueOf(rs.getLong(ndx));
-                     break;
-                  case Types.VARCHAR:
-                  case Types.CHAR:
-                     selectedData = rs.getString(ndx);
-                     break;
-                  default:
-                     throw new IllegalArgumentException("Invalid column type '" + md.getColumnTypeName(ndx) +  "' being selected");
-               }
+               selectedData = getDataType(md.getColumnType(ndx), ndx, rs, md);
 
                row.put(md.getColumnName(ndx), selectedData);
             }
@@ -120,6 +103,28 @@ public class DB {
       }
 	   
 	   return results;
+	}
+	
+	private String getDataType(int type, int ndx, ResultSet rs, ResultSetMetaData md) throws SQLException
+	{
+		String selectedData;
+		switch (type) {
+        case Types.TINYINT:
+        case Types.BIT:
+      	  selectedData = String.valueOf(rs.getLong(ndx));
+      	  break;
+        case Types.INTEGER:
+        case Types.BIGINT:
+           selectedData = String.valueOf(rs.getLong(ndx));
+           break;
+        case Types.VARCHAR:
+        case Types.CHAR:
+           selectedData = rs.getString(ndx);
+           break;
+        default:
+           throw new IllegalArgumentException("Invalid column type '" + md.getColumnTypeName(ndx) +  "' being selected");
+		}
+		return selectedData;
 	}
 	
 	public PreparedStatement createPreparedStatement(String query, String[] params) throws SQLException {
@@ -141,23 +146,17 @@ public class DB {
 	private void parseParam(String[] params, PreparedStatement preparedStmt, int i, int ndx) throws SQLException {
       switch (params[i]) {
          case T_I:
-            if (params[i + 1] == null) {
-               preparedStmt.setNull(ndx, Types.FLOAT);
-            } else {
-               preparedStmt.setInt(ndx, Integer.valueOf(params[i + 1])); 
-            } break;
+            if (params[i + 1] == null) { preparedStmt.setNull(ndx, Types.FLOAT); } 
+            else { preparedStmt.setInt(ndx, Integer.valueOf(params[i + 1])); } 
+            break;
          case T_D:
-            if (params[i + 1] == null) {
-               preparedStmt.setNull(ndx, Types.FLOAT);
-            } else {
-               preparedStmt.setFloat(ndx, Float.valueOf(params[i + 1])); 
-            } break;
+            if (params[i + 1] == null) { preparedStmt.setNull(ndx, Types.FLOAT); } 
+            else { preparedStmt.setFloat(ndx, Float.valueOf(params[i + 1])); } 
+            break;
          case T_S:
-            if (params[i + 1] == null) {
-               preparedStmt.setNull(ndx, Types.VARCHAR);
-            } else {
-               preparedStmt.setString(ndx, params[i + 1]);
-            } break;
+            if (params[i + 1] == null) { preparedStmt.setNull(ndx, Types.VARCHAR); } 
+            else { preparedStmt.setString(ndx, params[i + 1]); } 
+            break;
          default:
             throw new ArrayIndexOutOfBoundsException("Missing or invalid parameter type");
       }

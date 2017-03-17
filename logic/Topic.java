@@ -13,7 +13,7 @@ public class Topic {
 	private long parentTopicID;
 	private long creationTime;
 	
-	public ArrayList<Equation> equations;
+	private List<Equation> equations;
 	
 	public Topic(long topicID) {
 	   DB db = DB.getInstance();
@@ -36,8 +36,7 @@ public class Topic {
       this.parentTopicID = Long.valueOf(row.get("parentid"));
       this.creationTime = Long.valueOf(row.get("creation_time"));
      
-      // TODO: create Equations.
-		this.equations = new ArrayList<>();
+      this.equations = new ArrayList<>();
 	}
 	
 	public Topic(long topicID, long parentTopicID, String title, String text, long authorID,
@@ -86,11 +85,6 @@ public class Topic {
 	      DB.T_I, String.valueOf(this.parentTopicID),
 	   };
 
-	   int insertedRows = db.execute(qsaveTopic, psaveTopic);
-	   if (insertedRows != 1) {
-	      System.out.println(insertedRows + " rows were inserted!");
-	   }
-
 	   if (this.topicID <= 0) {
 	      String qgetTopicID = "SELECT `topicid` FROM `topics` " + 
 	                            "WHERE `creation_time` = ?";
@@ -115,15 +109,13 @@ public class Topic {
 	   db.execute(qsaveTopicRevision, psaveTopicRevision);
 	   
 	   // Update revisionid to be the new revisionid.
-      String q_getRevisionID = "SELECT `revisionid` " + 
+      String qGetRevisionID = "SELECT `revisionid` " + 
                                "FROM `topic_revisions` " + 
                                "WHERE `topicid` = ? " + 
                                "ORDER BY `revisionid` DESC "; 
-      String[] p_getRevisionID = {DB.T_I, String.valueOf(this.topicID)};
-      rows = db.query(q_getRevisionID, p_getRevisionID); 
+      String[] pGetRevisionID = {DB.T_I, String.valueOf(this.topicID)};
+      rows = db.query(qGetRevisionID, pGetRevisionID); 
       this.revisionID = Long.valueOf(rows.get(0).get("revisionid"));
-	   
-	   // TODO: save updated equations list
 	}
 
 	public void delete() {

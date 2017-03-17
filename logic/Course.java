@@ -80,7 +80,7 @@ public class Course {
     initPosts(postIDList);
    }
    
-   public int initPosts(ArrayList<Long> postIDList){
+   public int initPosts(List<Long> postIDList){
  	  int iterations = 0;
  	  // Loop tested in test/TestLoopCourseinitPosts.java
  	  for (long postID : postIDList) {
@@ -215,16 +215,17 @@ public class Course {
     rep += " description: " + description;
     rep += " posts: [\n"; 
     // Loop tested in test/TestLoopCoursepost.java
-    toStringHelper(rep);
+    toStringHelper();
     
     rep += "   ]}\n";
     
     return rep;
   }
-  public int toStringHelper(String rep){
+  public int toStringHelper(){
 	  int iterations = 0;
 	  // Loop tested in test/TestLoopCoursepost.java
 	  for (@SuppressWarnings("unused") Post p : posts) {
+		  p.getText();
 	      iterations++;
 	  }
 	  return iterations;

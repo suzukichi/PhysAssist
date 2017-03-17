@@ -33,7 +33,7 @@ public class User {
   private long registrationDate;
   private List<Course> coursesEnrolled;
   private List<Course> coursesOwned;
-  
+  private static final String FROM_USERS = " FROM `users`";
   public User(String username, String firstName, String lastName, String password, String email) {
     this.username = username;
     this.firstName = firstName;
@@ -48,7 +48,7 @@ public class User {
   
   public User(long userID) {
     String qGetUser = "SELECT `username`, `password`, `first_name`, `last_name`, `email`, `registration_date`" +
-                      " FROM `users` " +
+                      FROM_USERS +
                       " WHERE `userid` = ?";
     String[] pGetUser = {DB.T_I, String.valueOf(userID)};      
 
@@ -95,7 +95,7 @@ public class User {
     return list;
   }
   
-  public int initCourses(List<Course> list, ArrayList<Long> courseIDList){
+  public int initCourses(List<Course> list, List<Long> courseIDList){
 	  int iterations=0;
 	  // Loop tested in test/TestLoopUserinitCourses.java
 	  for (long courseID : courseIDList) {
@@ -131,7 +131,7 @@ public class User {
     return list;
   }
   
-  public void loadLoop(ArrayList<Long> courseIDList,List<HashMap<String, String>> rows){
+  public void loadLoop(List<Long> courseIDList,List<HashMap<String, String>> rows){
 	  for (HashMap<String, String> row : rows) {
 	      courseIDList.add(Long.parseLong(row.get("classroomid")));
 	  }
@@ -165,7 +165,7 @@ public class User {
      db.execute(qSaveUser, pSaveUser);
      
      if (this.userID <= 0) {
-        String qGetUserID = "SELECT `userid` FROM `users`" +
+        String qGetUserID = "SELECT `userid`" + FROM_USERS +
                             " WHERE `username` = ? AND `registration_date` = ?" + 
                             " LIMIT 1";
         String[] pGetUserID = {
@@ -178,7 +178,7 @@ public class User {
   }
   
   public void delete() {
-     String qDeleteUser = "DELETE FROM `users` WHERE `userid` = ?";
+     String qDeleteUser = "DELETE" + FROM_USERS + " WHERE `userid` = ?";
      String[] pDeleteUser = {
         DB.T_I, String.valueOf(this.userID) 
      };
@@ -211,8 +211,6 @@ public class User {
     if (course.dropStudent(this)) {
        coursesEnrolled.remove(course);
     }
-    
-    //TODO: need to remove this enrollment from the students table
   }
   
   /*
@@ -231,28 +229,6 @@ public class User {
     coursesOwned.remove(course);
     course.delete();
   }
-  
-  /*
-   * Returns the user's permissions for the specified page.
-   */
-  /*
-  public Role getPermission(Page page) {
-    if (page instanceof ClassroomPage) {
-      ClassroomPage classroomPage = (ClassroomPage) page;
-      Classroom c = classroomPage.classroom;
-      
-      if (classroomsEnrolled.contains(c)) {
-        return new Student();
-      }
-      if (classroomsOwned.contains(c)) {
-        return new Professor();
-      }
-      return new GeneralUser();
-    } else {
-      return new GeneralUser();
-    }
-  }
-  */
   
   /*
    * Returns the role, as a string, of the user for the given Course.
@@ -302,7 +278,7 @@ public class User {
 	    DB db = DB.getInstance();
 
 	    String qGetLoginInfo = "SELECT password, userID" + 
-	    						" FROM `users`" +
+	    						FROM_USERS +
 	    						" WHERE `username` = ?";
 	    String[] pGetLoginInfo = {DB.T_S, String.valueOf(username)};
 
@@ -358,7 +334,7 @@ public class User {
   public static boolean nameExists(String username) {
 	  DB db = DB.getInstance();
 	    String qGetLoginInfo = "SELECT `username`" +
-	    							" FROM `users`" +
+	    							FROM_USERS +
 	    							" WHERE `username` = ?";
 	    
 	    String[] pGetLoginInfo = {DB.T_S, String.valueOf(username)};
@@ -374,7 +350,7 @@ public class User {
 	  DB db = DB.getInstance();
 
 	    String qGetLoginInfo = "SELECT *" +
-	    							" FROM `users`" +
+	    							FROM_USERS +
 	    							" WHERE `email` = ?";
 	    
 	    String[] pGetLoginInfo = {DB.T_S, String.valueOf(email)};

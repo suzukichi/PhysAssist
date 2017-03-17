@@ -37,14 +37,10 @@ public class Lists {
 
     List<HashMap<String, String>> rows = db.query(qGetTopicsForParent, pGetTopicsForParent);
     
-    System.out.println(rows);
-    
     // Loop tested in test/TestLoopLists.java 
     for (HashMap<String, String> row : rows) {
       list.add(new Category(Long.parseLong(row.get("topicid"))));
     }
-    
-    System.out.println(list);
     
     return list;
   }
@@ -67,8 +63,6 @@ public class Lists {
     
     List<HashMap<String, String>> rows = db.query(qGetTopicsForParent, pGetTopicsForParent);
     
-    System.out.println(rows);
-    
     // Loop tested in test/TestLoopLists.java 
     for (HashMap<String, String> row : rows) {
       list.add(new Topic(Long.parseLong(row.get("topicid")), parentID, row.get("title"),
@@ -76,12 +70,9 @@ public class Lists {
           Long.parseLong(row.get("creation_time"))));
     }
     
-    System.out.println(list);
-    
     return list;
   }
   
-  //TODO
   /*
    * Returns a list of Equation objects from the DB with the given topicID.
    */
@@ -99,8 +90,6 @@ public class Lists {
     for (HashMap<String, String> row : rows) {
       list.add(new Equation(Long.parseLong(row.get("equationid"))));
     }
-    
-    System.out.println(list);
     
     return list;
   }
