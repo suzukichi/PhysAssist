@@ -1,6 +1,7 @@
 package guis;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -41,6 +42,7 @@ public class Topics extends Page {
 	private JPanel innerp1;
 	private JPanel innerp2;
 	private JPanel innerp3;
+	private logic.TopicListPage topicController;
 	
 	public Topics() {
 	   if (this.parentID == null) {
@@ -49,13 +51,10 @@ public class Topics extends Page {
 	   
 	   if (this.parentID > 0) {
 	      Topic parent = new Topic(this.parentID);
-	      //this.categoryTitle = parent.title;
 	   } else {
 	      this.categoryTitle = "Topics";
 	   }
 
-	   // TODO: replace this with the category name
-	   //topics = logic.Lists.getTopicList(this.parentID);
 	   this.locationName = this.categoryTitle;
 	   this.createHeader();
 	   
@@ -95,9 +94,9 @@ public class Topics extends Page {
 		innerp1.add(item1Button);
 		item1Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				nextPage(arg0);
 			}
 		});
-		item1Button.setName("1");
 		item1Button.setBounds(148, 38, 89, 23);
 		
 		innerp2 = new JPanel();
@@ -107,9 +106,9 @@ public class Topics extends Page {
 		item2Button.setPreferredSize(new Dimension(250, 25));
 		innerp2.add(item2Button);
 		item2Button.setToolTipText("");
-		item2Button.setName("2");
 		item2Button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent arg0) {
+				nextPage(arg0);
 			}
 		});
 		item2Button.setBounds(148, 100, 89, 23);
@@ -120,7 +119,12 @@ public class Topics extends Page {
 		item3Button = new JButton("");
 		item3Button.setPreferredSize(new Dimension(250, 25));
 		innerp3.add(item3Button);
-		item3Button.setName("3");
+		item3Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				nextPage(arg0);
+			}
+		});
+		
 		item3Button.setBounds(148, 159, 89, 23);
 	}
 	
@@ -155,29 +159,50 @@ public class Topics extends Page {
 		p2.add(downButton);
 	}
 	
-	/**private List getTopics() {
-	   List ts = new List();
-	   DB db = DB.getInstance();
+	private void nextPage(ActionEvent arg0){
+		JButton button = (JButton) arg0.getSource();
+		if(this.parentID == 0) {
+			topicController.initTopicPage(Long.parseLong(button.getName()));
+			MainWindow main = getMainFromButton(button);
+			CardLayout cards = main.getCardLayout();
+			cards.show(main, "topics");
+		}
+	}
 
-	   String qGetTopicsForParent = "SELECT t.`topicid`, tr.`title` FROM `topics` t" +
-	                                " JOIN `topic_revisions` tr USING (`topicid`)" + 
-	                                " WHERE `parentid` = ?" + 
-	                                " GROUP BY t.`topicid`" + 
-	                                " ORDER BY tr.`revisionid` DESC";
-	   String[] pGetTopicsForParent = {DB.T_I, String.valueOf(this.parentID)};
-
-	   ArrayList<HashMap<String, String>> rows = db.query(qGetTopicsForParent, pGetTopicsForParent);
-	   if (rows.isEmpty()) {
-	      // Say there are no topics under this category 
-	   }
-	   
-	   return ts;
-	}*/
+	private MainWindow getMainFromButton(JButton button) {
+		JPanel temp = (JPanel) button.getParent();
+   		JPanel temp2 = (JPanel) temp.getParent();
+   		JPanel temp3 = (JPanel) temp2.getParent();
+   		JPanel temp4 = (JPanel) temp3.getParent();
+   		JPanel temp5 = (JPanel) temp4.getParent();
+   		JPanel temp6 = (JPanel) temp5.getParent();
+   		return (MainWindow) temp6.getParent();
+	}
 	
+	public void addController(logic.TopicListPage controller) {
+		this.topicController = controller;
+	}
 
-	public void updateButtons(String[] titles){
+	public void updateButtons(String[] titles, String[] IDs){
+		String trigger = "N/A";
 		item1Button.setText(titles[0]);
+		if(IDs[0].equals(trigger)) 
+			item1Button.setEnabled(false);
+		else
+			item1Button.setEnabled(true);
+		item1Button.setName(IDs[0]);
 		item2Button.setText(titles[1]);
+		if(IDs[1].equals(trigger)) {
+			item2Button.setEnabled(false);
+		}
+		else
+			item2Button.setEnabled(true);
+		item2Button.setName(IDs[1]);
 		item3Button.setText(titles[2]);
+		if(IDs[2].equals(trigger)) 
+			item3Button.setEnabled(false);
+		else
+			item3Button.setEnabled(true);
+		item3Button.setName(IDs[2]);
 	}
 }
