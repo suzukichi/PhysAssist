@@ -27,19 +27,6 @@ public class TestTopic {
 		assertTrue(true);
 	}
 	
-	/* Equations have changed! TODO: use real constructor
-	@Test
-	public void testAddEquation() {
-		String title = "Equation Test Topic";
-		String description = "my test topic info";
-		Topic t = new Topic(title, description);
-		assertEquals(0, t.equations.size());
-		
-		t.addEquation(new Equation());
-		assertEquals(1, t.equations.size());
-	}
-	*/
-	
 	/**
 	 * NOTICE:
 	 * The following tests should not be run outside of a development environment.
@@ -47,6 +34,9 @@ public class TestTopic {
 	 * we should refrain from running the following tests while non-team-members are viewing the system.
 	 */
 	
+	/*
+	 * Diana's Integration test: DB.java, Topic.java
+	 */
 	@Test
 	public void testSaveTopic() {
 		String title = "Real topics";
@@ -60,6 +50,9 @@ public class TestTopic {
 		t.delete();
 	}
 
+	/*
+	 * Diana's Integration test: DB.java, Topic.java
+	 */
 	@Test
 	public void testReviseTopic() {
 		String title = "Real topics";
@@ -76,6 +69,9 @@ public class TestTopic {
 		t.delete();
 	}
 
+	/*
+	 * Diana's Integration test: DB.java, Topic.java
+	 */
 	@Test
 	public void testCreateFromDBTopic() {
 		String title = "First title";
