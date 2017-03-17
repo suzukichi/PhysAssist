@@ -24,7 +24,7 @@ import test.TestAST;
 
 public class User {
   private static final Logger LOGGER = Logger.getLogger(TestAST.class.getName());
-	
+  private boolean testMode = false;
   private String username;
   private String firstName;
   private String lastName;
@@ -99,10 +99,16 @@ public class User {
     return list;
   }
   
-  public void initCourses(List<Course> list, ArrayList<Long> courseIDList){
+  public int initCourses(List<Course> list, ArrayList<Long> courseIDList){
+	  int iterations=0;
+	  // Loop tested in test/TestLoopUserinitCourses.java
 	  for (long courseID : courseIDList) {
-	      list.add(new Course(courseID));
+		  if(!testMode){
+			  list.add(new Course(courseID));
+		  }
+	      iterations++;
 	  }  
+	  return iterations;
   }
   
   /*
@@ -437,5 +443,8 @@ public class User {
   public void setLastName(String lastName)
   {
 	  this.lastName = lastName;
+  }
+  public void setTestMode(boolean mode){
+	  testMode = mode;
   }
 }
