@@ -85,9 +85,9 @@ public class TestLoopTopicPageList {
 		topics.add(tpc2);
 		topics.add(tpc3);
 		topics.add(tpc4);
-		t.setCatCursor(3);
+		t.setCatCursor(0);
 		t.setTopics(topics);
 		int i = t.updateCategoryList();
-		assertEquals(0,i,0);
+		assertEquals(3,i,0);
 	}
 }
