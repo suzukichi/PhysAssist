@@ -77,10 +77,20 @@ public class Course {
     
     this.posts = new ArrayList<>();
     
-    for (long postID : postIDList) {
-      posts.add(new Post(postID));
-    }
-  }
+    initPosts(postIDList);
+   }
+   
+   public int initPosts(ArrayList<Long> postIDList){
+ 	  int iterations = 0;
+ 	  // Loop tested in test/TestLoopCourseinitPosts.java
+ 	  for (long postID : postIDList) {
+ 	      if(!testMode){
+ 	    	  posts.add(new Post(postID));
+ 	      }
+ 	      iterations++;
+ 	  }
+ 	  return iterations;
+   }
   
   public void save() {
     DB db = DB.getInstance();
