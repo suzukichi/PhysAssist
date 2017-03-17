@@ -5,13 +5,13 @@ import java.text.StringCharacterIterator;
 public class AST {
 	private Node root = null;
 	
-	public AST(String tree) throws IllegalArgumentException 
+	public AST(String tree) 
 	{
 		CharFeed.init(tree);
 		root = buildTree();
 	}
 
-	private Node buildTree() throws IllegalArgumentException 
+	private Node buildTree()
 	{
 		Node node = null;
 		String value = CharFeed.nextWord();
