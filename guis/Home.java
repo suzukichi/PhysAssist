@@ -9,7 +9,6 @@ import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 
@@ -33,9 +32,9 @@ public class Home extends Page {
 		homepageOptions = new JPanel();
 		homepageOptions.setBackground(StyleGuide.background2);
 		homepageOptions.setBorder(new EmptyBorder(0, 0, 0, 0));
-		FlowLayout flowLayout_1 = (FlowLayout) homepageOptions.getLayout();
-		flowLayout_1.setVgap(0);
-		flowLayout_1.setHgap(0);
+		FlowLayout flowLayout1 = (FlowLayout) homepageOptions.getLayout();
+		flowLayout1.setVgap(0);
+		flowLayout1.setHgap(0);
 		this.contentPanel.add(homepageOptions);
 		
 		this.createHomepageOptions();
@@ -125,7 +124,7 @@ public class Home extends Page {
 	}
 	
 	public void addCourseController(MouseAdapter controller) {
-		//groupController = controller;
+		// this is empty
 	}
 	
 	public void addSettingsController(logic.SettingsPage controller) {

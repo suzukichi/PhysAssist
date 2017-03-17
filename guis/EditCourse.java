@@ -9,15 +9,14 @@ import java.awt.GridBagLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
-import javax.swing.UIManager;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+@SuppressWarnings("serial")
 public class EditCourse extends Page {
 
 	JPanel usernamePanel; 
@@ -33,15 +32,15 @@ public class EditCourse extends Page {
 	   this.createHeader();
 	   
 	   bodyPanel = new JPanel();
-	   GridBagLayout gbl_bodyPanel = new GridBagLayout();
+	   GridBagLayout gblbodyPanel = new GridBagLayout();
 	   this.contentPanel.add(bodyPanel);
-	   bodyPanel.setLayout(gbl_bodyPanel);
+	   bodyPanel.setLayout(gblbodyPanel);
 	   
 	   formatPanel = new JPanel();
 	   formatPanel.setLayout(new BoxLayout(formatPanel, BoxLayout.Y_AXIS));
-	   GridBagConstraints gbc_formatPanel = new GridBagConstraints();
-	   gbc_formatPanel.gridx = 0;
-	   bodyPanel.add(formatPanel, gbc_formatPanel);
+	   GridBagConstraints gbcformatPanel = new GridBagConstraints();
+	   gbcformatPanel.gridx = 0;
+	   bodyPanel.add(formatPanel, gbcformatPanel);
 	   this.createCoursePanel();
 	}
 	

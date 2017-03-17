@@ -35,7 +35,6 @@ public class Course extends Page {
 
 	private JPanel bodyPanel;
 	private JPanel formatPanel;
-	private transient List<logic.Post> posts;
 	String categoryTitle;
 	Long courseID;
 	private JPanel innerp1;
@@ -43,8 +42,7 @@ public class Course extends Page {
 	private JPanel innerp3;
 	
 	public Course() {
-	
-	 //posts = logic.Lists.getPostList(courseID);
+
 	   this.locationName = this.categoryTitle;
 	   this.createHeader();
 	   
@@ -145,26 +143,7 @@ public class Course extends Page {
 		downButton.setIcon(icon2);
 		p2.add(downButton);
 	}
-	
-	/**private List getTopics() {
-	   List ts = new List();
-	   DB db = DB.getInstance();
 
-	   String qGetTopicsForParent = "SELECT t.`topicid`, tr.`title` FROM `topics` t" +
-	                                " JOIN `topic_revisions` tr USING (`topicid`)" + 
-	                                " WHERE `parentid` = ?" + 
-	                                " GROUP BY t.`topicid`" + 
-	                                " ORDER BY tr.`revisionid` DESC";
-	   String[] pGetTopicsForParent = {DB.T_I, String.valueOf(this.parentID)};
-
-	   ArrayList<HashMap<String, String>> rows = db.query(qGetTopicsForParent, pGetTopicsForParent);
-	   if (rows.isEmpty()) {
-	      // Say there are no topics under this category 
-	   }
-	   
-	   return ts;
-	}*/
-	
 
 	public void updateButtons(String[] titles){
 		item1Button.setText(titles[0]);

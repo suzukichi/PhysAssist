@@ -7,10 +7,7 @@ import java.awt.GridBagLayout;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.UIManager;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -19,16 +16,10 @@ import javax.swing.border.LineBorder;
 public class Notification extends Page {
 
 	JPanel usernamePanel; 
-	private JTextField emailField;
-	private JPasswordField passwordField;
-	private JPasswordField passwordField1;
-	private JPasswordField passwordField2;
+
 	private JPanel bodyPanel;
 	private JPanel formatPanel;
-	
-	private long postID;
-	
-	private transient logic.Post post;
+
 	
 	/**
 	 * Create the panel.
@@ -37,18 +28,17 @@ public class Notification extends Page {
 	   this.locationName = "Post";
 	   this.createHeader();
 	   
-	   //post = new logic.Post(postID);
 	   
 	   bodyPanel = new JPanel();
-	   GridBagLayout gbl_bodyPanel = new GridBagLayout();
+	   GridBagLayout gblbodyPanel = new GridBagLayout();
 	   this.contentPanel.add(bodyPanel);
-	   bodyPanel.setLayout(gbl_bodyPanel);
+	   bodyPanel.setLayout(gblbodyPanel);
 	   
 	   formatPanel = new JPanel();
 	   formatPanel.setLayout(new BoxLayout(formatPanel, BoxLayout.Y_AXIS));
-	   GridBagConstraints gbc_formatPanel = new GridBagConstraints();
-	   gbc_formatPanel.gridx = 0;
-	   bodyPanel.add(formatPanel, gbc_formatPanel);
+	   GridBagConstraints gbcformatPanel = new GridBagConstraints();
+	   gbcformatPanel.gridx = 0;
+	   bodyPanel.add(formatPanel, gbcformatPanel);
 	   this.createPostPanel();
 	}
 	

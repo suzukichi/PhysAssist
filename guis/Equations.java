@@ -22,32 +22,28 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.SoftBevelBorder;
 
-import logic.Topic;
-
 @SuppressWarnings("serial")
 public class Equations extends Page {
 	
 	private HashMap<String, Long> buttons;
-	private JButton item1Button, item2Button, item3Button;
-	private JLabel upButton, downButton;
+	private JButton item1Button;
+	private JButton item2Button;
+	private JButton item3Button;
+	private JLabel upButton;
+	private JLabel downButton;
 	private JPanel main;
 	private JPanel p1;
 	private JPanel p2;
 
 	private JPanel bodyPanel;
 	private JPanel formatPanel;
-	private transient List<logic.Equation> equations;
 	private String categoryTitle;
-	private Long parentID;
-	private Long topicID;
 	private JPanel innerp1;
 	private JPanel innerp2;
 	private JPanel innerp3;
 
 	public Equations() {
 
-	   // TODO: replace this with the category name
-	   //equations = logic.Lists.getEquationList(topicID);
 	   this.locationName = this.categoryTitle;
 	   this.createHeader();
 	   
@@ -57,20 +53,20 @@ public class Equations extends Page {
 	   
 	   
 	   bodyPanel = new JPanel();
-	   GridBagLayout gbl_bodyPanel = new GridBagLayout();
-	   gbl_bodyPanel.rowWeights = new double[]{0.0};
-	   gbl_bodyPanel.columnWeights = new double[]{1.0};
+	   GridBagLayout gblbodyPanel = new GridBagLayout();
+	   gblbodyPanel.rowWeights = new double[]{0.0};
+	   gblbodyPanel.columnWeights = new double[]{1.0};
 	   main.add(bodyPanel);
-	   bodyPanel.setLayout(gbl_bodyPanel);
+	   bodyPanel.setLayout(gblbodyPanel);
 	   
 	   formatPanel = new JPanel();
 	   formatPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 	   formatPanel.setLayout(new BoxLayout(formatPanel, BoxLayout.Y_AXIS));
-	   GridBagConstraints gbc_formatPanel = new GridBagConstraints();
-	   gbc_formatPanel.insets = new Insets(0, 0, 5, 0);
-	   gbc_formatPanel.gridy = 0;
-	   gbc_formatPanel.gridx = 0;
-	   bodyPanel.add(formatPanel, gbc_formatPanel);
+	   GridBagConstraints gbcformatPanel = new GridBagConstraints();
+	   gbcformatPanel.insets = new Insets(0, 0, 5, 0);
+	   gbcformatPanel.gridy = 0;
+	   gbcformatPanel.gridx = 0;
+	   bodyPanel.add(formatPanel, gbcformatPanel);
 	   
 	   
 	   this.createListPanel();
@@ -87,6 +83,7 @@ public class Equations extends Page {
 		innerp1.add(item1Button);
 		item1Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				// this is empty
 			}
 		});
 		item1Button.setName("1");
@@ -102,6 +99,7 @@ public class Equations extends Page {
 		item2Button.setName("2");
 		item2Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// this is empty
 			}
 		});
 		item2Button.setBounds(148, 100, 89, 23);
@@ -132,8 +130,8 @@ public class Equations extends Page {
 		p1.add(upButton);
 		
 		p2 = new JPanel();
-		FlowLayout flowLayout_1 = (FlowLayout) p2.getLayout();
-		flowLayout_1.setAlignment(FlowLayout.RIGHT);
+		FlowLayout flowLayout1 = (FlowLayout) p2.getLayout();
+		flowLayout1.setAlignment(FlowLayout.RIGHT);
 	    main.add(p2, BorderLayout.SOUTH);
 		downButton = new JLabel("");
 		downButton.setBounds(394, 188, 56, 56);
@@ -146,25 +144,6 @@ public class Equations extends Page {
 		downButton.setIcon(icon2);
 		p2.add(downButton);
 	}
-	
-	/**private List getTopics() {
-	   List ts = new List();
-	   DB db = DB.getInstance();
-
-	   String qGetTopicsForParent = "SELECT t.`topicid`, tr.`title` FROM `topics` t" +
-	                                " JOIN `topic_revisions` tr USING (`topicid`)" + 
-	                                " WHERE `parentid` = ?" + 
-	                                " GROUP BY t.`topicid`" + 
-	                                " ORDER BY tr.`revisionid` DESC";
-	   String[] pGetTopicsForParent = {DB.T_I, String.valueOf(this.parentID)};
-
-	   ArrayList<HashMap<String, String>> rows = db.query(qGetTopicsForParent, pGetTopicsForParent);
-	   if (rows.isEmpty()) {
-	      // Say there are no topics under this category 
-	   }
-	   
-	   return ts;
-	}*/
 	
 
 	public void updateButtons(String[] titles){

@@ -4,8 +4,6 @@ import java.awt.CardLayout;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -26,6 +24,7 @@ public class Login extends Page {
 	private transient logic.LoginPage controller;
 	private JPanel textPanel;
 	private JTextPane txtpnErrorInvalidUsername;
+	private String buttonBackground = "Button.background";
 	
 	/**
 	 * Create the panel.
@@ -33,12 +32,12 @@ public class Login extends Page {
 	public Login() {
       this.locationName = "Login";
 		this.createHeader();
-		// TODO: hide menu.
+		
 		
 		bodyPanel = new JPanel();
-		GridBagLayout gbl_bodyPanel = new GridBagLayout();
+		GridBagLayout gblbodyPanel = new GridBagLayout();
 		this.contentPanel.add(bodyPanel);
-		bodyPanel.setLayout(gbl_bodyPanel);
+		bodyPanel.setLayout(gblbodyPanel);
 		
 		formatPanel = new JPanel();
 		formatPanel.setLayout(new BoxLayout(formatPanel, BoxLayout.Y_AXIS));
@@ -59,7 +58,7 @@ public class Login extends Page {
 		usernameText.setFocusable(false);
 		usernamePanel.add(usernameText);
 		usernameText.setText("Username: ");
-		usernameText.setBackground(UIManager.getColor("Button.background"));
+		usernameText.setBackground(UIManager.getColor(buttonBackground));
 		usernameText.setBounds(100, 86, 61, 20);
 		
 		usernameField = new JTextField();
@@ -76,7 +75,7 @@ public class Login extends Page {
 		passwordText.setFocusable(false);
 		passwordText.setText("Password: ");
 		passwordText.setBounds(124, 104, 86, 20);
-		passwordText.setBackground(UIManager.getColor("Button.background"));
+		passwordText.setBackground(UIManager.getColor(buttonBackground));
 		passwordPanel.add(passwordText);
 
 		passwordField = new JPasswordField();
@@ -119,7 +118,7 @@ public class Login extends Page {
 		
 		txtpnErrorInvalidUsername = new JTextPane();
 		txtpnErrorInvalidUsername.setForeground(StyleGuide.errorText);
-		txtpnErrorInvalidUsername.setBackground(UIManager.getColor("Button.background"));
+		txtpnErrorInvalidUsername.setBackground(UIManager.getColor(buttonBackground));
 		txtpnErrorInvalidUsername.setText("Error! Invalid username / password combination!");
 		txtpnErrorInvalidUsername.setFocusable(false);
 		txtpnErrorInvalidUsername.setVisible(false);

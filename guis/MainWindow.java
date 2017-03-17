@@ -7,8 +7,7 @@ import javax.swing.JPanel;
 public class MainWindow extends JPanel {
 
 	private CardLayout cardlayout;
-	private Topics topicList;
-	private JPanel main;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -16,7 +15,7 @@ public class MainWindow extends JPanel {
 		cardlayout = new CardLayout(0, 0);
 		setLayout(cardlayout);
 		
-		main = new JPanel(cardlayout);
+		new JPanel(cardlayout);
 		add(new ViewTopic(), "category");
 		Equations temp = new Equations();
 		add(temp, "equations");

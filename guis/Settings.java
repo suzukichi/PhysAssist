@@ -15,9 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
-import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
+@SuppressWarnings("serial")
 public class Settings extends Page {
 	private JTextField usernameField;
 	private JTextField firstNameField;
@@ -43,19 +43,19 @@ public class Settings extends Page {
 	   this.createHeader();
 	   
 	   bodyPanel = new JPanel();
-	   GridBagLayout gbl_bodyPanel = new GridBagLayout();
-	   gbl_bodyPanel.rowWeights = new double[]{0.0};
-	   gbl_bodyPanel.columnWeights = new double[]{1.0};
+	   GridBagLayout gblbodyPanel = new GridBagLayout();
+	   gblbodyPanel.rowWeights = new double[]{0.0};
+	   gblbodyPanel.columnWeights = new double[]{1.0};
 	   this.contentPanel.add(bodyPanel);
-	   bodyPanel.setLayout(gbl_bodyPanel);
+	   bodyPanel.setLayout(gblbodyPanel);
 	   
 	   formatPanel = new JPanel();
 	   formatPanel.setLayout(new BoxLayout(formatPanel, BoxLayout.Y_AXIS));
-	   GridBagConstraints gbc_formatPanel = new GridBagConstraints();
-	   gbc_formatPanel.insets = new Insets(0, 0, 5, 0);
-	   gbc_formatPanel.gridy = 0;
-	   gbc_formatPanel.gridx = 0;
-	   bodyPanel.add(formatPanel, gbc_formatPanel);
+	   GridBagConstraints gbcformatPanel = new GridBagConstraints();
+	   gbcformatPanel.insets = new Insets(0, 0, 5, 0);
+	   gbcformatPanel.gridy = 0;
+	   gbcformatPanel.gridx = 0;
+	   bodyPanel.add(formatPanel, gbcformatPanel);
 	   this.createUsernamePanel();
 	   this.createPasswordPanel();
 	   this.createNamePanel();
@@ -88,8 +88,8 @@ public class Settings extends Page {
 		usernameField.setColumns(20);
 		
 		JPanel p2 = new JPanel();
-		FlowLayout flowLayout_1 = (FlowLayout) p2.getLayout();
-		flowLayout_1.setAlignment(FlowLayout.RIGHT);
+		FlowLayout flowLayout11 = (FlowLayout) p2.getLayout();
+		flowLayout11.setAlignment(FlowLayout.RIGHT);
 		usernameWrap.add(p2);
 		
 		JButton btnChangeUsername = new JButton("Change Username");
@@ -135,8 +135,8 @@ public class Settings extends Page {
 		
 		
 		JPanel p2 = new JPanel();
-		FlowLayout flowLayout_1 = (FlowLayout) p2.getLayout();
-		flowLayout_1.setAlignment(FlowLayout.RIGHT);
+		FlowLayout flowLayout1 = (FlowLayout) p2.getLayout();
+		flowLayout1.setAlignment(FlowLayout.RIGHT);
 		passwordWrap.add(p2);
 		JTextPane txtpnEnterNewPassword = new JTextPane();
 		txtpnEnterNewPassword.setFocusable(false);
@@ -152,8 +152,8 @@ public class Settings extends Page {
 		p2.add(passwordField1);
 		
 		JPanel p3 = new JPanel();
-		FlowLayout flowLayout_2 = (FlowLayout) p3.getLayout();
-		flowLayout_2.setAlignment(FlowLayout.RIGHT);
+		FlowLayout flowLayout2 = (FlowLayout) p3.getLayout();
+		flowLayout2.setAlignment(FlowLayout.RIGHT);
 		passwordWrap.add(p3);
 		JTextPane txtpnReenterNewPassword = new JTextPane();
 		txtpnReenterNewPassword.setFocusable(false);
@@ -169,8 +169,8 @@ public class Settings extends Page {
 		p3.add(passwordField2);
 		
 		JPanel p4 = new JPanel();
-		FlowLayout flowLayout_3 = (FlowLayout) p4.getLayout();
-		flowLayout_3.setAlignment(FlowLayout.RIGHT);
+		FlowLayout flowLayout3 = (FlowLayout) p4.getLayout();
+		flowLayout3.setAlignment(FlowLayout.RIGHT);
 		passwordWrap.add(p4);
 		
 		JButton btnChangePassword = new JButton("Change Password");
@@ -219,8 +219,8 @@ public class Settings extends Page {
 		firstNameField.setColumns(15);
 		
 		JPanel p2 = new JPanel();
-		FlowLayout flowLayout_1 = (FlowLayout) p2.getLayout();
-		flowLayout_1.setAlignment(FlowLayout.RIGHT);
+		FlowLayout flowLayout1 = (FlowLayout) p2.getLayout();
+		flowLayout1.setAlignment(FlowLayout.RIGHT);
 		JTextPane lastNameText = new JTextPane();
 		lastNameText.setFocusable(false);
 		lastNameText.setBackground(StyleGuide.background2);
@@ -236,8 +236,8 @@ public class Settings extends Page {
 		lastNameField.setColumns(15);
 		
 		JPanel p3 = new JPanel();
-		FlowLayout fl_p3 = (FlowLayout) p3.getLayout();
-		fl_p3.setAlignment(FlowLayout.RIGHT);
+		FlowLayout flp3 = (FlowLayout) p3.getLayout();
+		flp3.setAlignment(FlowLayout.RIGHT);
 		nameWrap.add(p3);
 		
 		JButton btnChangeName = new JButton("Edit Full Name");

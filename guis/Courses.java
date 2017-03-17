@@ -45,8 +45,6 @@ public class Courses extends Page {
 	public Courses() {
 	   this.locationName = "Enrolled Courses";
 	   this.createHeader();
-	   
-	   //courses = logic.Lists.getCourseList(userID);
 	   main = new JPanel();
 	   this.contentPanel.add(main);
 	   main.setLayout(new BorderLayout(0, 0));
@@ -83,6 +81,7 @@ public class Courses extends Page {
 		innerp1.add(item1Button);
 		item1Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				// this is empty
 			}
 		});
 		item1Button.setName("1");
@@ -142,25 +141,6 @@ public class Courses extends Page {
 		downButton.setIcon(icon2);
 		p2.add(downButton);
 	}
-	
-	/**private List getTopics() {
-	   List ts = new List();
-	   DB db = DB.getInstance();
-
-	   String qGetTopicsForParent = "SELECT t.`topicid`, tr.`title` FROM `topics` t" +
-	                                " JOIN `topic_revisions` tr USING (`topicid`)" + 
-	                                " WHERE `parentid` = ?" + 
-	                                " GROUP BY t.`topicid`" + 
-	                                " ORDER BY tr.`revisionid` DESC";
-	   String[] pGetTopicsForParent = {DB.T_I, String.valueOf(this.parentID)};
-
-	   ArrayList<HashMap<String, String>> rows = db.query(qGetTopicsForParent, pGetTopicsForParent);
-	   if (rows.isEmpty()) {
-	      // Say there are no topics under this category 
-	   }
-	   
-	   return ts;
-	}*/
 	
 
 	public void updateButtons(String[] titles){

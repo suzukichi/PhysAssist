@@ -25,6 +25,9 @@ public class Page extends JPanel {
    protected String locationName;
    protected JPanel contentPanel;
    protected JPanel headerPanel;
+   private JPopupMenu popupMenu;
+   private JLabel menu;
+   private String dialogInput = "DialogInput";
    
    protected void createHeader() {
 		setLayout(new BorderLayout(0, 0));
@@ -46,8 +49,7 @@ public class Page extends JPanel {
 		add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
    }
-   JPopupMenu popupMenu;
-   JLabel menu;
+
    protected void setupMenu() {	
 		menu = new JLabel("");
 		popupMenu = new JPopupMenu();
@@ -105,7 +107,7 @@ public class Page extends JPanel {
 		menuHomeButton.setHorizontalAlignment(SwingConstants.LEFT);
 		menuHomeButton.setVerticalTextPosition(SwingConstants.TOP);
 		menuHomeButton.setVerticalAlignment(SwingConstants.TOP);
-		menuHomeButton.setFont(new Font("DialogInput", Font.PLAIN, 12));
+		menuHomeButton.setFont(new Font(dialogInput, Font.PLAIN, 12));
 		popupMenu.add(menuHomeButton, BorderLayout.EAST);
 		
 		JMenuItem menuTopicButton = new JMenuItem("Topics");
@@ -122,7 +124,7 @@ public class Page extends JPanel {
 		menuTopicButton.setHorizontalAlignment(SwingConstants.LEFT);
 		menuTopicButton.setVerticalTextPosition(SwingConstants.TOP);
 		menuTopicButton.setVerticalAlignment(SwingConstants.TOP);
-		menuTopicButton.setFont(new Font("DialogInput", Font.PLAIN, 12));
+		menuTopicButton.setFont(new Font(dialogInput, Font.PLAIN, 12));
 		popupMenu.add(menuTopicButton, BorderLayout.EAST);
 		JMenuItem menuGroupButton = new JMenuItem("Groups");
 		menuGroupButton.addMouseListener(new MouseAdapter() {
@@ -138,7 +140,7 @@ public class Page extends JPanel {
 		menuGroupButton.setVerticalTextPosition(SwingConstants.TOP);
 		menuGroupButton.setVerticalAlignment(SwingConstants.TOP);
 		menuGroupButton.setPreferredSize(new Dimension(45, 22));
-		menuGroupButton.setFont(new Font("DialogInput", Font.PLAIN, 12));
+		menuGroupButton.setFont(new Font(dialogInput, Font.PLAIN, 12));
 		popupMenu.add(menuGroupButton);
 		
 		JMenuItem mntmCalculator = new JMenuItem("Calculator");
@@ -156,7 +158,7 @@ public class Page extends JPanel {
 		mntmCalculator.setVerticalTextPosition(SwingConstants.TOP);
 		mntmCalculator.setVerticalAlignment(SwingConstants.TOP);
 		mntmCalculator.setPreferredSize(new Dimension(65, 22));
-		mntmCalculator.setFont(new Font("DialogInput", Font.PLAIN, 12));
+		mntmCalculator.setFont(new Font(dialogInput, Font.PLAIN, 12));
 		popupMenu.add(mntmCalculator);
 		
 		JMenuItem mntmSettings = new JMenuItem("Settings");
@@ -173,7 +175,7 @@ public class Page extends JPanel {
 		mntmSettings.setVerticalTextPosition(SwingConstants.TOP);
 		mntmSettings.setVerticalAlignment(SwingConstants.TOP);
 		mntmSettings.setPreferredSize(new Dimension(45, 22));
-		mntmSettings.setFont(new Font("DialogInput", Font.PLAIN, 12));
+		mntmSettings.setFont(new Font(dialogInput, Font.PLAIN, 12));
 		popupMenu.add(mntmSettings);
 		
 		JMenuItem mntmLogOut = new JMenuItem("Log Out");
@@ -192,7 +194,7 @@ public class Page extends JPanel {
 		mntmLogOut.setVerticalTextPosition(SwingConstants.TOP);
 		mntmLogOut.setVerticalAlignment(SwingConstants.TOP);
 		mntmLogOut.setPreferredSize(new Dimension(45, 22));
-		mntmLogOut.setFont(new Font("DialogInput", Font.PLAIN, 12));
+		mntmLogOut.setFont(new Font(dialogInput, Font.PLAIN, 12));
 		popupMenu.add(mntmLogOut);
 		
 		menu.setToolTipText("Menu");
@@ -234,7 +236,7 @@ public class Page extends JPanel {
 		JLabel pageTitle = new JLabel(this.locationName);
 		pageTitle.setForeground(StyleGuide.header1);
 		pageTitle.setBorder(new EmptyBorder(0, 113, 0, 113));
-		pageTitle.setFont(new Font("DialogInput", Font.BOLD, 22));
+		pageTitle.setFont(new Font(dialogInput, Font.BOLD, 22));
 		pageTitle.setBackground(StyleGuide.contentBackground);
 		headerPanel.add(pageTitle);
    }
