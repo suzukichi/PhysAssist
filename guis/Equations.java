@@ -166,7 +166,7 @@ public class Equations extends Page {
 	}*/
 	
 
-	public void updateButtons(String[] titles, int index){
+	public void updateButtons(String[] titles){
 		item1Button.setText(titles[0]);
 		item2Button.setText(titles[1]);
 		item3Button.setText(titles[2]);

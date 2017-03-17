@@ -22,10 +22,6 @@ public class CreatePost extends Page {
 
 	JPanel usernamePanel; 
 	private JTextField titleField;
-	private JTextField emailField;
-	private JPasswordField passwordField;
-	private JPasswordField passwordField1;
-	private JPasswordField passwordField2;
 	public JPanel bodyPanel;
 	public JPanel formatPanel;
 	
@@ -37,22 +33,22 @@ public class CreatePost extends Page {
 	   this.createHeader();
 	   
 	   bodyPanel = new JPanel();
-	   GridBagLayout gbl_bodyPanel = new GridBagLayout();
+	   GridBagLayout gblBodyPanel = new GridBagLayout();
 	   this.contentPanel.add(bodyPanel);
-	   bodyPanel.setLayout(gbl_bodyPanel);
+	   bodyPanel.setLayout(gblBodyPanel);
 	   
 	   formatPanel = new JPanel();
 	   formatPanel.setLayout(new BoxLayout(formatPanel, BoxLayout.Y_AXIS));
-	   GridBagConstraints gbc_formatPanel = new GridBagConstraints();
-	   gbc_formatPanel.gridx = 0;
-	   bodyPanel.add(formatPanel, gbc_formatPanel);
+	   GridBagConstraints gbcFormatPanel = new GridBagConstraints();
+	   gbcFormatPanel.gridx = 0;
+	   bodyPanel.add(formatPanel, gbcFormatPanel);
 	   this.createPostPanel();
 	}
 	
 	private void createPostPanel() {
 		JPanel postWrap = new JPanel();
 		postWrap.setBorder(new EmptyBorder(10, 0, 10, 0));
-		postWrap.setBackground(UIManager.getColor("Button.background"));
+		postWrap.setBackground(StyleGuide.background2);
 		formatPanel.add(postWrap);
 		postWrap.setLayout(new BoxLayout(postWrap, BoxLayout.Y_AXIS));
 		
@@ -62,7 +58,7 @@ public class CreatePost extends Page {
 		JTextPane titleText = new JTextPane();
 		titleText.setFocusable(false);
 		p1.add(titleText);
-		titleText.setBackground(UIManager.getColor("Button.background"));
+		titleText.setBackground(StyleGuide.background2);
 		titleText.setText("Title:  ");
 		titleText.setBounds(91, 30, 122, 20);
 		

@@ -65,7 +65,7 @@ public class Settings extends Page {
 	private void createUsernamePanel() {	
 		JPanel usernameWrap = new JPanel();
 		usernameWrap.setBorder(new EmptyBorder(10, 0, 10, 0));
-		usernameWrap.setBackground(UIManager.getColor("Button.background"));
+		usernameWrap.setBackground(StyleGuide.background2);
 		formatPanel.add(usernameWrap);
 		usernameWrap.setLayout(new BoxLayout(usernameWrap, BoxLayout.Y_AXIS));
 		
@@ -77,7 +77,7 @@ public class Settings extends Page {
 		JTextPane usernameText = new JTextPane();
 		usernameText.setFocusable(false);
 		p1.add(usernameText);
-		usernameText.setBackground(UIManager.getColor("Button.background"));
+		usernameText.setBackground(StyleGuide.background2);
 		usernameText.setBorder(null);
 		usernameText.setText("Username:        ");
 		usernameText.setBounds(91, 30, 122, 20);
@@ -102,7 +102,7 @@ public class Settings extends Page {
 		JTextPane userNameErrorText = new JTextPane();
 		userNameErrorText.setVisible(false);
 		userNameErrorText.setForeground(StyleGuide.errorText);
-		userNameErrorText.setBackground(UIManager.getColor("Button.background"));
+		userNameErrorText.setBackground(StyleGuide.background2);
 		userNameErrorText.setText("Name in use!");
 		userNameErrorText.setFocusable(false);
 		p3.add(userNameErrorText);
@@ -111,7 +111,7 @@ public class Settings extends Page {
 	private void createPasswordPanel() {
 		JPanel passwordWrap = new JPanel();
 		passwordWrap.setBorder(new EmptyBorder(10, 0, 10, 0));
-		passwordWrap.setBackground(UIManager.getColor("Button.background"));
+		passwordWrap.setBackground(StyleGuide.background2);
 		passwordWrap.setLayout(new BoxLayout(passwordWrap, BoxLayout.Y_AXIS));
 		formatPanel.add(passwordWrap);
 		
@@ -186,7 +186,7 @@ public class Settings extends Page {
 		passwordErrorText = new JTextPane();
 		passwordErrorText = new JTextPane();
 		passwordErrorText.setForeground(StyleGuide.errorText);
-		passwordErrorText.setBackground(UIManager.getColor("Button.background"));
+		passwordErrorText.setBackground(StyleGuide.background2);
 		passwordErrorText.setText("Error! Password Incorrect or duplicates do not match!");
 		passwordErrorText.setFocusable(false);
 		passwordErrorText.setVisible(false);
@@ -197,7 +197,7 @@ public class Settings extends Page {
 	private void createNamePanel() {
 		JPanel nameWrap = new JPanel();
 		nameWrap.setBorder(new EmptyBorder(10, 0, 10, 0));
-		nameWrap.setBackground(UIManager.getColor("Button.background"));
+		nameWrap.setBackground(StyleGuide.background2);
 		formatPanel.add(nameWrap);
 		nameWrap.setLayout(new BoxLayout(nameWrap, BoxLayout.Y_AXIS));
 		
@@ -206,7 +206,7 @@ public class Settings extends Page {
 		flowLayout.setAlignment(FlowLayout.RIGHT);
 		JTextPane firstNameText = new JTextPane();
 		firstNameText.setFocusable(false);
-		firstNameText.setBackground(UIManager.getColor("Button.background"));
+		firstNameText.setBackground(StyleGuide.background2);
 		firstNameText.setBorder(null);
 		firstNameText.setText("First Name: ");
 		firstNameText.setBounds(91, 30, 122, 20);
@@ -223,7 +223,7 @@ public class Settings extends Page {
 		flowLayout_1.setAlignment(FlowLayout.RIGHT);
 		JTextPane lastNameText = new JTextPane();
 		lastNameText.setFocusable(false);
-		lastNameText.setBackground(UIManager.getColor("Button.background"));
+		lastNameText.setBackground(StyleGuide.background2);
 		lastNameText.setBorder(null);
 		lastNameText.setText("Last Name: ");
 		lastNameText.setBounds(91, 30, 122, 20);
@@ -248,7 +248,7 @@ public class Settings extends Page {
 	private void createEmailPanel() {	
 		JPanel emailWrap = new JPanel();
 		emailWrap.setBorder(new EmptyBorder(10, 0, 10, 0));
-		emailWrap.setBackground(UIManager.getColor("Button.background"));
+		emailWrap.setBackground(StyleGuide.background2);
 		formatPanel.add(emailWrap);
 		emailWrap.setLayout(new BoxLayout(emailWrap, BoxLayout.Y_AXIS));
 		
@@ -260,7 +260,7 @@ public class Settings extends Page {
 		JTextPane emailText = new JTextPane();
 		emailText.setFocusable(false);
 		p1.add(emailText);
-		emailText.setBackground(UIManager.getColor("Button.background"));
+		emailText.setBackground(StyleGuide.background2);
 		emailText.setBorder(null);
 		emailText.setText("Email:            ");
 		emailText.setBounds(91, 30, 122, 20);

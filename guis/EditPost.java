@@ -22,10 +22,6 @@ public class EditPost extends Page {
 
 	JPanel usernamePanel; 
 	private JTextField titleField;
-	private JTextField emailField;
-	private JPasswordField passwordField;
-	private JPasswordField passwordField1;
-	private JPasswordField passwordField2;
 	public JPanel bodyPanel;
 	public JPanel formatPanel;
 	
@@ -52,7 +48,7 @@ public class EditPost extends Page {
 	private void createPostPanel() {
 		JPanel postWrap = new JPanel();
 		postWrap.setBorder(new EmptyBorder(10, 0, 10, 0));
-		postWrap.setBackground(UIManager.getColor("Button.background"));
+		postWrap.setBackground(StyleGuide.background2);
 		formatPanel.add(postWrap);
 		postWrap.setLayout(new BoxLayout(postWrap, BoxLayout.Y_AXIS));
 		
@@ -62,7 +58,7 @@ public class EditPost extends Page {
 		JTextPane titleText = new JTextPane();
 		titleText.setFocusable(false);
 		p1.add(titleText);
-		titleText.setBackground(UIManager.getColor("Button.background"));
+		titleText.setBackground(StyleGuide.background2);
 		titleText.setText("Title:  ");
 		titleText.setBounds(91, 30, 122, 20);
 		

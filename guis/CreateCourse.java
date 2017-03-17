@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -21,10 +22,6 @@ import javax.swing.border.LineBorder;
 public class CreateCourse extends Page {
 	JPanel usernamePanel; 
 	private JTextField titleField;
-	private JTextField emailField;
-	private JPasswordField passwordField;
-	private JPasswordField passwordField1;
-	private JPasswordField passwordField2;
 	public JPanel bodyPanel;
 	public JPanel formatPanel;
 	
@@ -32,15 +29,19 @@ public class CreateCourse extends Page {
 	   this.locationName = "Create Class";
 	   this.createHeader();
 	   bodyPanel = new JPanel();
-	   GridBagLayout gbl_bodyPanel = new GridBagLayout();
-	   this.contentPanel.add(bodyPanel);
-	   bodyPanel.setLayout(gbl_bodyPanel);
+	   GridBagLayout gblBodyPanel = new GridBagLayout();
+	   gblBodyPanel.rowWeights = new double[]{0.0};
+	   gblBodyPanel.columnWeights = new double[]{1.0};
+	   bodyPanel.setLayout(gblBodyPanel);
 	   
 	   formatPanel = new JPanel();
+	   formatPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 	   formatPanel.setLayout(new BoxLayout(formatPanel, BoxLayout.Y_AXIS));
-	   GridBagConstraints gbc_formatPanel = new GridBagConstraints();
-	   gbc_formatPanel.gridx = 0;
-	   bodyPanel.add(formatPanel, gbc_formatPanel);
+	   GridBagConstraints gbcFormatPanel = new GridBagConstraints();
+	   gbcFormatPanel.insets = new Insets(0, 0, 5, 0);
+	   gbcFormatPanel.gridy = 0;
+	   gbcFormatPanel.gridx = 0;
+	   bodyPanel.add(formatPanel, gbcFormatPanel);
 	   this.createCoursePanel();
 	}
 	

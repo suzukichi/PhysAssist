@@ -54,7 +54,7 @@ public class Notification extends Page {
 	private void createPostPanel() {
 		JPanel postWrap = new JPanel();
 		postWrap.setBorder(new EmptyBorder(10, 0, 10, 0));
-		postWrap.setBackground(UIManager.getColor("Button.background"));
+		postWrap.setBackground(StyleGuide.background2);
 		formatPanel.add(postWrap);
 		postWrap.setLayout(new BoxLayout(postWrap, BoxLayout.Y_AXIS));
 		

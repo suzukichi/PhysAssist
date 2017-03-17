@@ -16,12 +16,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 public class ViewTopic extends Page {
-	private HashMap<String, Long> buttons;
-	private JLabel upButton, downButton;
-	private JPanel main;
-	private JPanel p1;
-	private JPanel p2;
-
 	public JPanel bodyPanel;
 	public JPanel formatPanel;
 	String categoryTitle;
@@ -47,20 +41,19 @@ public class ViewTopic extends Page {
 	   
 	   
 	   bodyPanel = new JPanel();
-	   GridBagLayout gbl_bodyPanel = new GridBagLayout();
-	   gbl_bodyPanel.rowWeights = new double[]{0.0};
-	   gbl_bodyPanel.columnWeights = new double[]{1.0};
-	   this.contentPanel.add(bodyPanel);
-	   bodyPanel.setLayout(gbl_bodyPanel);
+	   GridBagLayout gblBodyPanel = new GridBagLayout();
+	   gblBodyPanel.rowWeights = new double[]{0.0};
+	   gblBodyPanel.columnWeights = new double[]{1.0};
+	   bodyPanel.setLayout(gblBodyPanel);
 	   
 	   formatPanel = new JPanel();
 	   formatPanel.setBorder(null);
 	   formatPanel.setLayout(new BoxLayout(formatPanel, BoxLayout.Y_AXIS));
-	   GridBagConstraints gbc_formatPanel = new GridBagConstraints();
-	   gbc_formatPanel.insets = new Insets(0, 0, 5, 0);
-	   gbc_formatPanel.gridy = 0;
-	   gbc_formatPanel.gridx = 0;
-	   bodyPanel.add(formatPanel, gbc_formatPanel);
+	   GridBagConstraints gbcFormatPanel = new GridBagConstraints();
+	   gbcFormatPanel.insets = new Insets(0, 0, 5, 0);
+	   gbcFormatPanel.gridy = 0;
+	   gbcFormatPanel.gridx = 0;
+	   bodyPanel.add(formatPanel, gbcFormatPanel);
 	   
 	   
 	   this.createListPanel();

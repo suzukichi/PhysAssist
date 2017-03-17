@@ -30,7 +30,7 @@ public class Home extends Page {
 	   this.createHeader();
 		
 		homepageOptions = new JPanel();
-		homepageOptions.setBackground(UIManager.getColor("Button.background"));
+		homepageOptions.setBackground(StyleGuide.background2);
 		homepageOptions.setBorder(new EmptyBorder(0, 0, 0, 0));
 		FlowLayout flowLayout_1 = (FlowLayout) homepageOptions.getLayout();
 		flowLayout_1.setVgap(0);
