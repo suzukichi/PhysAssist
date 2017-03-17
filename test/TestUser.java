@@ -17,16 +17,16 @@ import logic.User;
 
 public class TestUser {
 
-	private static final String username = "username";
-	private static final String smith = "smith";
-	private static final String bobemail = "bob@email.com";
-	private static final String course = "test course";
-	private static final String description = "test course description";
+	private static final String USERNAME = "username";
+	private static final String SMITH = "smith";
+	private static final String BOBEMAIL = "bob@email.com";
+	private static final String COURSE = "test course";
+	private static final String DESCRIPTION = "test course description";
 	
   @Test
   public void testGetPermissionStudent() {
-    User user = new User(username, "bob", smith, "bla", bobemail);
-    Course c = new Course(1, course, description);
+    User user = new User(USERNAME, "bob", SMITH, "bla", BOBEMAIL);
+    Course c = new Course(1, COURSE, DESCRIPTION);
     
     user.enrollCourse(c);
     assertEquals("student", user.getPermission(c));
@@ -34,8 +34,8 @@ public class TestUser {
   
   @Test
   public void testGetPermissionProfessor() {
-    User user = new User(username, "bob", smith, "bla", bobemail);
-    Course c = new Course(1, course, description);
+    User user = new User(USERNAME, "bob", SMITH, "bla", BOBEMAIL);
+    Course c = new Course(1, COURSE, DESCRIPTION);
     
     user.teachCourse(c);
     assertEquals("professor", user.getPermission(c));
@@ -43,8 +43,8 @@ public class TestUser {
   
   @Test
   public void testGetPermissionGeneralUser() {
-    User user = new User(username, "bob", smith, "bla", bobemail);
-    Course c = new Course(1, course, description);
+    User user = new User(USERNAME, "bob", SMITH, "bla", BOBEMAIL);
+    Course c = new Course(1, COURSE, DESCRIPTION);
     
     assertEquals("general_user", user.getPermission(c));
   }
